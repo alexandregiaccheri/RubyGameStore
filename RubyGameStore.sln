@@ -5,6 +5,12 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyGameStoreWeb", "RubyGameStoreWeb\RubyGameStoreWeb.csproj", "{8B020053-C416-4F69-BB08-1A17D6665AAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyGameStore.Data", "RubyGameStore.Data\RubyGameStore.Data.csproj", "{CD309815-1858-4A8D-8E96-0296BF62CD52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyGameStore.Models", "RubyGameStore.Models\RubyGameStore.Models.csproj", "{69278212-8E27-4E87-9089-7FC76D0B3385}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyGameStore.Helper", "RubyGameStore.Helper\RubyGameStore.Helper.csproj", "{62A83395-0D87-4FC9-8F0E-7960388F93DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{8B020053-C416-4F69-BB08-1A17D6665AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B020053-C416-4F69-BB08-1A17D6665AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B020053-C416-4F69-BB08-1A17D6665AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD309815-1858-4A8D-8E96-0296BF62CD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD309815-1858-4A8D-8E96-0296BF62CD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD309815-1858-4A8D-8E96-0296BF62CD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD309815-1858-4A8D-8E96-0296BF62CD52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69278212-8E27-4E87-9089-7FC76D0B3385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69278212-8E27-4E87-9089-7FC76D0B3385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69278212-8E27-4E87-9089-7FC76D0B3385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69278212-8E27-4E87-9089-7FC76D0B3385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62A83395-0D87-4FC9-8F0E-7960388F93DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62A83395-0D87-4FC9-8F0E-7960388F93DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62A83395-0D87-4FC9-8F0E-7960388F93DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62A83395-0D87-4FC9-8F0E-7960388F93DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

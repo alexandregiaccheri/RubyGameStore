@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RubyGameStoreWeb.Models;
+using RubyGameStore.Models.Models;
 using System.Diagnostics;
 
-namespace RubyGameStoreWeb.Controllers
+namespace RubyGameStoreWeb.Areas.User.Controllers
 {
     public class HomeController : Controller
     {

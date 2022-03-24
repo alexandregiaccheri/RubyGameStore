@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using RubyGameStore.Data.Data;
+using RubyGameStore.Data.Repository;
+using RubyGameStore.Data.Repository.IRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<RubyGameStoreDbContext>(o => o.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -22,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

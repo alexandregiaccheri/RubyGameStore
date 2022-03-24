@@ -1,4 +1,4 @@
-namespace RubyGameStoreWeb.Models
+namespace RubyGameStore.Models.Models
 {
     public class ErrorViewModel
     {
