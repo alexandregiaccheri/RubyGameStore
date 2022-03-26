@@ -1,21 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Models.Models;
 using System.Diagnostics;
 
 namespace RubyGameStoreWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUnitOfWork _unitOfWork)
         {
-            _logger = logger;
+            unitOfWork = _unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Produto> listaProdutos = unitOfWork.ProdutoRepo.GetAll(incluirPropriedades: "Categoria,Plataforma");
+            return View(listaProdutos);
         }
 
         public IActionResult Privacy()

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RubyGameStore.Data.Data;
 
@@ -10,9 +11,10 @@ using RubyGameStore.Data.Data;
 namespace RubyGameStore.Data.Migrations
 {
     [DbContext(typeof(RubyGameStoreDbContext))]
-    partial class RubyGameStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220324230312_AdicionarImagemUrlNoProduto")]
+    partial class AdicionarImagemUrlNoProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,9 +68,6 @@ namespace RubyGameStore.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Ano")
-                        .HasColumnType("int");
 
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");

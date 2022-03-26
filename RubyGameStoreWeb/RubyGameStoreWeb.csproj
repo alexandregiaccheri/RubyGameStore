@@ -21,4 +21,8 @@
     <ProjectReference Include="..\RubyGameStore.Models\RubyGameStore.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\produtos\" />
+  </ItemGroup>
+
 </Project>

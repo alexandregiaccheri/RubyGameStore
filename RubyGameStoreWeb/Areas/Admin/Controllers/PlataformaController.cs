@@ -4,6 +4,7 @@ using RubyGameStore.Models.Models;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class PlataformaController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

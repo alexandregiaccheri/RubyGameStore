@@ -22,16 +22,33 @@ namespace RubyGameStore.Data.Repository
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            IQueryable<T> listaObj = dbSet;
-            return listaObj.ToList();
-        }
-
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetAll(string? incluirPropriedades = null)
         {
             IQueryable<T> query = dbSet;
+
+            if (incluirPropriedades != null)
+            {
+                foreach (var propriedade in incluirPropriedades.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(propriedade);
+                }
+            }
+            return query.ToList();
+        }
+
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? incluirPropriedades = null)
+        {
+            IQueryable<T> query = dbSet;
+
             query = query.Where(filter);
+
+            if (incluirPropriedades != null)
+            {
+                foreach (var propriedade in incluirPropriedades.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(propriedade);
+                }
+            }
             return query.FirstOrDefault();
         }
 

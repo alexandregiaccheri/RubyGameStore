@@ -1,0 +1,129 @@
+﻿@model RubyGameStore.Models.ViewModels.ProdutoVM
+@{
+    if (Model.Produto.Id != 0) ViewData["Title"] = "Atualizar Produto";
+    else ViewData["Title"] = "Adicionar Produto";
+}
+
+<div class="row">
+    <div class="container col-10">
+        <div class="container row mt-3">
+            <div class="col-6">
+                <h2>@(Model.Produto.Id != 0 ? "Atualizar" : "Adicionar") Produto</h2>
+            </div>
+            <div class="col-6 text-end my-auto">
+                <a asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+            </div>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <div class="container row justify-content-around">
+                <input asp-for="Produto.Id" readonly hidden />
+                <input asp-for="Produto.ImgCapaUrl" readonly hidden />
+                <div class="form-group row mt-3 col-8">
+                    <label asp-for="Produto.Titulo" class="form-label"></label>
+                    <input asp-for="Produto.Titulo" class="form-control" />
+                    <span asp-validation-for="Produto.Titulo" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-4">
+                    <label asp-for="Produto.Ano" class="form-label"></label>
+                    <input asp-for="Produto.Ano" class="form-control" />
+                    <span asp-validation-for="Produto.Ano" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3">
+                    <label asp-for="Produto.Descricao" class="form-label"></label>
+                    <textarea asp-for="Produto.Descricao" class="form-control" rows="5" style="padding: 0px !important" />@Model.Produto.Descricao</textarea>
+                    <span asp-validation-for="Produto.Descricao" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Desenvolvedor" class="form-label"></label>
+                    <input asp-for="Produto.Desenvolvedor" class="form-control" />
+                    <span asp-validation-for="Produto.Desenvolvedor" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Distribuidor" class="form-label"></label>
+                    <input asp-for="Produto.Distribuidor" class="form-control" />
+                    <span asp-validation-for="Produto.Distribuidor" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.PrecoListado" class="form-label"></label>
+                    <input asp-for="Produto.PrecoListado" class="form-control" />
+                    <span asp-validation-for="Produto.PrecoListado" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Preco" class="form-label"></label>
+                    <input asp-for="Produto.Preco" class="form-control" placeholder="1 - 10000" />
+                    <span asp-validation-for="Produto.Preco" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Preco50" class="form-label"></label>
+                    <input asp-for="Produto.Preco50" class="form-control" />
+                    <span asp-validation-for="Produto.Preco50" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Preco100" class="form-label"></label>
+                    <input asp-for="Produto.Preco100" class="form-control" />
+                    <span asp-validation-for="Produto.Preco100" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3">
+                    <label asp-for="Produto.ImgCapaUrl" class="form-label"></label>
+                    <input type="file" id="imgcapa" name="capa" class="form-control" />
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.PlataformaId" class="form-label"></label>
+                    <select asp-for="Produto.PlataformaId" asp-items="@Model.ListaPlataformas" class="form-select">
+                        <option disabled selected>--Selecione uma Plataforma--</option>
+                    </select>
+                    <span asp-validation-for="Produto.PlataformaId" class="mt-2 text-danger"></span>
+                </div>
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.CategoriaId" class="form-label"></label>
+                    <select asp-for="Produto.CategoriaId" asp-items="@Model.ListaCategorias" class="form-select">
+                        <option disabled selected>--Selecione uma Categoria--</option>
+                    </select>
+                    <span asp-validation-for="Produto.CategoriaId" class="mt-2 text-danger"></span>
+                </div>
+                <div class="col-12 mt-1">
+                    @if (Model.Produto.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-check-square"></i>&nbsp; Atualizar</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary mt-3" onclick="return ValidateImage()"><i class="bi bi-check-square"></i>&nbsp; Adicionar</button>
+                    }
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container col-2 my-auto mx-auto">
+        <img src="@Model.Produto.ImgCapaUrl" width="100%" />
+        <h5 class="text-center mt-2">@(Model.Produto.Id != 0 ? "Capa atual" : "")</h5>
+    </div>
+</div>
+
+@section Scripts
+{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable  tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+        toolbar_mode: 'floating',
+        height: 300
+    });
+</script>
+<script>
+    function ValidateImage(){
+        if (document.getElementById("imgcapa").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione uma imagem!'})
+            return false
+            }
+            return true
+    }
+</script>
+}

@@ -1,0 +1,30 @@
+﻿@model Categoria
+@{
+    ViewData["Title"] = "Excluir Categoria";
+}
+
+<div class="container row mt-3">
+    <div class="col-6">
+        <h2>Excluir Categoria</h2>
+    </div>
+    <div class="col-6 text-end my-auto">
+        <a asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+    </div>
+</div>
+
+<form method="post">
+    <div class="container">
+        <input asp-for="Id" readonly hidden />
+        <div class="form-group row mt-3">
+            <label asp-for="NomeCategoria" class="form-label"></label>
+            <input asp-for="NomeCategoria" class="form-control" disabled />
+            <span asp-validation-for="NomeCategoria" class="mt-2 text-danger"></span>
+        </div>
+        <div class="form-group row mt-3">
+            <label asp-for="Descricao" class="form-label"></label>
+            <textarea asp-for="Descricao" class="form-control" rows="3" disabled/>@Model.Descricao</textarea>
+            <span asp-validation-for="Descricao" class="mt-2 text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-danger mt-3"><i class="bi bi-x-square"></i>&nbsp; Excluir</button>
+    </div>
+</form>
