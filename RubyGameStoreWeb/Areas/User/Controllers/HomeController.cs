@@ -17,8 +17,20 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Produto> listaProdutos = unitOfWork.ProdutoRepo.GetAll(incluirPropriedades: "Categoria,Plataforma");
+            IEnumerable<Produto> listaProdutos = unitOfWork.ProdutoRepo.GetAll(incluirPropriedades:"Categoria,Plataforma");
             return View(listaProdutos);
+        }
+
+        public IActionResult Detalhes(int id)
+        {
+            var query = unitOfWork.ProdutoRepo.GetFirstOrDefault(p => p.Id == id, incluirPropriedades: "Categoria,Plataforma");
+            if (query == null) return NotFound();
+            Carrinho carrinho = new Carrinho()
+            {
+                Produto = query,
+                Quantidade = 1
+            };
+            return View(carrinho);
         }
 
         public IActionResult Privacy()

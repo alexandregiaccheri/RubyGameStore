@@ -12,15 +12,14 @@
                     <div style="height:300px">
                         <img src="@obj.ImgCapaUrl" class="rounded" style="height:100%; width:100%; object-fit:contain; position: relative; top:0">
                     </div>
-                    <div class="pt-2 row align-content-center">
-                        <p class="card-title h4 text-primary" style="">@obj.Titulo</p>
-                        <p class="card-title text-secondary" style="line-height: 0.9">Desenvolvedor: @obj.Desenvolvedor</p>
-                        <p class="card-title text-secondary" style="line-height: 0.9">Distrubuidor: @obj.Distribuidor</p>
-                        <p class="card-title h5 text-primary" style="line-height: 0.8">R$ @obj.Preco.ToString("N2")</p>
-                        <p class="card-title text-muted" style="line-height:0.8">Em até 10x de sem juros no cartão</p>
-                        <a class="btn btn-primary mx-auto rounded col-10 mt-2">Ver mais</a>
+                    <div class="p-2 row align-content-center">
+                        <p class="card-title h4 text-primary" style="font-size:1.4rem">@obj.Titulo</p>
+                        <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Desenvolvedor:</b> @obj.Desenvolvedor</p>
+                        <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Plataforma:</b> @obj.Plataforma.NomePlataforma</p>
+                        <p class="card-title h5 text-primary" style="line-height: 0.8; font-size:1.2rem">R$ @obj.Preco.ToString("N2")</p>
+                        <p class="card-title text-muted" style="line-height:0.8; font-size:0.95rem">Em até 12x de no cartão de crédito</p>
+                        <a class="btn btn-primary mx-auto rounded col-10 mt-2" asp-action="Detalhes" asp-route-id="@obj.Id">Ver mais</a>
                     </div>
-                    
                 </div>
             </div>
         </div>

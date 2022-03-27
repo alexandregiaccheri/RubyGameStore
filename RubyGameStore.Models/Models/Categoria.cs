@@ -11,5 +11,12 @@ namespace RubyGameStore.Models.Models
         public string NomeCategoria { get; set; }
         [Required]
         public string Descricao { get; set; }
+
+        public override string ToString()
+        {
+            return this.NomeCategoria.ToString();
+        }
     }
+
+
 }

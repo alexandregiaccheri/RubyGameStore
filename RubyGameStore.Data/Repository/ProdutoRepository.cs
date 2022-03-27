@@ -33,7 +33,6 @@ namespace RubyGameStore.Data.Repository
                     queryObj.ImgCapaUrl = obj.ImgCapaUrl;
                 }
             }
-            
         }
     }
 }

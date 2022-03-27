@@ -9,5 +9,10 @@ namespace RubyGameStore.Models.Models
         [Required]
         [Display(Name = "Plataforma")]
         public string NomePlataforma { get; set; }
+
+        public override string ToString()
+        {
+            return this.NomePlataforma.ToString();
+        }
     }
 }
