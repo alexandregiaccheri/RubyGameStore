@@ -36,8 +36,8 @@ function ApagarProduto(url) {
         text: "Não será possivel desfazer esta ação!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#c62e2e',
+        cancelButtonColor: '#2b77c0',
         confirmButtonText: 'Sim, apague!'
     }).then((result) => {
         if (result.isConfirmed) {

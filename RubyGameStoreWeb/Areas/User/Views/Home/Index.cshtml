@@ -18,7 +18,7 @@
                         <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Plataforma:</b> @obj.Plataforma.NomePlataforma</p>
                         <p class="card-title h5 text-primary" style="line-height: 0.8; font-size:1.2rem">R$ @obj.Preco.ToString("N2")</p>
                         <p class="card-title text-muted" style="line-height:0.8; font-size:0.95rem">Em até 12x de no cartão de crédito</p>
-                        <a class="btn btn-primary mx-auto rounded col-10 mt-2" asp-action="Detalhes" asp-route-id="@obj.Id">Ver mais</a>
+                        <a class="btn btn-primary mx-auto rounded col-10 mt-2" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">Ver mais</a>
                     </div>
                 </div>
             </div>

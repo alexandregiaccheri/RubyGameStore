@@ -7,31 +7,38 @@
 
 <section class="container bg-dark pt-2" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
     <div class="row p-2">
-        <h1 class="col-8 text-white">@Model.Produto.Titulo</h1>
-        <div class="col-4">
+        <h1 class="col-7 text-white">@Model.Produto.Titulo</h1>
+        <div class="col-5">
             <p class="text-white-50 text-end m-0" style="line-height:1.2">Plataforma: @Model.Produto.Plataforma.NomePlataforma</p>
             <p class="text-end m-0" style="color: lightgreen; font-size:1.6rem; line-height:1.6">R$ @Model.Produto.Preco.ToString("N2")</p>
         </div>
 
     </div>
     <div class="row p-2">
-        <div class=col-6>
+        <div class=col-8>
             <p class="text-white" style="line-height:0.8"><b>Desenvolvedor: </b>@Model.Produto.Desenvolvedor</p>
             <p class="text-white" style="line-height:0.8"><b>Distribuidor: </b>@Model.Produto.Distribuidor</p>
 
         </div>
-        <div class="col-6 text-end">
-            <a class="btn btn-success"><i class="bi bi-cart-plus"></i>&nbsp; Comprar</a>
-        </div>
+        <form method="post" class="col-4 row mx-auto">
+            <div class="text-end">
+                <input asp-for="ProdutoId" hidden readonly/>                
+                <label asp-for="Quantidade" class="text-white-50"></label>
+                <input asp-for="Quantidade" class="form-control col-8 text-center mb-1" style="max-width: 116px; margin-left: auto" />
+                <div>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-cart-plus"></i>&nbsp; Comprar</button>
+                </div>
+            </div>
+        </form>
     </div>
 </section>
 
 <section class="container pt-4 pb-4 col-11" style="border: solid 1px #373a3c; background-color: #f8f8f8; min-height:62vh">
     <div class="row">
-        <div class="col-8 px-4">
+        <div class="col-12 col-lg-8 px-4">
             <p class="">@Html.Raw(@Model.Produto.Descricao)</p>
         </div>
-        <div class="col-4 px-4 my-auto">
+        <div class="d-none d-lg-inline col-4 px-4 my-auto">
             <img src="@Model.Produto.ImgCapaUrl" class="rounded" style="height:100%; width:100%; object-fit:contain; max-height: 400px" />
             <div class="row mt-4 px-3">
                 <i class="bi bi-credit-card col-2 px-1" style="font-size:3rem"></i>

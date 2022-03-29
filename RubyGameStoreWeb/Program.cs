@@ -2,14 +2,19 @@ using Microsoft.EntityFrameworkCore;
 using RubyGameStore.Data.Data;
 using RubyGameStore.Data.Repository;
 using RubyGameStore.Data.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
+using RubyGameStore.Helper;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<RubyGameStoreDbContext>(o => o.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RubyGameStoreDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders().AddEntityFrameworkStores<RubyGameStoreDbContext>(); 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 
@@ -26,8 +31,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");

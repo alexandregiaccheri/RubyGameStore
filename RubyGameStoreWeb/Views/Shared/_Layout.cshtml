@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="~/css/bootswatch-simplex.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/r-2.2.9/datatables.min.css" />
-    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/b-print-2.2.2/r-2.2.9/datatables.min.css" />*@
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
-        <link rel="stylesheet" href="~/css/DataTableThemed.css" />*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@sweetalert2/theme-dark@5/dark.css" />
     <link rel="stylesheet" href="~/css/tinymce.css" />
@@ -24,8 +21,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarColor01">
+                <div class="collapse navbar-collapse align-content-center" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" asp-area="User" asp-controller="Home" asp-action="Index">
@@ -36,35 +32,28 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="User" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @*<li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                            </li>*@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerenciamento</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Pedidos</a>
                                 <a class="dropdown-item" href="#">Produtos</a>
-                                <a class="dropdown-item" href="#">Pagamentos</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Empresas (CNPJ)</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Categoria" asp-action="Index">Categorias</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Plataforma" asp-action="Index">Plataformas</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Produtos</a>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/alexandregiaccheri/RubyGameStore" target="_blank"><i class="bi bi-github"></i>&nbsp; Código-fonte</a>
+                        </li>
                     </ul>
-                    <div class="row">
-                        <div class="col-4"></div>
-                        <p class="text-white col-6 my-auto text-end">Clique aqui para ver o código-fonte deste site</p>
-                        <i class="bi bi-github text-white col-2 my-auto" style="font-size: 2.5rem"></i>
-                    </div>
+                    <partial name="_LoginPartial" />                    
                 </div>
             </div>
         </nav>
-
     </header>
+
     <div class="container">
         <main role="main">
             <partial name="_ToastrNotifications" />
@@ -78,12 +67,12 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.5/r-2.2.9/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/kcgfkd7aoveq8bncs8xkhkul8ikvfuocpg2csc0d2lcf77zn/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
