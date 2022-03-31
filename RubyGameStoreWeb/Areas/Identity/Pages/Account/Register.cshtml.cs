@@ -107,29 +107,19 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-            
+            public string ConfirmPassword { get; set; }            
             [Required]
             public string NomeUsuario { get; set; }
-
             [Required]
             public string SobrenomeUsuario { get; set; }
-
-            public string? RuaUsuario { get; set; }
-
+            public string? LogradouroUsuario { get; set; }
             public string? CidadeUsuario { get; set; }
-
             public string? EstadoUsuario { get; set; }
-
             public string? CEPUsuario { get; set; }
-
             public string? Autorizacao { get; set; }
-
             [ValidateNever]
             public IEnumerable<SelectListItem> ListaAutorizacao { get; set; }
-
             public int? EmpresaId { get; set; }
-
             [ValidateNever]
             public IEnumerable<SelectListItem> ListaEmpresas { get; set; }
         }
@@ -174,7 +164,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.NomeUsuario = Input.NomeUsuario;
                 user.SobrenomeUsuario = Input.SobrenomeUsuario;
-                user.RuaUsuario = Input?.RuaUsuario;
+                user.LogradouroUsuario = Input?.LogradouroUsuario;
                 user.CidadeUsuario = Input?.CidadeUsuario;
                 user.EstadoUsuario = Input?.EstadoUsuario;
                 user.CEPUsuario = Input?.CEPUsuario;

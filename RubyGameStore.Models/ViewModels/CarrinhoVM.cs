@@ -5,8 +5,7 @@ namespace RubyGameStore.Models.ViewModels
 {
     public class CarrinhoVM
     {
-        [ValidateNever]
         public IEnumerable<Carrinho> ListaCarrinho { get; set; }
-        public double TotalCarrinho { get; set; }
+        public PedidoCabecalho PedidoCabecalho { get; set; }
     }
 }

@@ -1,0 +1,77 @@
+﻿@model RubyGameStore.Models.ViewModels.CarrinhoVM
+@{
+    ViewData["Title"] = "RevisarPedido";
+}
+<form method="post">
+    <div class="container row mx-auto">
+        <div class="bg-dark" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
+            <h2 class="text-white text-center p-2">Revisar Pedido</h2>
+        </div>
+        <div class="text-center">
+            <br />
+
+            <div class="row justify-content-between">
+                <div class="col-md-4">
+                    <a asp-controller="Carrinho" asp-action="Index" class="btn btn-primary" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Voltar ao Carrinho</a>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="my-2"><b>Valor Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b></h5>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" asp-action="RevisarPedido" class="btn btn-success" style="min-width:200px">Pagamento &nbsp;<i class="bi bi-check2"></i></button>
+                </div>
+
+                <p><br />Confira com atenção o endereço e os detalhes do pedido abaixo antes de finalizar a compra!</p>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 my-2 mx-auto text-start p-4" style="border: solid 1px black; border-radius: 10px">
+            <h4>Endereço de Entrega</h4>
+
+            <div class="mb-3">
+                <p class="form-label">Nome do Destinatário</p>
+                <input asp-for="PedidoCabecalho.NomeDestinatario" class="form-control" />
+                <span asp-validation-for="PedidoCabecalho.NomeDestinatario" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Telefone de Contato</p>
+                <input asp-for="PedidoCabecalho.TelefoneContato" class="form-control" />
+                <span asp-validation-for="PedidoCabecalho.TelefoneContato" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Logradouro</p>
+                <input asp-for="PedidoCabecalho.LogradouroEntrega" class="form-control" />
+                <span asp-validation-for="PedidoCabecalho.LogradouroEntrega" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Cidade</p>
+                <input asp-for="PedidoCabecalho.CidadeEntrega" class="form-control" />
+                <span asp-validation-for="PedidoCabecalho.CidadeEntrega" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Estado</p>
+                <input asp-for="PedidoCabecalho.EstadoEntrega" class="form-control" />
+                <span asp-validation-for="PedidoCabecalho.EstadoEntrega" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">CEP</p>
+                <input asp-for="PedidoCabecalho.CEPEntrega" class="form-control" />
+                <span asp-validation-for="PedidoCabecalho.CEPEntrega" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="col-md-5 text-end my-2 mx-auto p-4" style="border: solid 1px black; border-radius: 10px; height: fit-content">
+            <h4>Resumo do Pedido</h4>
+            <br />
+            @foreach (var item in Model.ListaCarrinho)
+            {
+                <hr />
+                <p><b>@item.Produto.Titulo</b> (@item.Produto.Plataforma) x @item.Quantidade Unidades</p>
+            }
+            <hr />
+            <br />
+            <p class="my-0">Previsão de entrega: @DateTime.Now.AddDays(4).ToShortDateString() ~ @DateTime.Now.AddDays(10).ToShortDateString()</p>
+        </div>
+    </div>
+</form>

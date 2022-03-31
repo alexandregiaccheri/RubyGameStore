@@ -12,6 +12,8 @@ namespace RubyGameStore.Data.Data
         public DbSet<Plataforma> Plataformas { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<PedidoCabecalho> PedidosCabecalho { get; set; }
+        public DbSet<PedidoDetalhes> PedidosDetalhes { get; set; }
 
         public RubyGameStoreDbContext(DbContextOptions<RubyGameStoreDbContext> options) : base(options)
         {

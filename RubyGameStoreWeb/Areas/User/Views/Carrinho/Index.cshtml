@@ -9,10 +9,16 @@
     </div>
     <div class="text-center">
         <br />
-        <h5>Valor Total: R$ @Model.TotalCarrinho.ToString("N2")</h5>
-        <div>
-            <a asp-controller="Home" asp-action="Index" class="btn btn-primary" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
-            <a class="btn btn-success" style="min-width:200px">Finalizar Compra &nbsp;<i class="bi bi-check2"></i></a>
+        <div class="row justify-content-between">
+            <div class="col-md-4">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary text-center" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
+            </div>
+            <div class="col-md-4">
+                <h5 class="my-2"><b>Valor Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b></h5>
+            </div>
+            <div class="col-md-4">
+                <a asp-action="RevisarPedido" class="btn btn-primary text-center" style="min-width:200px">Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
+            </div>
         </div>
         <br />
     </div>
