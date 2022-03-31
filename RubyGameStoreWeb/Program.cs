@@ -15,6 +15,12 @@ builder.Services.AddDbContext<RubyGameStoreDbContext>(o => o.UseSqlServer(builde
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders().AddEntityFrameworkStores<RubyGameStoreDbContext>(); 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = @"/Identity/Account/Login";
+    options.LogoutPath = @"/Identity/Account/Logout";
+    options.AccessDeniedPath = @"/Identity/Account/AccessDenied";
+});
 
 var app = builder.Build();
 

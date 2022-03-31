@@ -14,26 +14,27 @@
         </div>
 
     </div>
-    <div class="row p-2">
-        <div class=col-8>
-            <p class="text-white" style="line-height:0.8"><b>Desenvolvedor: </b>@Model.Produto.Desenvolvedor</p>
-            <p class="text-white" style="line-height:0.8"><b>Distribuidor: </b>@Model.Produto.Distribuidor</p>
+    <div class="row p-2 pb-4">
+        <div class=col-6>
+            <p class="text-white pt-3" style="line-height:1.2"><b>Desenvolvedor: </b>@Model.Produto.Desenvolvedor <br /><br /> <b>Distribuidor:</b> @Model.Produto.Distribuidor</p>
+            @*<p class="text-white" style="line-height:1"><b>Distribuidor: </b>@Model.Produto.Distribuidor</p>*@
 
         </div>
-        <form method="post" class="col-4 row mx-auto">
+        <form method="post" class="col-6">
             <div class="text-end">
                 <input asp-for="ProdutoId" hidden readonly/>                
-                <label asp-for="Quantidade" class="text-white-50"></label>
-                <input asp-for="Quantidade" class="form-control col-8 text-center mb-1" style="max-width: 116px; margin-left: auto" />
+                <input asp-for="@Model.Id" hidden readonly/>                
+                <label asp-for="Quantidade" class="text-white-50" style="padding-right: 15px"></label>
+                <input asp-for="Quantidade" class="form-control col-8 text-center mb-1" style="max-width: 121px; margin-left: auto" />
                 <div>
-                    <button type="submit" class="btn btn-success"><i class="bi bi-cart-plus"></i>&nbsp; Comprar</button>
+                    <button type="submit" class="btn btn-success" style="min-width: 121px"><i class="bi bi-cart-plus"></i>&nbsp; Adicionar</button>
                 </div>
             </div>
         </form>
     </div>
 </section>
 
-<section class="container pt-4 pb-4 col-11" style="border: solid 1px #373a3c; background-color: #f8f8f8; min-height:62vh">
+<section class="container pt-4 pb-4 col-11" style="border: solid 1px #373a3c; border-top:none; border-bottom: none; background-color: #f8f8f8; min-height: calc(100vh - 492px)">
     <div class="row">
         <div class="col-12 col-lg-8 px-4">
             <p class="">@Html.Raw(@Model.Produto.Descricao)</p>

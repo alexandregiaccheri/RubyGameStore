@@ -1,5 +1,7 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    min-height: calc(100vh - 140px);
+    position: relative;
 }
 
 @media (min-width: 768px) {
@@ -8,11 +10,20 @@ html {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+/*@media (min-height: 1440px) and (max-height: 2159px){
+    html {
+        zoom: 100%;
+    }
 }
 
+@media (min-height: 2160px) {
+    html {
+        zoom: 100%;
+    }
+}*/
+
+
 body {
-  margin-bottom: 60px;
+    min-height: calc(100vh - 140px);
+    margin-bottom: 60px;
 }

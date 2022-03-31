@@ -29,8 +29,8 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             if (query == null) return NotFound();
             Carrinho carrinho = new Carrinho()
             {
-                Produto = query,
                 ProdutoId = produtoId,
+                Produto = query,
                 Quantidade = 1
             };
             return View(carrinho);
@@ -55,12 +55,12 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
             else
             {
-                unitOfWork.CarrinhoRepo.Update(carrinho);
+                unitOfWork.CarrinhoRepo.AdicionarAoCarrinho(carrinhoDB, carrinho.Quantidade);
             }
 
             unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Carrinho");
         }
 
         public IActionResult Privacy()

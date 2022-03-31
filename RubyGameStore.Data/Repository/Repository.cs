@@ -36,6 +36,22 @@ namespace RubyGameStore.Data.Repository
             return query.ToList();
         }
 
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter, string? incluirPropriedades = null)
+        {
+            IQueryable<T> query = dbSet;
+
+            query = query.Where(filter);
+
+            if (incluirPropriedades != null)
+            {
+                foreach (var propriedade in incluirPropriedades.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(propriedade);
+                }
+            }
+            return query.ToList();
+        }
+
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? incluirPropriedades = null)
         {
             IQueryable<T> query = dbSet;

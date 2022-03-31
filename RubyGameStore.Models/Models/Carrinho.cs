@@ -31,5 +31,8 @@ namespace RubyGameStore.Models.Models
         [ForeignKey("UsuarioId")]
         [ValidateNever]
         public Usuario Usuario { get; set; }
+
+        [NotMapped]
+        public double PrecoAtual { get; set; }
     }
 }

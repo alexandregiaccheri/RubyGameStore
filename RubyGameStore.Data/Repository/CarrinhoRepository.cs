@@ -16,5 +16,15 @@ namespace RubyGameStore.Data.Repository
         {
             dbContext = context;
         }
+
+        public void AdicionarAoCarrinho(Carrinho carrinho, int quantidade)
+        {
+            carrinho.Quantidade += quantidade;
+        }
+
+        public void RemoverDoCarrinho(Carrinho carrinho, int quantidade)
+        {
+            carrinho.Quantidade -= quantidade;
+        }
     }
 }

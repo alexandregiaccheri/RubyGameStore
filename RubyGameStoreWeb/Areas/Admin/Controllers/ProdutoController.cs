@@ -5,7 +5,7 @@ using RubyGameStore.Models.ViewModels;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area ("Admin")]
     public class ProdutoController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

@@ -1,0 +1,38 @@
+﻿@model RubyGameStore.Models.ViewModels.CarrinhoVM
+@{
+    ViewData["Title"] = "Carrinho";
+}
+
+<div class="container row mx-auto">
+    <div class="bg-dark" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
+        <h2 class="text-white text-center p-2">Meu Carrinho</h2>
+    </div>
+    <div class="text-center">
+        <br />
+        <h5>Valor Total: R$ @Model.TotalCarrinho.ToString("N2")</h5>
+        <div>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
+            <a class="btn btn-success" style="min-width:200px">Finalizar Compra &nbsp;<i class="bi bi-check2"></i></a>
+        </div>
+        <br />
+    </div>
+    <div class="col-12 col-md-6 my-2 w-75 mx-auto">
+        @foreach (var item in Model.ListaCarrinho)
+        {
+            <div class="row my-2" style="border: solid 1px black; border-radius: 10px; background-color: #f2f2f2">
+                <div class="col-12 col-md-4" style="height: 200px">
+                    <img src="@item.Produto.ImgCapaUrl" style="max-height: 180px; width:100%; object-fit:contain; margin-top: 10px" />
+                </div>
+                <div class="col-12 col-md-8 my-md-auto container text-center">
+                    <p class="my-md-auto"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p><hr class="d-md-none">
+                    <p>R$ @item.PrecoAtual.ToString("N2") x @item.Quantidade Unidade(s)</p>
+                    <div class="row mx-2 mb-2 justify-content-center">
+                        <a asp-action="Decrementar" asp-route-carrinhoId="@item.Id" class="btn btn-info col-3 mx-1" style="max-width: 60px"><i class="bi bi-dash-square"></i></a>
+                        <a asp-action="Remover" asp-route-carrinhoId="@item.Id" class="btn btn-danger col-3 mx-1" style="max-width: 60px"><i class="bi bi-x-square"></i></a>
+                        <a asp-action="Incrementar" asp-route-carrinhoId="@item.Id" class="btn btn-info col-3 mx-1" style="max-width: 60px"><i class="bi bi-plus-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

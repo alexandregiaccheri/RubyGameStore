@@ -6,7 +6,7 @@ namespace RubyGameStore.Models.ViewModels
 {
     public class ProdutoVM
     {
-        public Produto Produto {get; set;}
+        public Produto Produto { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> ListaCategorias { get; set; }

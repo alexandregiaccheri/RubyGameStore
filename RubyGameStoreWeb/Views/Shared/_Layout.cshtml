@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RubyGameStoreWeb</title>
-    <link rel="stylesheet" href="~/css/bootswatch-simplex.min.css" />
+    <link rel="stylesheet" href="~/css/bootswatch-cosmo.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/r-2.2.9/datatables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -15,7 +15,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="min-height: 80px; background-color: darkred">
             <div class="container-fluid">
                 <a class="navbar-brand px-4" asp-area="User" asp-controller="Home" asp-action="Index"><i class="bi bi-gem"></i>&nbsp; Ruby Game Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,14 +54,14 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main">
+    <div class="container" style="min-height: calc(100vh - 140px);">
+        <main role="main" style="min-height: calc(100vh - 140px);">
             <partial name="_ToastrNotifications" />
             @RenderBody()
         </main>
     </div>
 
-    <footer class="footer bg-primary">
+    <footer class="footer" style="background-color: darkred">
         <div class="container text-white">
             &copy; 2022 - Alexandre Giaccheri -
         </div>
