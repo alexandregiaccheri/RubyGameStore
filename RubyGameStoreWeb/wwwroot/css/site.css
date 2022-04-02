@@ -26,4 +26,5 @@ html {
 body {
     min-height: calc(100vh - 140px);
     margin-bottom: 60px;
+    /*background: linear-gradient(#ffffff, #747474)*/
 }

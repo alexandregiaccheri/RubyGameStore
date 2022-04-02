@@ -1,11 +1,6 @@
 ﻿using RubyGameStore.Data.Data;
 using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RubyGameStore.Data.Repository
 {
@@ -14,7 +9,7 @@ namespace RubyGameStore.Data.Repository
         private readonly RubyGameStoreDbContext dbContext;
         public PedidoCabecalhoRepository(RubyGameStoreDbContext context) : base(context)
         {
-            context = dbContext;
+            dbContext = context;
         }
 
         public void AtualizarStatus(int id, string statusPedido, string? statusPagamento = null)
@@ -28,6 +23,13 @@ namespace RubyGameStore.Data.Repository
                     pedidoDB.StatusPagamento = statusPagamento;
                 }
             }
+        }
+
+        public void AtualizarStatusStripe(int id, string sessionId, string paymentIntentId)
+        {
+            var pedidoDB = dbContext.PedidosCabecalho.FirstOrDefault(p => p.Id == id);
+            pedidoDB.SessionId = sessionId;
+            pedidoDB.PaymentIntentId = paymentIntentId;
         }
 
         public void Update(PedidoCabecalho pedidoCabecalho)

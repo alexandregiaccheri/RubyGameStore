@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using RubyGameStore.Models.Models;
+﻿using RubyGameStore.Models.Models;
 
 namespace RubyGameStore.Models.ViewModels
 {
