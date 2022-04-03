@@ -107,55 +107,74 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 unitOfWork.Save();
             }
 
-            //Stripe
-            var domain = "https://localhost:7213/";
-            var options = new SessionCreateOptions
+            if (User.IsInRole("Empresa"))
             {
-                LineItems = new List<SessionLineItemOptions>(),
-                Mode = "payment",
-                SuccessUrl = domain + $"User/Carrinho/Confirmado?id={CarrinhoVM.PedidoCabecalho.Id}",
-                CancelUrl = domain + $"User/Carrinho",
-            };
-
-            foreach (var item in CarrinhoVM.ListaCarrinho)
+                return RedirectToAction("Confirmado", "Carrinho", new { id=CarrinhoVM.PedidoCabecalho.Id });
+            }
+            else
             {
-                var sessionLineItem = new SessionLineItemOptions
+                //Stripe
+                var domain = "https://localhost:7213/";
+                var options = new SessionCreateOptions
                 {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        Currency = "brl",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = item.Produto.Titulo
-                        },
-                        UnitAmount = (long)item.PrecoAtual * 100
-                    },
-                    Quantity = item.Quantidade
+                    LineItems = new List<SessionLineItemOptions>(),
+                    Mode = "payment",
+                    SuccessUrl = domain + $"User/Carrinho/Confirmado?id={CarrinhoVM.PedidoCabecalho.Id}",
+                    CancelUrl = domain + $"User/Carrinho",
                 };
-                options.LineItems.Add(sessionLineItem);
-            };
 
-            var service = new SessionService();
-            Session session = service.Create(options);
-            unitOfWork.PedidoCabecalhoRepo.AtualizarStatusStripe(CarrinhoVM.PedidoCabecalho.Id, session.Id, session.PaymentIntentId);
-            unitOfWork.Save();
-            Response.Headers.Add("Location", session.Url);
-            return new StatusCodeResult(303);
+                foreach (var item in CarrinhoVM.ListaCarrinho)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            Currency = "brl",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.Produto.Titulo
+                            },
+                            UnitAmount = (long)item.PrecoAtual * 100
+                        },
+                        Quantity = item.Quantidade
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                };
+
+                var service = new SessionService();
+                Session session = service.Create(options);
+                unitOfWork.PedidoCabecalhoRepo.AtualizarStatusStripe(CarrinhoVM.PedidoCabecalho.Id, session.Id, session.PaymentIntentId);
+                unitOfWork.Save();
+                Response.Headers.Add("Location", session.Url);
+                return new StatusCodeResult(303);
+            }
+            
         }
 
         public IActionResult Confirmado(int id)
-        {
-            PedidoCabecalho pedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id);
-            var service = new SessionService();
-            Session session = service.Get(pedidoCabecalho.SessionId);
+        {            
+            var pedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id);
+            var carrinho = unitOfWork.CarrinhoRepo.GetAll(p => p.UsuarioId == pedidoCabecalho.UsuarioId).ToList();
 
-            if (session.PaymentStatus.ToLower() == "paid")
+            if (User.IsInRole("Empresa"))
             {
-                unitOfWork.PedidoCabecalhoRepo.AtualizarStatus(pedidoCabecalho.Id, StaticDetails.StatusAprovado, StaticDetails.PagamentoAprovado);
-                var carrinho = unitOfWork.CarrinhoRepo.GetAll(p => p.UsuarioId == pedidoCabecalho.UsuarioId).ToList();
+                unitOfWork.PedidoCabecalhoRepo.AtualizarStatus(pedidoCabecalho.Id, StaticDetails.StatusAprovado, StaticDetails.PagamentoConvenio);
                 unitOfWork.CarrinhoRepo.RemoveRange(carrinho);
                 unitOfWork.Save();
             }
+            else
+            {
+                var service = new SessionService();
+                var session = service.Get(pedidoCabecalho.SessionId);
+
+                if (session.PaymentStatus.ToLower() == "paid")
+                {
+                    unitOfWork.PedidoCabecalhoRepo.AtualizarStatus(pedidoCabecalho.Id, StaticDetails.StatusAprovado, StaticDetails.PagamentoAprovado);                    
+                    unitOfWork.CarrinhoRepo.RemoveRange(carrinho);
+                    unitOfWork.Save();
+                }
+            }
+            
             return View(id);
         }
 

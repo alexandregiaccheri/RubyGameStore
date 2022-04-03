@@ -30,6 +30,7 @@ namespace RubyGameStore.Data.Repository
             var pedidoDB = dbContext.PedidosCabecalho.FirstOrDefault(p => p.Id == id);
             pedidoDB.SessionId = sessionId;
             pedidoDB.PaymentIntentId = paymentIntentId;
+            pedidoDB.DataPagamento = DateTime.Now;
         }
 
         public void Update(PedidoCabecalho pedidoCabecalho)

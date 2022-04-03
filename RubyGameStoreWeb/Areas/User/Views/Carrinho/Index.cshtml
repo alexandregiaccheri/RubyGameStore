@@ -16,9 +16,18 @@
             <div class="col-md-4">
                 <h5 class="my-2"><b>Valor Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b></h5>
             </div>
-            <div class="col-md-4">
-                <a asp-action="RevisarPedido" class="btn btn-primary text-center" style="min-width:200px">Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
-            </div>
+            @if (Model.PedidoCabecalho.TotalPedido <= 0)
+            {
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-primary disabled text-center" style="min-width:200px" disabled>Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4">
+                    <a asp-action="RevisarPedido" class="btn btn-primary text-center" style="min-width:200px">Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
+                </div>
+            }
         </div>
         <br />
     </div>

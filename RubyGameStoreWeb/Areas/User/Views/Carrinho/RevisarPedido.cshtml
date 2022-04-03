@@ -19,10 +19,18 @@
                 <div class="col-md-4">
                     <h5 class="my-2"><b>Valor Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b></h5>
                 </div>
-                <div class="col-md-4">
-                    <button type="submit" asp-action="RevisarPedido" class="btn btn-success" style="min-width:200px">Pagamento &nbsp;<i class="bi bi-check2"></i></button>
-                </div>
-
+                @if (Model.PedidoCabecalho.TotalPedido <= 0)
+                {
+                    <div class="col-md-4">
+                        <button type="submit" asp-action="RevisarPedido" class="btn btn-success" style="min-width:200px" disabled>Pagamento &nbsp;<i class="bi bi-check2"></i></button>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-4">
+                        <button type="submit" asp-action="RevisarPedido" class="btn btn-success" style="min-width:200px">Pagamento &nbsp;<i class="bi bi-check2"></i></button>
+                    </div>
+                }
                 <p><br />Confira com atenção o endereço e os detalhes do pedido abaixo antes de finalizar a compra!</p>
             </div>
         </div>

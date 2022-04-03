@@ -10,6 +10,12 @@ html {
   }
 }
 
+body {
+    min-height: calc(100vh - 140px);
+    margin-bottom: 60px;
+    /*background: linear-gradient(#ffffff, #747474)*/
+}
+
 /*@media (min-height: 1440px) and (max-height: 2159px){
     html {
         zoom: 100%;
@@ -21,10 +27,3 @@ html {
         zoom: 100%;
     }
 }*/
-
-
-body {
-    min-height: calc(100vh - 140px);
-    margin-bottom: 60px;
-    /*background: linear-gradient(#ffffff, #747474)*/
-}

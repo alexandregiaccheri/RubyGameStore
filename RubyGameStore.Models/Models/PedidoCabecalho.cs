@@ -18,6 +18,8 @@ namespace RubyGameStore.Models.Models
         [Required]
         public DateTime DataHoraPedido { get; set; }
         public DateTime DataHoraEnvio { get; set; }
+        [NotMapped]
+        public string DataPedido { get; set; }
         [Required]
         public double TotalPedido { get; set; }
         public string? StatusPedido { get; set; }

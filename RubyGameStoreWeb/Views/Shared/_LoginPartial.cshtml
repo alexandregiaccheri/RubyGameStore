@@ -7,7 +7,8 @@
 
     @if (SignInManager.IsSignedIn(User))
     {
-        <a class="nav-link text-white" asp-area="User" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart"></i></a>
+        <a class="nav-link text-white" asp-area="User" asp-controller="MeusPedidos" asp-action="Index">Meus Pedidos</a>
+        <a class="nav-link text-white" asp-area="User" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart"></i>&nbsp; Carrinho</a>
         <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Minha Conta</a>
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button id="logout" type="submit" class="nav-link btn btn-link text-white">Sair</button>
