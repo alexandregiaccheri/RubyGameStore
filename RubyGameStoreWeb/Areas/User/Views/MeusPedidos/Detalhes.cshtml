@@ -24,22 +24,22 @@
 </div>
 
 <div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+    <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
         <h4>Status do Pedido</h4>
         <div>
             <p>
-                Status: @Model.PedidoCabecalho.StatusPedido <br />
+                <b>@Model.PedidoCabecalho.StatusPedido</b> <br />
                 Data: @Model.PedidoCabecalho.DataHoraPedido.ToShortDateString() <br />
                 Hora: @Model.PedidoCabecalho.DataHoraPedido.ToShortTimeString() <br />
             </p>
         </div>
     </div>
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+    <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
         <h4>Status do Pagamento</h4>
         <div>
             <p>
+                <b>Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b> <br />
                 Status: @Model.PedidoCabecalho.StatusPagamento <br />
-                Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2") <br />
                 @pagamento
             </p>
         </div>
@@ -47,8 +47,7 @@
 </div>
 
 <div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-        @*border: solid 1px black; border-radius: 10px; background-color: #f2f2f2; box-shadow: 0px 0px 10px 2px #3e00007d*@
+    <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
         <h4>Endereço de Entrega</h4>
         <div>
             <p>
@@ -58,7 +57,7 @@
             </p>
         </div>
     </div>
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+    <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
         <h4>Dados do Envio</h4>
         @if (Model.PedidoCabecalho.Transportadora != null)
         {
@@ -79,7 +78,7 @@
 </div>
 
 <div class="container row mx-auto">
-    <div class="col-12 col-md-9 my-2 mx-auto text-start p-4" @*style="border: solid 1px black; border-radius: 10px; background-color: #f2f2f2; box-shadow: 0px 0px 10px 2px #3e00007d"*@>
+    <div class="col-12 col-md-9 my-2 mx-auto text-start p-4">
         <h4>Você comprou:</h4>
         <hr />
         <div>

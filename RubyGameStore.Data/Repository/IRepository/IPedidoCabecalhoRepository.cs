@@ -7,5 +7,6 @@ namespace RubyGameStore.Data.Repository.IRepository
         void Update(PedidoCabecalho pedidoCabecalho);
         void AtualizarStatus(int id, string statusPedido, string? statusPagamento = null);
         void AtualizarStatusStripe(int id, string sessionId, string paymentIntentId);
+        void DefinirEntrega(int id, string transportadora, string rastreio);
     }
 }

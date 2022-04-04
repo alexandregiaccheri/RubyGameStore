@@ -16,105 +16,114 @@
     }
 }
 
-<div class="bg-dark" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
-    <h2 class="text-white text-center p-2">Detalhes do Pedido</h2>
-</div>
 
-<div class="mt-1 text-center">
-    <p>Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido</p>
-</div>
+    <div class="bg-dark" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
+        <h2 class="text-white text-center p-2">Detalhes do Pedido</h2>
+    </div>
 
-@*Painel de controle do pedido*@
-<div class="container text-center">
-    <div>
-        <a class="btn btn-primary">Processar</a>
-        <a class="btn btn-primary">Enviar</a>
-        <a class="btn btn-primary">Cancelar</a>
+    <div class="mt-1 text-center">
+        <p>Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido</p>
     </div>
-</div>
 
-<div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-        <h4>Status do Pedido</h4>
-        <div>
-            <p>
-                Status: @Model.PedidoCabecalho.StatusPedido <br />
-                Data: @Model.PedidoCabecalho.DataHoraPedido.ToShortDateString() <br />
-                Hora: @Model.PedidoCabecalho.DataHoraPedido.ToShortTimeString() <br />
-            </p>
-        </div>
-    </div>
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-        <h4>Status do Pagamento</h4>
-        <div>
-            <p>
-                Status: @Model.PedidoCabecalho.StatusPagamento <br />
-                Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2") <br />
-                @pagamento
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-        <h4>Endereço de Entrega</h4>
-        <div>
-            <p>
-                Destinatário: @Model.PedidoCabecalho.NomeDestinatario <br />
-                Contato: @Model.PedidoCabecalho.TelefoneContato <br />
-                @Model.PedidoCabecalho.LogradouroEntrega <br /> @Model.PedidoCabecalho.CidadeEntrega - @Model.PedidoCabecalho.EstadoEntrega (CEP @Model.PedidoCabecalho.CEPEntrega).
-            </p>
-        </div>
-    </div>
-    <div class="col-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-        <h4>Dados do Envio</h4>
-        @if (Model.PedidoCabecalho.Transportadora != null)
-        {
-            <p>
-                Transportadora: @Model.PedidoCabecalho.Transportadora <br />
-                Código do Rastreio: @Model.PedidoCabecalho.CodRastreio <br />
-                Enviado em: @Model.PedidoCabecalho.DataHoraEnvio <br />
-                Previsão de entrega: @Model.PedidoCabecalho.DataHoraEnvio.AddDays(9).ToShortDateString()
-            </p>
-        }
-        else
-        {
-            <p>
-                Quando o seu pedido for enviado, os dados do envio (transportadora, código do rastreio e data e hora do envio) vão aparecer bem aqui!
-            </p>
-        }
-    </div>
-</div>
-
-<div class="container row mx-auto">
-    <div class="col-12 col-md-9 my-2 mx-auto text-start p-4">
-        <h4>Você comprou:</h4>
-        <hr />
-        <div>
-            @foreach (var item in Model.PedidoDetalhes)
+    <div class="container text-center">
+        <div class="row">
+            @if (Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusAprovado)
             {
-                <div class="row my-2">
-                    <div class="col-12 col-md-2" style="height: 120px">
-                        <img src="@item.Produto.ImgCapaUrl" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
-                    </div>
-                    <div class="col-12 col-md-5 my-md-auto container">
-                        <p class="my-md-auto text-center text-md-start"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p>
-                        <p class="text-center text-md-start">R$ @item.Preco.ToString("N2") x @item.Quantidade Unidade(s)</p>
-                    </div>
-                    <div class="col-5 my-md-auto">
-                        <a href="#" style="text-decoration: none">Precisa de ajuda?</a>
-                        <br />
-                        <a href="#" style="text-decoration: none">Deixe um comentario</a>
-                        <br />
-                        <a href="#" class="btn btn-info rounded mt-1">Devolver</a>
-                    </div>
-                </div>
-                <hr />
+                <a asp-action="Processar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-primary mx-auto mb-1 col-10 col-md-8 col-lg-7">Processar</a>
+            }
+            @if (Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusProcessamento)
+            {
+                <a asp-action="Enviar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-outline-dark mx-auto mb-1 col-10 col-md-8 col-lg-7">Enviar</a>
+            }
+            @if (Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusAprovado || Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusProcessamento)
+            {
+                <a asp-action="Cancelar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-danger mx-auto mb-1 col-10 col-md-8 col-lg-7">Cancelar</a>
             }
         </div>
     </div>
-</div>
-<div class="text-end my-auto">
-    <a asp-action="Index" class="btn btn-primary mb-2"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
-</div>
+
+    <div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
+        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+            <h4>Status do Pedido</h4>
+            <div>
+                <p>
+                    <b>@Model.PedidoCabecalho.StatusPedido</b> <br />
+                    Data: @Model.PedidoCabecalho.DataHoraPedido.ToShortDateString() <br />
+                    Hora: @Model.PedidoCabecalho.DataHoraPedido.ToShortTimeString() <br />
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+            <h4>Status do Pagamento</h4>
+            <div>
+                <p>
+                    <b>Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b> <br />
+                    Status: @Model.PedidoCabecalho.StatusPagamento <br />
+                    @pagamento
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
+        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+            <h4>Endereço de Entrega</h4>
+            <div>
+                <p>
+                    Destinatário: @Model.PedidoCabecalho.NomeDestinatario <br />
+                    Contato: @Model.PedidoCabecalho.TelefoneContato <br />
+                    @Model.PedidoCabecalho.LogradouroEntrega <br /> @Model.PedidoCabecalho.CidadeEntrega - @Model.PedidoCabecalho.EstadoEntrega (CEP @Model.PedidoCabecalho.CEPEntrega).
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
+            <h4>Dados do Envio</h4>
+            @if (Model.PedidoCabecalho.Transportadora != null)
+            {
+                <p>
+                    Transportadora: @Model.PedidoCabecalho.Transportadora <br />
+                    Código do Rastreio: @Model.PedidoCabecalho.CodRastreio <br />
+                    Enviado em: @Model.PedidoCabecalho.DataHoraEnvio <br />
+                    Previsão de entrega: @Model.PedidoCabecalho.DataHoraEnvio.AddDays(9).ToShortDateString()
+                </p>
+            }
+            else
+            {
+                <p>
+                    Quando o seu pedido for enviado, os dados do envio (transportadora, código do rastreio e data e hora do envio) vão aparecer bem aqui!
+                </p>
+            }
+        </div>
+    </div>
+
+    <div class="container row mx-auto">
+        <div class="col-12 col-md-9 my-2 mx-auto text-start p-4">
+            <h4>Você comprou:</h4>
+            <hr />
+            <div>
+                @foreach (var item in Model.PedidoDetalhes)
+                {
+                    <div class="row my-2">
+                        <div class="col-12 col-md-2" style="height: 120px">
+                            <img src="@item.Produto.ImgCapaUrl" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
+                        </div>
+                        <div class="col-12 col-md-5 my-md-auto container">
+                            <p class="my-md-auto text-center text-md-start"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p>
+                            <p class="text-center text-md-start">R$ @item.Preco.ToString("N2") x @item.Quantidade Unidade(s)</p>
+                        </div>
+                        <div class="col-5 my-md-auto">
+                            <a href="#" style="text-decoration: none">Precisa de ajuda?</a>
+                            <br />
+                            <a href="#" style="text-decoration: none">Deixe um comentario</a>
+                            <br />
+                            <a href="#" class="btn btn-info rounded mt-1">Devolver</a>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="text-end my-auto">
+        <a asp-action="Index" class="btn btn-primary mb-2"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+    </div>

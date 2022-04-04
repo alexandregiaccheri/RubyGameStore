@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RubyGameStore.Helper\RubyGameStore.Helper.csproj" />
     <ProjectReference Include="..\RubyGameStore.Models\RubyGameStore.Models.csproj" />
   </ItemGroup>
 

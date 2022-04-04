@@ -1,5 +1,6 @@
 ﻿using RubyGameStore.Data.Data;
 using RubyGameStore.Data.Repository.IRepository;
+using RubyGameStore.Helper;
 using RubyGameStore.Models.Models;
 
 namespace RubyGameStore.Data.Repository
@@ -31,6 +32,15 @@ namespace RubyGameStore.Data.Repository
             pedidoDB.SessionId = sessionId;
             pedidoDB.PaymentIntentId = paymentIntentId;
             pedidoDB.DataPagamento = DateTime.Now;
+        }
+
+        public void DefinirEntrega(int id, string transportadora, string rastreio)
+        {
+            var pedidoDB = dbContext.PedidosCabecalho.FirstOrDefault(p => p.Id == id);
+            pedidoDB.Transportadora = transportadora;
+            pedidoDB.CodRastreio = rastreio;
+            pedidoDB.DataHoraEnvio = DateTime.Now;
+            pedidoDB.StatusPedido = StaticDetails.StatusEnviado;
         }
 
         public void Update(PedidoCabecalho pedidoCabecalho)
