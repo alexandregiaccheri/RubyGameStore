@@ -85,7 +85,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required (ErrorMessage = "Campo obrigatório")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -94,10 +94,10 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Campo obrigatório")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Senha")]
             public string Password { get; set; }
 
             /// <summary>
@@ -105,16 +105,23 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }            
-            [Required]
+            [Display(Name = "Confirmar senha")]
+            [Compare("Password", ErrorMessage = "As senhas não são iguais!")]
+            public string ConfirmPassword { get; set; }
+            [Required(ErrorMessage = "Campo obrigatório")]
+            [Display(Name = "Nome")]
+
             public string NomeUsuario { get; set; }
-            [Required]
+            [Required(ErrorMessage = "Campo obrigatório")]
+            [Display(Name = "Sobrenome")]
             public string SobrenomeUsuario { get; set; }
+            [Display(Name = "Logradouro (Rua, Nº)")]
             public string? LogradouroUsuario { get; set; }
+            [Display(Name = "Cidade")]
             public string? CidadeUsuario { get; set; }
+            [Display(Name = "Estado")]
             public string? EstadoUsuario { get; set; }
+            [Display(Name = "CEP")]
             public string? CEPUsuario { get; set; }
             public string? Autorizacao { get; set; }
             [ValidateNever]

@@ -17,11 +17,32 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
 builder.Services.Configure<StripeKeys>(builder.Configuration.GetSection("StripeKeys"));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        options.AppId = builder.Configuration.GetValue<string>("FacebookLogin:AppId");
+        options.AppSecret = builder.Configuration.GetValue<string>("FacebookLogin:AppSecret");
+    }).AddTwitter(options =>
+    {
+        options.ConsumerKey = builder.Configuration.GetValue<string>("TwitterLogin:ClientId");
+        options.ConsumerSecret = builder.Configuration.GetValue<string>("TwitterLogin:ClientSecret");
+    }).AddGoogle(options =>
+    {
+        options.ClientId = builder.Configuration.GetValue<string>("GoogleLogin:ClientId");
+        options.ClientSecret = builder.Configuration.GetValue<string>("GoogleLogin:ClientSecret");
+    });
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = @"/Identity/Account/Login";
     options.LogoutPath = @"/Identity/Account/Logout";
     options.AccessDeniedPath = @"/Identity/Account/AccessDenied";
+});
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(120);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -43,6 +64,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 app.MapControllerRoute(

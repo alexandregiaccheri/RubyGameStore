@@ -1,6 +1,9 @@
 ﻿@page
 @model EnableAuthenticatorModel
 @{
+    Layout = "_Layout.cshtml";
+}
+@{
     ViewData["Title"] = "Configure authenticator app";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
@@ -21,8 +24,7 @@
             </p>
         </li>
         <li>
-            <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
-            <div class="alert alert-info">Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable QR code generation</a>.</div>
+            <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>            
             <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         </li>
@@ -49,5 +51,8 @@
 </div>
 
 @section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+    <script type="text/javascript" src="~/lib/qrcodejs/qrcode.min.js"></script>
+    <script type="text/javascript" src="~/js/qr.js"></script>
     <partial name="_ValidationScriptsPartial" />
 }

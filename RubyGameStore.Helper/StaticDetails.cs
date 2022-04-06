@@ -18,5 +18,7 @@
         public const string PagamentoAprovado = "Aprovado";
         public const string PagamentoConvenio = "Convenio";
         public const string PagamentoRecusado = "Recusado";
+
+        public const string SessionUnidadesCarrinho = "UnidadesCarrinho";
     }
 }
