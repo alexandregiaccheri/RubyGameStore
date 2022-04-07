@@ -4,7 +4,7 @@ using RubyGameStore.Models.Models;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
-    [Area ("Admin")]
+    [Area("Admin")]
     public class EmpresaController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -29,7 +29,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             else
             {
                 var empresa = unitOfWork.EmpresaRepo.GetFirstOrDefault(e => e.Id == id);
-                if(empresa == null) return NotFound();
+                if (empresa == null) return NotFound();
                 return View(empresa);
             }
         }
@@ -68,12 +68,12 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
-            
+
             var empresa = unitOfWork.EmpresaRepo.GetFirstOrDefault(e => e.Id == id);
 
             if (empresa == null)
             {
-                return Json(new { sucesso = false, mensagem = "Empresa não encontrada!"});
+                return Json(new { sucesso = false, mensagem = "Empresa não encontrada!" });
             }
 
             unitOfWork.EmpresaRepo.Remove(empresa);

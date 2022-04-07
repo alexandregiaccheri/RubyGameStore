@@ -20,8 +20,8 @@ namespace RubyGameStore.Models.Models
 
         [Required]
         [Display(Name = "Descrição")]
-        public string Descricao { get; set; }     
-        
+        public string Descricao { get; set; }
+
         [Required]
         public string Desenvolvedor { get; set; }
 
@@ -57,7 +57,7 @@ namespace RubyGameStore.Models.Models
         [Display(Name = "Categoria")]
         public int CategoriaId { get; set; }
 
-        [ForeignKey ("CategoriaId")]
+        [ForeignKey("CategoriaId")]
         [ValidateNever]
         public Categoria Categoria { get; set; }
 
@@ -65,7 +65,7 @@ namespace RubyGameStore.Models.Models
         [Display(Name = "Plataforma")]
         public int PlataformaId { get; set; }
 
-        [ForeignKey ("PlataformaId")]
+        [ForeignKey("PlataformaId")]
         [ValidateNever]
         public Plataforma Plataforma { get; set; }
     }

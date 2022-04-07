@@ -13,7 +13,7 @@ namespace RubyGameStore.Models.Models
         [ForeignKey("UsuarioId")]
         [ValidateNever]
         public Usuario Usuario { get; set; }
-        
+
         //Pedido
         [Required]
         public DateTime DataHoraPedido { get; set; }

@@ -4,7 +4,7 @@ using RubyGameStore.Models.Models;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
-    [Area ("Admin")]
+    [Area("Admin")]
     public class CategoriaController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

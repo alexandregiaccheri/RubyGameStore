@@ -19,7 +19,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Produto> listaProdutos = unitOfWork.ProdutoRepo.GetAll(incluirPropriedades:"Categoria,Plataforma");
+            IEnumerable<Produto> listaProdutos = unitOfWork.ProdutoRepo.GetAll(incluirPropriedades: "Categoria,Plataforma");
             return View(listaProdutos);
         }
 

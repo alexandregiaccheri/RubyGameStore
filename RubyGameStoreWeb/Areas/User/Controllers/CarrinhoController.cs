@@ -109,7 +109,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
             if (User.IsInRole("Empresa"))
             {
-                return RedirectToAction("Confirmado", "Carrinho", new { id=CarrinhoVM.PedidoCabecalho.Id });
+                return RedirectToAction("Confirmado", "Carrinho", new { id = CarrinhoVM.PedidoCabecalho.Id });
             }
             else
             {
@@ -148,11 +148,11 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
             }
-            
+
         }
 
         public IActionResult Confirmado(int id)
-        {            
+        {
             var pedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id);
             var carrinho = unitOfWork.CarrinhoRepo.GetAll(p => p.UsuarioId == pedidoCabecalho.UsuarioId).ToList();
 
@@ -169,12 +169,12 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
                 if (session.PaymentStatus.ToLower() == "paid")
                 {
-                    unitOfWork.PedidoCabecalhoRepo.AtualizarStatus(pedidoCabecalho.Id, StaticDetails.StatusAprovado, StaticDetails.PagamentoAprovado);                    
+                    unitOfWork.PedidoCabecalhoRepo.AtualizarStatus(pedidoCabecalho.Id, StaticDetails.StatusAprovado, StaticDetails.PagamentoAprovado);
                     unitOfWork.CarrinhoRepo.RemoveRange(carrinho);
                     unitOfWork.Save();
                 }
             }
-            
+
             return View(id);
         }
 

@@ -4,7 +4,7 @@ using RubyGameStore.Models.Models;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
-    [Area ("Admin")]
+    [Area("Admin")]
     public class PlataformaController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -45,7 +45,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            
+
             var obj = unitOfWork.PlataformaRepo.GetFirstOrDefault(o => o.Id == id);
 
             if (obj == null)

@@ -5,7 +5,7 @@ using RubyGameStore.Models.ViewModels;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
-    [Area ("Admin")]
+    [Area("Admin")]
     public class ProdutoController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -106,7 +106,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             var listaProdutos = unitOfWork.ProdutoRepo.GetAll(incluirPropriedades: "Categoria,Plataforma");
             return Json(new { data = listaProdutos });
         }
-        
+
         [HttpDelete]
         public IActionResult Delete(int? id)
         {

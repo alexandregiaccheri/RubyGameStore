@@ -1,10 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using RubyGameStore.Data.Data;
 using RubyGameStore.Data.Repository;
 using RubyGameStore.Data.Repository.IRepository;
-using Microsoft.AspNetCore.Identity;
 using RubyGameStore.Helper;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
