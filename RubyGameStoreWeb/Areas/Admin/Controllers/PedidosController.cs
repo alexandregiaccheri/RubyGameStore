@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RubyGameStore.Data.Repository.IRepository;
-using RubyGameStore.Helper;
+using RubyGameStore.Helper.StaticNames;
 using RubyGameStore.Models.Models;
 using RubyGameStore.Models.ViewModels;
 using Stripe;
@@ -39,9 +39,9 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
         public IActionResult Processar(int id)
         {
             var pedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id);
-            if (pedidoCabecalho.StatusPagamento == StaticDetails.PagamentoAprovado || pedidoCabecalho.StatusPagamento == StaticDetails.PagamentoConvenio)
+            if (pedidoCabecalho.StatusPagamento == Pagamento.Aprovado || pedidoCabecalho.StatusPagamento == Pagamento.Empresarial)
             {
-                pedidoCabecalho.StatusPedido = StaticDetails.StatusProcessamento;
+                pedidoCabecalho.StatusPedido = Pedido.Processando;
                 unitOfWork.Save();
             }
             return RedirectToAction("Detalhes", "Pedidos", new { id = id });
@@ -56,7 +56,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
         public IActionResult Cancelar(int id)
         {
             var pedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id);
-            if (pedidoCabecalho.StatusPagamento == StaticDetails.PagamentoAprovado)
+            if (pedidoCabecalho.StatusPagamento == Pagamento.Aprovado)
             {
                 //Stripe
                 var options = new RefundCreateOptions
@@ -66,11 +66,11 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
                 };
                 var service = new RefundService();
                 service.Create(options);
-                pedidoCabecalho.StatusPedido = StaticDetails.StatusEstornado;
+                pedidoCabecalho.StatusPedido = Pedido.Estornado;
             }
             else
             {
-                pedidoCabecalho.StatusPedido = StaticDetails.StatusCancelado;
+                pedidoCabecalho.StatusPedido = Pedido.Cancelado;
             }
             unitOfWork.Save();
             return RedirectToAction("Detalhes", "Pedidos", new { id = id });
@@ -80,7 +80,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Enviar(PedidoCabecalho pedidoCabecalho)
         {
-            if (pedidoCabecalho.StatusPagamento == StaticDetails.PagamentoAprovado || pedidoCabecalho.StatusPagamento == StaticDetails.PagamentoConvenio)
+            if (pedidoCabecalho.StatusPagamento == Pagamento.Aprovado || pedidoCabecalho.StatusPagamento == Pagamento.Empresarial)
             {
                 unitOfWork.PedidoCabecalhoRepo.DefinirEntrega(pedidoCabecalho.Id, pedidoCabecalho.Transportadora, pedidoCabecalho.CodRastreio);
             }
@@ -100,16 +100,16 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             switch (status)
             {
                 case "aprovado":
-                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == StaticDetails.StatusAprovado);
+                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == Pedido.Aprovado);
                     break;
                 case "processando":
-                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == StaticDetails.StatusProcessamento);
+                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == Pedido.Processando);
                     break;
                 case "concluido":
-                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == StaticDetails.StatusEnviado);
+                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == Pedido.Enviado);
                     break;
                 case "cancelado":
-                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == StaticDetails.StatusCancelado);
+                    listaPedidos = listaPedidos.Where(p => p.StatusPedido == Pedido.Cancelado);
                     break;
                 default:
                     break;

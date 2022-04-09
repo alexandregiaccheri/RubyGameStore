@@ -1,12 +1,12 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Criar Conta";
 }
 
 <h1 class="pt-2">Criar conta</h1>
 
-<div class="row">
+<div class="row pb-4">
     <div class="col-md-6">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div>
@@ -89,7 +89,7 @@
                         <option selected disabled>--Selecione Empresa--</option>
                     </select>
                 </div>
-                <button id="registerSubmit" type="submit" class="w-100 mt-1 btn btn-lg btn-primary">Register</button>
+                <button id="registerSubmit" type="submit" class="w-100 mt-1 btn btn-lg btn-primary">Registrar</button>
             </div>
         </form>
     </div>

@@ -4,23 +4,23 @@
     Layout = "_Layout.cshtml";
 }
 @{
-    ViewData["Title"] = "Personal Data";
+    ViewData["Title"] = "Dados Pessoais";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
 <h3>@ViewData["Title"]</h3>
 
 <div class="row">
-    <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
-        <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+    <div class="col-md-6 mb-4">
+        <p>Sua conta contém os dados pessoais que você nos forneceu. Esta página lhe permite baixar ou excluír esses dados.</p>
+        <p class="mb-2">
+            <strong>Esta ação irá apagar sua conta e seus dados PERMANENTEMENTE!</strong>
         </p>
         <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">Download</button>
+            <button class="btn btn-primary mb-2" type="submit" style="width: 100px">Baixar</button>
         </form>
         <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger" style="width: 100px">Deletar</a>
         </p>
     </div>
 </div>

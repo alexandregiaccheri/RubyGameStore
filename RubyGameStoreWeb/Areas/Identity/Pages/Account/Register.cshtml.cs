@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using RubyGameStore.Data.Repository.IRepository;
-using RubyGameStore.Helper;
+using RubyGameStore.Helper.StaticNames;
 using RubyGameStore.Models.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -127,12 +127,12 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!await _roleManager.RoleExistsAsync(StaticDetails.Auth_Admin))
+            if (!await _roleManager.RoleExistsAsync(Autorizacao.Admin))
             {
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Auth_Cliente)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Auth_Empresa)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Auth_Funcionario)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticDetails.Auth_Admin)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Admin)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Cliente)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Empresa)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Funcionario)).GetAwaiter().GetResult();
             }
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -176,7 +176,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
                 {
                     if (Input.Autorizacao == null)
                     {
-                        await _userManager.AddToRoleAsync(user, StaticDetails.Auth_Cliente);
+                        await _userManager.AddToRoleAsync(user, Autorizacao.Cliente);
                     }
                     else
                     {

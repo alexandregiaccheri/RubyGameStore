@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RubyGameStore.Data.Repository.IRepository;
-using RubyGameStore.Helper;
+using RubyGameStore.Helper.StaticNames;
 using System.Security.Claims;
 
 namespace RubyGameStoreWeb.ViewComponents
@@ -24,8 +24,8 @@ namespace RubyGameStoreWeb.ViewComponents
             {
                 totalCarrinho += c.Quantidade;
             }
-            HttpContext.Session.SetInt32(StaticDetails.SessionUnidadesCarrinho, totalCarrinho);
-            return View(HttpContext.Session.GetInt32(StaticDetails.SessionUnidadesCarrinho));
+            HttpContext.Session.SetInt32(Sessao.UnidadesCarrinho, totalCarrinho);
+            return View(HttpContext.Session.GetInt32(Sessao.UnidadesCarrinho));
         }
     }
 }

@@ -17,16 +17,17 @@ function carregarDataTable() {
                 "previous": "Anterior"
             }
         },
-        "responsive": "true",
+        "responsive": true,
         "order": [[0, "desc"]],
+        "ordering": true,
         "searching": false,
         "columns": [
-            { "data": "id" },
-            { "data": "dataPedido" },
-            { "data": "statusPedido" },
-            { "data": "statusPagamento" },
+            { "data": "id", "orderable": true },
+            { "data": "dataPedido", "orderable": false },
+            { "data": "statusPedido", "orderable": false },
+            { "data": "statusPagamento", "orderable": false },
             {
-                "data": "totalPedido",
+                "data": "totalPedido", "orderable": false,
                 "render": DataTable.render.number(',', '.', 2, 'R$ ')
             },
             {
@@ -39,7 +40,6 @@ function carregarDataTable() {
                     `
                 }
             },
-            
         ],
     });
 }

@@ -1,10 +1,10 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = "Confirmação";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="pt-2">@ViewData["Title"]</h1>
 @{
     if (@Model.DisplayConfirmAccountLink)
     {
@@ -16,7 +16,7 @@
     else
     {
 <p>
-        Please check your email to confirm your account.
+        Enviamos um email de verificação para o endereço informado.
 </p>
     }
 }

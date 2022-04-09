@@ -1,4 +1,5 @@
-﻿using RubyGameStore.Models.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using RubyGameStore.Models.Models;
 
 namespace RubyGameStore.Models.ViewModels
 {
@@ -6,5 +7,6 @@ namespace RubyGameStore.Models.ViewModels
     {
         public IEnumerable<Carrinho> ListaCarrinho { get; set; }
         public PedidoCabecalho PedidoCabecalho { get; set; }
+
     }
 }

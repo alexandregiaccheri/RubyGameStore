@@ -11,7 +11,7 @@ namespace RubyGameStore.Models.Models
         public string NomeUsuario { get; set; }
         [Required]
         public string SobrenomeUsuario { get; set; }
-        public string TelefoneContato { get; set; }
+        public string? TelefoneContato { get; set; }
         public string? LogradouroUsuario { get; set; }
         public string? CidadeUsuario { get; set; }
         public string? EstadoUsuario { get; set; }

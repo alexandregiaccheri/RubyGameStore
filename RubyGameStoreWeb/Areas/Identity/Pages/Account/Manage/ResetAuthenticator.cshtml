@@ -4,7 +4,7 @@
     Layout = "_Layout.cshtml";
 }
 @{
-    ViewData["Title"] = "Reset authenticator key";
+    ViewData["Title"] = "Resetar Autenticador";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
@@ -13,15 +13,15 @@
 <div class="alert alert-warning" role="alert">
     <p>
         <span class="glyphicon glyphicon-warning-sign"></span>
-        <strong>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
+        <strong>Se você resetar sua chave, seu app autenticador não irá funcionar até você reconfigurá-lo.</strong>
     </p>
     <p>
-        This process disables 2FA until you verify your authenticator app.
-        If you do not complete your authenticator app configuration you may lose access to your account.
+        Este processo desativa a verificação em duas etapas até você validar o app.
+        Se você não concluir a configuração, você poderá perder o acesso a sua conta.
     </p>
 </div>
 <div>
     <form id="reset-authenticator-form" method="post">
-        <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Reset authenticator key</button>
+        <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Resetar Chave</button>
     </form>
 </div>

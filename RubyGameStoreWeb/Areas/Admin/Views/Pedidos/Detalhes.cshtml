@@ -1,12 +1,12 @@
-﻿@using RubyGameStore.Helper
+﻿@using RubyGameStore.Helper.StaticNames
 @using RubyGameStore.Models.ViewModels
 @model PedidoVM
 @{
     ViewData["Title"] = "Detalhes";
     string pagamento = "";
     int prazo = 5;
-    if (User.IsInRole(StaticDetails.Auth_Empresa)) prazo = 30;
-    if (Model.PedidoCabecalho.StatusPagamento == StaticDetails.PagamentoAprovado || Model.PedidoCabecalho.StatusPagamento == StaticDetails.PagamentoRecusado)
+    if (User.IsInRole(Autorizacao.Empresa)) prazo = 30;
+    if (Model.PedidoCabecalho.StatusPagamento == Pagamento.Aprovado)
     {
         pagamento = "Pagamento: " + Model.PedidoCabecalho.DataPagamento.ToShortDateString();
     }
@@ -27,15 +27,15 @@
 
     <div class="container text-center">
         <div class="row">
-            @if (Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusAprovado)
+            @if (Model.PedidoCabecalho.StatusPedido == Pedido.Aprovado)
             {
                 <a asp-action="Processar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-primary mx-auto mb-1 col-10 col-md-8 col-lg-7">Processar</a>
             }
-            @if (Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusProcessamento)
+            @if (Model.PedidoCabecalho.StatusPedido == Pedido.Processando)
             {
                 <a asp-action="Enviar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-outline-dark mx-auto mb-1 col-10 col-md-8 col-lg-7">Enviar</a>
             }
-            @if (Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusAprovado || Model.PedidoCabecalho.StatusPedido == StaticDetails.StatusProcessamento)
+            @if (Model.PedidoCabecalho.StatusPedido == Pedido.Aprovado || Model.PedidoCabecalho.StatusPedido == Pedido.Processando)
             {
                 <a asp-action="Cancelar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-danger mx-auto mb-1 col-10 col-md-8 col-lg-7">Cancelar</a>
             }

@@ -67,10 +67,10 @@
                 else
                 {
                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div class="row">                            
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <div class="col-12 mb-2">
+                        <div class="row">
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <div class="col-12 mb-2">
                                     <button type="submit" class="btn btn-primary text-start" style="width: 130px" name="provider" value="@provider.Name" title="Entre usando sua conta do @provider.DisplayName">
                                         @if (@provider.DisplayName == "Google")
                                         {
@@ -84,10 +84,10 @@
                                         {
                                             <i class="bi bi-twitter"></i>
                                         }
-                                        &ensp; @provider.DisplayName                                        
+                                        &ensp; @provider.DisplayName
                                     </button>
-                                    </div>
-                                }                            
+                                </div>
+                            }
                         </div>
                     </form>
                 }

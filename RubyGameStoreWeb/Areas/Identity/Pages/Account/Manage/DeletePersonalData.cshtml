@@ -4,7 +4,7 @@
     Layout = "_Layout.cshtml";
 }
 @{
-    ViewData["Title"] = "Delete Personal Data";
+    ViewData["Title"] = "Deletar Conta";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
@@ -12,7 +12,7 @@
 
 <div class="alert alert-warning" role="alert">
     <p>
-        <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+        <strong>Esta ação irá apagar sua conta e seus dados PERMANENTEMENTE!</strong>
     </p>
 </div>
 
@@ -21,13 +21,13 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @if (Model.RequirePassword)
         {
-            <div class="form-floating">
+            <div class="form-floating pb-4">
                 <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
                 <label asp-for="Input.Password" class="form-label"></label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
         }
-        <button class="w-100 btn btn-lg btn-danger" type="submit">Delete data and close my account</button>
+        <button class="w-100 btn btn-lg btn-danger" type="submit">Deletar Minha Conta</button>
     </form>
 </div>
 

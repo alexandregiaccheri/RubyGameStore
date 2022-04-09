@@ -1,12 +1,12 @@
-﻿@using RubyGameStore.Helper
+﻿@using RubyGameStore.Helper.StaticNames
 @using RubyGameStore.Models.ViewModels
 @model PedidoVM
 @{
     ViewData["Title"] = "Detalhes";
     string pagamento = "";
     int prazo = 5;
-    if (User.IsInRole(StaticDetails.Auth_Empresa)) prazo = 30;
-    if (Model.PedidoCabecalho.StatusPagamento == StaticDetails.PagamentoAprovado || Model.PedidoCabecalho.StatusPagamento == StaticDetails.PagamentoRecusado)
+    if (User.IsInRole(Autorizacao.Empresa)) prazo = 30;
+    if (Model.PedidoCabecalho.StatusPagamento == Pagamento.Aprovado)
     {
         pagamento = "Pagamento: " + Model.PedidoCabecalho.DataPagamento.ToShortDateString();
     }

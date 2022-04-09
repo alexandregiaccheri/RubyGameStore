@@ -10,10 +10,10 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
     [Authorize]
     public class MeusPedidosController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
-        public MeusPedidosController(IUnitOfWork _unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public MeusPedidosController(IUnitOfWork unitOfWork)
         {
-            unitOfWork = _unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -25,8 +25,8 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
         {
             PedidoVM pedidoVM = new PedidoVM()
             {
-                PedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id),
-                PedidoDetalhes = unitOfWork.PedidoDetalhesRepo.GetAll(p => p.PedidoId == id, incluirPropriedades: "Produto")
+                PedidoCabecalho = _unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id),
+                PedidoDetalhes = _unitOfWork.PedidoDetalhesRepo.GetAll(p => p.PedidoId == id, incluirPropriedades: "Produto")
             };
             return View(pedidoVM);
         }
@@ -36,10 +36,10 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var listaPedidos = unitOfWork.PedidoCabecalhoRepo.GetAll(p => p.UsuarioId == claim.Value);
+            var listaPedidos = _unitOfWork.PedidoCabecalhoRepo.GetAll(p => p.UsuarioId == claim.Value);
             foreach (var pedido in listaPedidos)
             {
-                pedido.DataPedido = pedido.DataHoraPedido.ToShortDateString();
+                pedido.DataPedido = pedido.DataHoraPedido.ToString("dd/MM/yy");
             }
             return Json(new { data = listaPedidos });
         }

@@ -1,7 +1,8 @@
 ﻿using RubyGameStore.Data.Data;
 using RubyGameStore.Data.Repository.IRepository;
-using RubyGameStore.Helper;
+using RubyGameStore.Helper.StaticNames;
 using RubyGameStore.Models.Models;
+using RubyGameStore.Models.ViewModels;
 
 namespace RubyGameStore.Data.Repository
 {
@@ -34,13 +35,23 @@ namespace RubyGameStore.Data.Repository
             pedidoDB.DataPagamento = DateTime.Now;
         }
 
+        //public PedidoCabecalho CriarNovoPedido(CarrinhoVM vm)
+        //{
+        //    return new PedidoCabecalho()
+        //    {
+        //        UsuarioId = vm.PedidoCabecalho.UsuarioId,
+        //        DataHoraPedido = vm.PedidoCabecalho.DataHoraPedido,
+        //        StatusPedido = 
+        //    };
+        //}
+
         public void DefinirEntrega(int id, string transportadora, string rastreio)
         {
             var pedidoDB = dbContext.PedidosCabecalho.FirstOrDefault(p => p.Id == id);
             pedidoDB.Transportadora = transportadora;
             pedidoDB.CodRastreio = rastreio;
             pedidoDB.DataHoraEnvio = DateTime.Now;
-            pedidoDB.StatusPedido = StaticDetails.StatusEnviado;
+            pedidoDB.StatusPedido = Pedido.Enviado;
         }
 
         public void Update(PedidoCabecalho pedidoCabecalho)
