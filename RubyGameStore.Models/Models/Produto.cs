@@ -9,7 +9,7 @@ namespace RubyGameStore.Models.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Título")]
         public string Titulo { get; set; }
 

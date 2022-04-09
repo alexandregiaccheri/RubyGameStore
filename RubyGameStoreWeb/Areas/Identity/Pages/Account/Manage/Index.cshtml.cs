@@ -1,6 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +23,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
             _unitOfWork = unitOfWork;
         }
-        
+
         [Display(Name = "Email")]
         public string Username { get; set; }
 
@@ -37,22 +35,23 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Campo obrigatório")]
             public string Nome { get; set; }
-            [Required]
+            [Required(ErrorMessage = "Campo obrigatório")]
             public string Sobrenome { get; set; }
-            public string Telefone { get; set; }
-            public string Logradouro { get; set; }
-            public string Cidade { get; set; }
-            public string Estado { get; set; }
-            public string CEP { get; set; }
+#nullable enable
+            public string? Telefone { get; set; }
+            public string? Logradouro { get; set; }
+            public string? Cidade { get; set; }
+            public string? Estado { get; set; }
+            public string? CEP { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var usuario = _unitOfWork.UsuarioRepo.GetFirstOrDefault(u => u.Id == user.Id);
-            var telefone = usuario.TelefoneContato;
+            string? telefone = usuario.TelefoneContato;
             var nome = usuario.NomeUsuario;
             var sobrenome = usuario.SobrenomeUsuario;
             var logradouro = usuario.LogradouroUsuario;

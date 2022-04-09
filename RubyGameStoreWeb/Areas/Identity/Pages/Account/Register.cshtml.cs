@@ -1,6 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -49,77 +47,58 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             _roleManager = roleManager;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Campo obrigatório")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Campo obrigatório")]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "A senha deve ter entre 6 e 100 caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [DataType(DataType.Password)]
             [Display(Name = "Confirmar senha")]
             [Compare("Password", ErrorMessage = "As senhas não são iguais!")]
             public string ConfirmPassword { get; set; }
+
             [Required(ErrorMessage = "Campo obrigatório")]
             [Display(Name = "Nome")]
-
             public string NomeUsuario { get; set; }
+
             [Required(ErrorMessage = "Campo obrigatório")]
             [Display(Name = "Sobrenome")]
             public string SobrenomeUsuario { get; set; }
+
             [Display(Name = "Logradouro (Rua, Nº)")]
             public string? LogradouroUsuario { get; set; }
+
             [Display(Name = "Cidade")]
             public string? CidadeUsuario { get; set; }
+
             [Display(Name = "Estado")]
             public string? EstadoUsuario { get; set; }
+
             [Display(Name = "CEP")]
             public string? CEPUsuario { get; set; }
+
             public string? Autorizacao { get; set; }
+
             [ValidateNever]
             public IEnumerable<SelectListItem> ListaAutorizacao { get; set; }
+
             public int? EmpresaId { get; set; }
+
             [ValidateNever]
             public IEnumerable<SelectListItem> ListaEmpresas { get; set; }
         }
@@ -127,6 +106,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            // Criar Roles caso ainda não tenham sido criadas
             if (!await _roleManager.RoleExistsAsync(Autorizacao.Admin))
             {
                 _roleManager.CreateAsync(new IdentityRole(Autorizacao.Admin)).GetAwaiter().GetResult();
@@ -194,8 +174,8 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirme seu email",
+                        $"Por favor, confirme seu email <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -213,6 +193,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
                 }
             }
 
+            // Comentário original
             // If we got this far, something failed, redisplay form
             return Page();
         }

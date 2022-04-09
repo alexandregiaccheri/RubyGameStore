@@ -17,16 +17,65 @@
     <div class="col-md-4">
         <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
+            <div class="form-floating mb-2">
                 <input asp-for="Input.Email" class="form-control" autocomplete="email" />
                 <label asp-for="Input.Email" class="form-label"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
+            <div class="form-floating mb-2 col-md-6">
+                <input asp-for="Input.NomeUsuario" class="form-control" aria-required="true" />
+                <label asp-for="Input.NomeUsuario" style="margin-left: 12px"></label>
+                <span asp-validation-for="Input.NomeUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-2 col-md-6">
+                <input asp-for="Input.SobrenomeUsuario" class="form-control" aria-required="true" />
+                <label asp-for="Input.SobrenomeUsuario" style="margin-left: 12px"></label>
+                <span asp-validation-for="Input.SobrenomeUsuario" class="text-danger"></span>
+            </div>
+            <div class="row">
+                    <hr class="mt-2" />
+                    <p class="text-center">Você deseja cadastrar seu endereço agora?</p>
+                    <div class="form-check col-6 text-end">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
+                            Sim
+                        </label>
+                    </div>
+                    <div class="form-check col-6 text-left">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
+                            Não
+                        </label>
+                    </div>
+                </div>
+                <hr class="mt-2" />
+                <div class="row" id="endereco-box" style="display:none">
+                    <div class="form-floating mb-2 col-md-6">
+                        <input asp-for="Input.LogradouroUsuario" class="form-control" aria-required="true" />
+                        <label asp-for="Input.LogradouroUsuario" style="margin-left: 12px"></label>
+                        <span asp-validation-for="Input.LogradouroUsuario" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-2 col-md-6">
+                        <input asp-for="Input.CidadeUsuario" class="form-control" aria-required="true" />
+                        <label asp-for="Input.CidadeUsuario" style="margin-left: 12px"></label>
+                        <span asp-validation-for="Input.CidadeUsuario" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-2 col-md-6">
+                        <input asp-for="Input.EstadoUsuario" class="form-control" aria-required="true" />
+                        <label asp-for="Input.EstadoUsuario" style="margin-left: 12px"></label>
+                        <span asp-validation-for="Input.EstadoUsuario" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-2 col-md-6">
+                        <input asp-for="Input.CEPUsuario" class="form-control" aria-required="true" />
+                        <label asp-for="Input.CEPUsuario" style="margin-left: 12px"></label>
+                        <span asp-validation-for="Input.CEPUsuario" class="text-danger"></span>
+                    </div>
+                </div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">Confirmar</button>
         </form>
     </div>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }

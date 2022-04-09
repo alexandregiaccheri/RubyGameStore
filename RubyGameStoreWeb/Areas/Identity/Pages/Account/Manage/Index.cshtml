@@ -11,49 +11,51 @@
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
+            <div class="row">
+            <div class="form-floating col-md-6 mb-2">
                 <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
+                <label asp-for="Username" class="form-label" style="margin-left: 12px"></label>
             </div>
-            <div class="form-floating">
-                <input asp-for="Input.Nome" class="form-control" />
-                <label asp-for="Input.Nome" class="form-label"></label>
-                <span asp-validation-for="Input.Nome" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.Sobrenome" class="form-control" />
-                <label asp-for="Input.Sobrenome" class="form-label"></label>
-                <span asp-validation-for="Input.Sobrenome" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
+            <div class="form-floating col-md-6 mb-2">
                 <input asp-for="Input.Telefone" class="form-control" />
-                <label asp-for="Input.Telefone" class="form-label"></label>
+                <label asp-for="Input.Telefone" class="form-label" style="margin-left: 12px"></label>
                 <span asp-validation-for="Input.Telefone" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating col-md-6 mb-2">
+                <input asp-for="Input.Nome" class="form-control" />
+                <label asp-for="Input.Nome" class="form-label" style="margin-left: 12px"></label>
+                <span asp-validation-for="Input.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-floating col-md-6 mb-2">
+                <input asp-for="Input.Sobrenome" class="form-control" />
+                <label asp-for="Input.Sobrenome" class="form-label" style="margin-left: 12px"></label>
+                <span asp-validation-for="Input.Sobrenome" class="text-danger"></span>
+            </div>            
+            <div class="form-floating col-md-6 mb-2">
                 <input asp-for="Input.Logradouro" class="form-control" />
-                <label asp-for="Input.Logradouro" class="form-label"></label>
+                <label asp-for="Input.Logradouro" class="form-label" style="margin-left: 12px"></label>
                 <span asp-validation-for="Input.Logradouro" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating col-md-6 mb-2">
                 <input asp-for="Input.Cidade" class="form-control" />
-                <label asp-for="Input.Cidade" class="form-label"></label>
+                <label asp-for="Input.Cidade" class="form-label" style="margin-left: 12px"></label>
                 <span asp-validation-for="Input.Cidade" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating col-md-6 mb-2">
                 <input asp-for="Input.Estado" class="form-control" />
-                <label asp-for="Input.Estado" class="form-label"></label>
+                <label asp-for="Input.Estado" class="form-label" style="margin-left: 12px"></label>
                 <span asp-validation-for="Input.Estado" class="text-danger"></span>
             </div>
-            <div class="form-floating">
+            <div class="form-floating col-md-6 mb-2">
                 <input asp-for="Input.CEP" class="form-control" />
-                <label asp-for="Input.CEP" class="form-label"></label>
+                <label asp-for="Input.CEP" class="form-label" style="margin-left: 12px"></label>
                 <span asp-validation-for="Input.CEP" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            </div>
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Salvar</button>
         </form>
     </div>
 </div>
