@@ -7,8 +7,6 @@ namespace RubyGameStore.Data.Repository
     {
         private readonly RubyGameStoreDbContext dbContext;
 
-        public ICategoriaRepository CategoriaRepo { get; private set; }
-        public IPlataformaRepository PlataformaRepo { get; private set; }
         public IProdutoRepository ProdutoRepo { get; private set; }
         public IEmpresaRepository EmpresaRepo { get; private set; }
         public IUsuarioRepository UsuarioRepo { get; private set; }
@@ -19,8 +17,6 @@ namespace RubyGameStore.Data.Repository
         public UnitOfWork(RubyGameStoreDbContext context)
         {
             dbContext = context;
-            CategoriaRepo = new CategoriaRepository(dbContext);
-            PlataformaRepo = new PlataformaRepository(dbContext);
             ProdutoRepo = new ProdutoRepository(dbContext);
             EmpresaRepo = new EmpresaRepository(dbContext);
             UsuarioRepo = new UsuarioRepository(dbContext);

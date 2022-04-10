@@ -10,12 +10,12 @@
             <div class="col-12" style="border:1px solid; border-radius: 10px">
                 <div class="card px-2 py-3 justify-content-between" style="height:535px; background-color: #f2f2f2; border-radius: 10px; box-shadow: 0px 0px 10px 2px #d3d1d1">
                     <div style="height:300px">
-                        <img src="@obj.ImgCapaUrl" class="rounded" style="height:100%; width:100%; object-fit:contain; position: relative; top:0">
+                        <img src="@obj.BoxArt" class="rounded" style="height:100%; width:100%; object-fit:contain; position: relative; top:0">
                     </div>
                     <div class="p-2 row align-content-center">
                         <p class="card-title h4 text-primary" style="font-size:1.4rem">@obj.Titulo</p>
                         <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Desenvolvedor:</b> @obj.Desenvolvedor</p>
-                        <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Plataforma:</b> @obj.Plataforma.NomePlataforma</p>
+                        <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Plataforma:</b> @obj.Plataforma</p>
                         <p class="card-title h5 text-primary" style="line-height: 0.8; font-size:1.2rem">R$ @obj.Preco.ToString("N2")</p>
                         <p class="card-title text-muted" style="line-height:0.8; font-size:0.95rem">Em até 12x de no cartão de crédito</p>
                         <a class="btn btn-primary mx-auto rounded col-10 mt-2" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">Ver mais</a>

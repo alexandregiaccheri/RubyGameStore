@@ -12,8 +12,8 @@ function carregarDataTable() {
             { "data": "titulo" },
             { "data": "desenvolvedor" },
             { "data": "distribuidor" },
-            { "data": "categoria.nomeCategoria" },
-            { "data": "plataforma.nomePlataforma" },
+            { "data": "genero" },
+            { "data": "plataforma" },
             { "data": "preco" },
             {
                 "data": "id",

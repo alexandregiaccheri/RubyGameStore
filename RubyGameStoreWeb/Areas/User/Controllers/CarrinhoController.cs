@@ -29,7 +29,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
             CarrinhoVM = new()
             {
-                ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto,Produto.Plataforma"),
+                ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto"),
                 PedidoCabecalho = new PedidoCabecalho()
             };
 
@@ -51,7 +51,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
             CarrinhoVM = new CarrinhoVM()
             {
-                ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto,Produto.Plataforma"),
+                ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto"),
                 PedidoCabecalho = new PedidoCabecalho()
                 {
                     UsuarioId = usuario.Id,
@@ -88,7 +88,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (claim.Value != CarrinhoVM.PedidoCabecalho.UsuarioId) return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
 
-            CarrinhoVM.ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto,Produto.Plataforma");            
+            CarrinhoVM.ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto");            
             CarrinhoVM.PedidoCabecalho.DataHoraPedido = DateTime.Now;
             CarrinhoVM.PedidoCabecalho.StatusPedido = Pedido.Pendente;
             CarrinhoVM.PedidoCabecalho.StatusPagamento = Pagamento.Pendente;            
