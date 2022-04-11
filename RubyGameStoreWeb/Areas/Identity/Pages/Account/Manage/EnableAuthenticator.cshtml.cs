@@ -115,7 +115,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account.Manage
 
             if (!is2faTokenValid)
             {
-                ModelState.AddModelError("Input.Code", "Verification code is invalid.");
+                ModelState.AddModelError("Input.Code", "Código de verificação inválido.");
                 await LoadSharedKeyAndQrCodeUriAsync(user);
                 return Page();
             }
@@ -124,7 +124,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             _logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app.", userId);
 
-            StatusMessage = "Your authenticator app has been verified.";
+            StatusMessage = "Seu app Autenticador foi verificado.";
 
             if (await _userManager.CountRecoveryCodesAsync(user) == 0)
             {

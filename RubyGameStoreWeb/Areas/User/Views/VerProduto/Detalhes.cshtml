@@ -3,9 +3,11 @@
     ViewData["Title"] = "Detalhes";
 }
 
+<img id="myimg" src="@Model.Produto.BoxArt" hidden />
 
-
-<section class="container bg-dark pt-2" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
+<section class="container pt-2" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+background-color: #333333; background-image: url('@Model.Produto.BoxArt.Replace("\\", "/")'); background-position: center; background-size: cover;
+background-blend-mode: overlay">
     <div class="row p-2">
         <h1 class="col-7 text-white">@Model.Produto.Titulo</h1>
         <div class="col-5">
@@ -16,7 +18,10 @@
     </div>
     <div class="row p-2 pb-4">
         <div class=col-6>
-            <p class="text-white pt-3" style="line-height:1.2"><b>Desenvolvedor: </b>@Model.Produto.Desenvolvedor <br /><br /> <b>Distribuidor:</b> @Model.Produto.Distribuidor</p>
+            <p class="text-white pt-3">
+                <b>Desenvolvedor: </b>@Model.Produto.Desenvolvedor <br />
+                <b>Distribuidor:</b> @Model.Produto.Distribuidor
+            </p>
         </div>
         <form method="post" class="col-6">
             <div class="text-end">
@@ -31,7 +36,11 @@
         </form>
     </div>
 </section>
-
+<style>
+    body {
+        background-color:
+    }
+</style>
 
 <section class="container pt-4 pb-4 col-11" style="border: solid 1px #373a3c; border-top:none; border-bottom: none; background-color: #f8f8f8; min-height: calc(100vh - 492px)">
     <div class="row">
@@ -82,7 +91,7 @@
     </div>
 </section>
 
-<section class="container row bg-dark mx-auto" style="border: solid 1px black; border-top-left-radius: 10px; border-top-right-radius: 10px">
+<section class="container row mx-auto" style="border: solid 1px black; border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #333333">
     <div class="col-6 px-4 pt-2">
         <p class="text-white"><b>Gênero: </b>@Model.Produto.Genero</p>
         <p class="text-white"><b>Classificação: </b></p>
@@ -97,8 +106,14 @@
 </section>
 
 @section Scripts{
-<script>
-    $('.carousel').carousel()
-</script>
 
+<script>
+    $(document).ready(function(){
+        var sourceImage = document.getElementById("myimg");
+        var colorThief = new ColorThief();
+        var color = colorThief.getColor(sourceImage);
+        document.body.style.background = "linear-gradient(to bottom, rgb(" + color + " ), black )";
+       });
+    $('.carousel').carousel();
+</script>
 }

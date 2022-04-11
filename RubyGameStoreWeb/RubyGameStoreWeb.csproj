@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\assets\classificacao\" />
+    <Folder Include="wwwroot\images\assets\plataformas\" />
     <Folder Include="wwwroot\images\produtos\" />
   </ItemGroup>
 

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RubyGameStore.Data.Repository.IRepository;
-using RubyGameStore.Models.ViewModels;
 using RubyGameStore.Helper.StaticNames;
+using RubyGameStore.Models.ViewModels;
+using System.Drawing;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
@@ -70,6 +71,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
                     new SelectListItem { Value = Plataforma.XONE, Text = Plataforma.XONE },
                     new SelectListItem { Value = Plataforma.XSXS, Text = Plataforma.XSXS }
                 }
+
             };
 
             if (id == null || id == 0)
@@ -77,12 +79,14 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
                 //Criar
                 return View(produtoVM);
             }
+
             else
             {
                 //Atualizar
                 produtoVM.Produto = _unitOfWork.ProdutoRepo.GetFirstOrDefault(p => p.Id == id);
                 return View(produtoVM);
             }
+
         }
 
         [HttpPost]
@@ -91,224 +95,89 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             IFormFile? screen3, IFormFile? screen4, IFormFile? screen5, IFormFile? screen6)
         {
             if (ModelState.IsValid)
-            {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (boxArt != null)
-                {
-                    string formato = Path.GetExtension(boxArt.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.BoxArt != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.BoxArt.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = "boxart_" + Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            boxArt.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.BoxArt = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
+            {               
+                // Verifica se algum arquivo foi enviado com o post
+                if (boxArt != null) produtoVM.Produto.BoxArt = UploadImagem(boxArt, produtoVM.Produto.BoxArt);                                               
+                if (screen1 != null) produtoVM.Produto.Screenshot1 = UploadImagem(screen1, produtoVM.Produto.Screenshot1);
+                if (screen2 != null) produtoVM.Produto.Screenshot2 = UploadImagem(screen2, produtoVM.Produto.Screenshot2);                
+                if (screen3 != null) produtoVM.Produto.Screenshot3 = UploadImagem(screen3, produtoVM.Produto.Screenshot3);                
+                if (screen4 != null) produtoVM.Produto.Screenshot4 = UploadImagem(screen4, produtoVM.Produto.Screenshot4);                
+                if (screen5 != null) produtoVM.Produto.Screenshot5 = UploadImagem(screen5, produtoVM.Produto.Screenshot5);                
+                if (screen6 != null) produtoVM.Produto.Screenshot6 = UploadImagem(screen6, produtoVM.Produto.Screenshot6);
 
-                if (screen1 != null)
-                {
-                    string formato = Path.GetExtension(screen1.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.Screenshot1 != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.Screenshot1.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            screen1.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.Screenshot1 = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
-
-                if (screen2 != null)
-                {
-                    string formato = Path.GetExtension(screen2.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.Screenshot2 != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.Screenshot2.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            screen2.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.Screenshot2 = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
-
-                if (screen3 != null)
-                {
-                    string formato = Path.GetExtension(screen3.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.Screenshot3 != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.Screenshot3.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            screen3.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.Screenshot3 = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
-
-                if (screen4 != null)
-                {
-                    string formato = Path.GetExtension(screen4.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.Screenshot4 != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.Screenshot4.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            screen4.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.Screenshot4 = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
-
-                if (screen5 != null)
-                {
-                    string formato = Path.GetExtension(screen5.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.Screenshot5 != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.Screenshot5.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            screen5.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.Screenshot5 = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
-
-                if (screen6 != null)
-                {
-                    string formato = Path.GetExtension(screen6.FileName);
-                    if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
-                    {
-                        if (produtoVM.Produto.Screenshot6 != null)
-                        {
-                            var imgExistente = Path.Combine(wwwRootPath, produtoVM.Produto.Screenshot6.TrimStart('\\'));
-                            if (System.IO.File.Exists(imgExistente))
-                            {
-                                System.IO.File.Delete(imgExistente);
-                            }
-                        }
-                        string nomeArquivo = Guid.NewGuid().ToString();
-                        string upload = Path.Combine(wwwRootPath, @$"images\produtos\{produtoVM.Produto.Id}");
-                        Directory.CreateDirectory(upload);
-                        using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
-                        {
-                            screen6.CopyTo(fileStream);
-                        }
-                        produtoVM.Produto.Screenshot6 = @$"\images\produtos\{produtoVM.Produto.Id}\" + nomeArquivo + formato;
-                    }
-                    else
-                    {
-                        TempData["error"] = "Arquivo enviado com formato invalido!";
-                        return RedirectToAction("Upsert", new { id = produtoVM.Produto.Id });
-                    }
-                }
-
+                // Se o ID é zero, cria um novo registro
                 if (produtoVM.Produto.Id == 0)
                 {
                     _unitOfWork.ProdutoRepo.Add(produtoVM.Produto);
+                    TempData["sucesso"] = "Produto adicionado com sucesso!";
                 }
+                
+                // Se o ID não for zero, atualiza o registro existente
                 else
                 {
                     _unitOfWork.ProdutoRepo.Update(produtoVM.Produto);
+                    TempData["sucesso"] = "Produto atualizado com sucesso!";
                 }
+
                 _unitOfWork.Save();
-                TempData["sucesso"] = "Produto adicionado com sucesso!";
+
                 return RedirectToAction("Index");
             }
+
             return View(produtoVM);
+        }
+
+        public string UploadImagem(IFormFile arquivo, string linkNoBanco)
+        {
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+            // Verifica se a extensão do arquivo é uma imagem compatível
+            string formato = Path.GetExtension(arquivo.FileName);
+            if (formato == ".jpg" || formato == ".jpeg" || formato == ".png" || formato == ".svg")
+            {
+                // Verifica se já existe algum arquivo referenciado no banco de dados
+                if (linkNoBanco != null)
+                {
+                    // Se existe a referência, o arquivo é apagado para otimizar o armazenamento
+                    var imgExistente = Path.Combine(wwwRootPath, linkNoBanco.TrimStart('\\'));
+                    if (System.IO.File.Exists(imgExistente))
+                    {
+                        System.IO.File.Delete(imgExistente);
+                    }
+
+                }
+
+                // São definidos o nome do arquivo e a pasta onde será armazenado
+                string nomeArquivo = Guid.NewGuid().ToString();
+                string upload = Path.Combine(wwwRootPath, @$"images\produtos");
+
+                Directory.CreateDirectory(upload);
+
+                // Stream para salvar o arquivo
+                using (var fileStream = new FileStream(Path.Combine(upload, nomeArquivo + formato), FileMode.Create))
+                {
+                    arquivo.CopyTo(fileStream);
+                    // Cria um novo bitmap para gerar um novo arquivo sem informações de dados (metadata)
+                    // para otimizar o armazenamento e não trafegar informações desnecessárias
+                    Bitmap cleanImage = new Bitmap(fileStream);
+                    cleanImage.Save(Path.Combine(upload, "ruby_" + nomeArquivo + formato));
+                    cleanImage.Dispose();
+                }
+
+                // Apaga o arquivo salvo com metadata
+                System.IO.File.Delete(Path.Combine(upload, nomeArquivo + formato));
+                
+                // Link do arquivo a ser salvo no banco de dados
+                return @$"\images\produtos\" + "ruby_" + nomeArquivo + formato;
+            }
+
+            else
+            {
+                TempData["error"] = "Arquivo enviado com formato invalido!";
+                RedirectToAction("Index");
+                return "erro";
+            }
+
         }
 
         #region API CALLS
@@ -322,92 +191,68 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == 0 || id == null)
-            {
-                return NotFound();
-            }
+            if (id == 0 || id == null) return NotFound();
 
             var buscaProduto = _unitOfWork.ProdutoRepo.GetFirstOrDefault(p => p.Id == id);
 
-            if (buscaProduto == null)
-            {
-                return Json(new { sucesso = false, mensagem = "Produto não encontrado!" });
-            }
+            if (buscaProduto == null) return Json(new { sucesso = false, mensagem = "Produto não encontrado!" });
 
             if (buscaProduto.BoxArt != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.BoxArt.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             if (buscaProduto.Screenshot1 != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot1.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);             
             }
 
             if (buscaProduto.Screenshot2 != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot2.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             if (buscaProduto.Screenshot3 != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot3.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             if (buscaProduto.Screenshot4 != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot4.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             if (buscaProduto.Screenshot5 != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot5.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             if (buscaProduto.Screenshot6 != null)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot6.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente))
-                {
-                    System.IO.File.Delete(imgExistente);
-                }
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             _unitOfWork.ProdutoRepo.Remove(buscaProduto);
             _unitOfWork.Save();
+
             return Json(new { sucesso = true, mensagem = "Produto apagado com sucesso!" });
+
         }
         #endregion
     }
+
 }
