@@ -6,5 +6,6 @@ namespace RubyGameStore.Data.Repository.IRepository
     {
         void AdicionarAoCarrinho(Carrinho carrinho, int quantidade);
         void RemoverDoCarrinho(Carrinho carrinho, int quantidade);
+
     }
 }

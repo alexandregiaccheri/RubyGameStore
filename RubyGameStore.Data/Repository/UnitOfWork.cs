@@ -5,33 +5,31 @@ namespace RubyGameStore.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly RubyGameStoreDbContext dbContext;
+        private readonly RubyGameStoreDbContext _dbContext;
 
-        public ICategoriaRepository CategoriaRepo { get; private set; }
-        public IPlataformaRepository PlataformaRepo { get; private set; }
-        public IProdutoRepository ProdutoRepo { get; private set; }
-        public IEmpresaRepository EmpresaRepo { get; private set; }
-        public IUsuarioRepository UsuarioRepo { get; private set; }
         public ICarrinhoRepository CarrinhoRepo { get; private set; }
+        public ICupomRepository CupomRepo { get; private set; }
+        public IEmpresaRepository EmpresaRepo { get; private set; }
         public IPedidoCabecalhoRepository PedidoCabecalhoRepo { get; private set; }
         public IPedidoDetalhesRepository PedidoDetalhesRepo { get; private set; }
+        public IProdutoRepository ProdutoRepo { get; private set; }
+        public IUsuarioRepository UsuarioRepo { get; private set; }
 
-        public UnitOfWork(RubyGameStoreDbContext context)
+        public UnitOfWork(RubyGameStoreDbContext dbContext)
         {
-            dbContext = context;
-            CategoriaRepo = new CategoriaRepository(dbContext);
-            PlataformaRepo = new PlataformaRepository(dbContext);
-            ProdutoRepo = new ProdutoRepository(dbContext);
-            EmpresaRepo = new EmpresaRepository(dbContext);
-            UsuarioRepo = new UsuarioRepository(dbContext);
-            CarrinhoRepo = new CarrinhoRepository(dbContext);
-            PedidoCabecalhoRepo = new PedidoCabecalhoRepository(dbContext);
-            PedidoDetalhesRepo = new PedidoDetalhesRepository(dbContext);
+            _dbContext = dbContext;
+            CarrinhoRepo = new CarrinhoRepository(_dbContext);
+            CupomRepo = new CupomRepository(_dbContext);
+            EmpresaRepo = new EmpresaRepository(_dbContext);
+            PedidoCabecalhoRepo = new PedidoCabecalhoRepository(_dbContext);
+            PedidoDetalhesRepo = new PedidoDetalhesRepository(_dbContext);
+            ProdutoRepo = new ProdutoRepository(_dbContext);
+            UsuarioRepo = new UsuarioRepository(_dbContext);
         }
 
         public void Save()
         {
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
     }

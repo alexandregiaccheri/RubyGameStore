@@ -2,14 +2,13 @@
 {
     public interface IUnitOfWork
     {
-        IPlataformaRepository PlataformaRepo { get; }
-        ICategoriaRepository CategoriaRepo { get; }
-        IProdutoRepository ProdutoRepo { get; }
-        IEmpresaRepository EmpresaRepo { get; }
-        IUsuarioRepository UsuarioRepo { get; }
         ICarrinhoRepository CarrinhoRepo { get; }
+        ICupomRepository CupomRepo { get; }
+        IEmpresaRepository EmpresaRepo { get; }
         IPedidoCabecalhoRepository PedidoCabecalhoRepo { get; }
         IPedidoDetalhesRepository PedidoDetalhesRepo { get; }
+        IProdutoRepository ProdutoRepo { get; }
+        IUsuarioRepository UsuarioRepo { get; }
 
         void Save();
 

@@ -90,7 +90,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Sua senha foi alterada.";
+            StatusMessage = "Sua senha foi alterada com sucesso.";
 
             return RedirectToPage();
         }

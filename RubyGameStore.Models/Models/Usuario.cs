@@ -9,16 +9,25 @@ namespace RubyGameStore.Models.Models
     {
         [Required]
         public string NomeUsuario { get; set; }
+
         [Required]
         public string SobrenomeUsuario { get; set; }
+
         public string? TelefoneContato { get; set; }
+
         public string? LogradouroUsuario { get; set; }
+
         public string? CidadeUsuario { get; set; }
+
         public string? EstadoUsuario { get; set; }
+
         public string? CEPUsuario { get; set; }
+
         public int? EmpresaId { get; set; }
+
         [ForeignKey("EmpresaId")]
         [ValidateNever]
         public Empresa? Empresa { get; set; }
+
     }
 }

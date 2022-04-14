@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Models.Models;
-using System.Diagnostics;
 using System.Security.Claims;
 
 namespace RubyGameStoreWeb.Areas.User.Controllers
@@ -19,7 +18,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
         public IActionResult Detalhes(int produtoId)
         {
-            var produtoDB = _unitOfWork.ProdutoRepo.GetFirstOrDefault(p => p.Id == produtoId, incluirPropriedades: "Categoria,Plataforma");
+            var produtoDB = _unitOfWork.ProdutoRepo.GetFirstOrDefault(p => p.Id == produtoId);
             if (produtoDB == null) return NotFound();
             Carrinho carrinho = new Carrinho()
             {

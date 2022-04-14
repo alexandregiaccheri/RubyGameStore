@@ -12,9 +12,9 @@ function carregarDataTable() {
             { "data": "titulo" },
             { "data": "desenvolvedor" },
             { "data": "distribuidor" },
-            { "data": "categoria.nomeCategoria" },
-            { "data": "plataforma.nomePlataforma" },
-            { "data": "preco" },
+            { "data": "genero" },
+            { "data": "plataforma" },
+            { "data": "precoNormal" },
             {
                 "data": "id",
                 "render": function (data) {

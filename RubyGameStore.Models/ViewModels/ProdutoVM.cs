@@ -9,9 +9,16 @@ namespace RubyGameStore.Models.ViewModels
         public Produto Produto { get; set; }
 
         [ValidateNever]
-        public IEnumerable<SelectListItem> ListaCategorias { get; set; }
+        public IEnumerable<SelectListItem> ListaClassificacao { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> ListaGeneros { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> ListaJogadores { get; set; }
 
         [ValidateNever]
         public IEnumerable<SelectListItem> ListaPlataformas { get; set; }
+
     }
 }

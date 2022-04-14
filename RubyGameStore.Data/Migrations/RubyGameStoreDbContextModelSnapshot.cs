@@ -253,27 +253,6 @@ namespace RubyGameStore.Data.Migrations
                     b.ToTable("Carrinhos");
                 });
 
-            modelBuilder.Entity("RubyGameStore.Models.Models.Categoria", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomeCategoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categorias");
-                });
-
             modelBuilder.Entity("RubyGameStore.Models.Models.Empresa", b =>
                 {
                     b.Property<int>("Id")
@@ -416,23 +395,6 @@ namespace RubyGameStore.Data.Migrations
                     b.ToTable("PedidosDetalhes");
                 });
 
-            modelBuilder.Entity("RubyGameStore.Models.Models.Plataforma", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("NomePlataforma")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Plataformas");
-                });
-
             modelBuilder.Entity("RubyGameStore.Models.Models.Produto", b =>
                 {
                     b.Property<int>("Id")
@@ -441,11 +403,16 @@ namespace RubyGameStore.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Ano")
-                        .HasColumnType("int");
+                    b.Property<string>("BoxArt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoriaId")
-                        .HasColumnType("int");
+                    b.Property<string>("Classificacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataLancamento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -459,34 +426,60 @@ namespace RubyGameStore.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImgCapaUrl")
+                    b.Property<string>("Genero")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PlataformaId")
+                    b.Property<string>("Jogadores")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkTrailer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Metascore")
                         .HasColumnType("int");
 
-                    b.Property<double>("Preco")
+                    b.Property<string>("Plataforma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("PrecoNormal")
                         .HasColumnType("float");
 
-                    b.Property<double>("Preco100")
+                    b.Property<double>("PrecoPromo")
                         .HasColumnType("float");
 
-                    b.Property<double>("Preco50")
-                        .HasColumnType("float");
+                    b.Property<string>("Screenshot1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("PrecoListado")
-                        .HasColumnType("float");
+                    b.Property<string>("Screenshot2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Screenshot3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Screenshot4")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Screenshot5")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Screenshot6")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriaId");
-
-                    b.HasIndex("PlataformaId");
 
                     b.ToTable("Produtos");
                 });
@@ -519,7 +512,6 @@ namespace RubyGameStore.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TelefoneContato")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasIndex("EmpresaId");
@@ -625,25 +617,6 @@ namespace RubyGameStore.Data.Migrations
                     b.Navigation("PedidoCabecalho");
 
                     b.Navigation("Produto");
-                });
-
-            modelBuilder.Entity("RubyGameStore.Models.Models.Produto", b =>
-                {
-                    b.HasOne("RubyGameStore.Models.Models.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RubyGameStore.Models.Models.Plataforma", "Plataforma")
-                        .WithMany()
-                        .HasForeignKey("PlataformaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Categoria");
-
-                    b.Navigation("Plataforma");
                 });
 
             modelBuilder.Entity("RubyGameStore.Models.Models.Usuario", b =>

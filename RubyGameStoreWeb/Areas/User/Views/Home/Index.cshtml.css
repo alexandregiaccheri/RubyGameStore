@@ -1,0 +1,49 @@
+﻿.home-card {
+    background-color: #333;
+    border: solid 2px #fff;
+    border-radius: 7px;
+}
+
+
+@media (min-width: 320px) {
+    .home-card {
+        height: 380px
+    }
+}
+
+@media (min-width: 375px) {
+    .home-card {
+        height: 415px
+    }
+}
+
+@media (min-width: 425px) {
+    .home-card {
+        height: 455px
+    }
+}
+
+@media (min-width: 500px) {
+    .home-card {
+        height: 500px
+    }
+}
+
+
+@media (min-width: 768px) {
+    .home-card {
+        height: 460px
+    }
+}
+
+@media (min-width: 1024px) {
+    .home-card {
+        height: 440px
+    }
+}
+
+@media (min-width: 1440px) {
+    .home-card {
+        height: 470px
+    }
+}

@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Models.Models;
-using System.Diagnostics;
-using System.Security.Claims;
 
 namespace RubyGameStoreWeb.Areas.User.Controllers
 {
@@ -19,7 +16,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Produto> listaProdutos = _unitOfWork.ProdutoRepo.GetAll(incluirPropriedades: "Categoria,Plataforma");
+            IEnumerable<Produto> listaProdutos = _unitOfWork.ProdutoRepo.GetAll();
             return View(listaProdutos);
         }
     }

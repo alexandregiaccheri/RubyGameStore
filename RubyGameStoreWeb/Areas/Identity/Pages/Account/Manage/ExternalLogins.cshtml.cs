@@ -66,7 +66,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account.Manage
             var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
             if (!result.Succeeded)
             {
-                StatusMessage = "The external login was not removed.";
+                StatusMessage = "O login externo não foi removido.";
                 return RedirectToPage();
             }
 

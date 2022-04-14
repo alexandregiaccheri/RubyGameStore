@@ -32,5 +32,6 @@ namespace RubyGameStore.Models.Models
 
         [Display(Name = "CEP para entrega")]
         public int? CEPEmpresa { get; set; }
+
     }
 }

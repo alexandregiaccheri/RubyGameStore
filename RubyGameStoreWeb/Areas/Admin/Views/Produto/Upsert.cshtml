@@ -5,7 +5,7 @@
 }
 
 <div class="row">
-    <div class="container col-10">
+    <div class="container col-12">
         <div class="container row mt-3">
             <div class="col-6">
                 <h2>@(Model.Produto.Id != 0 ? "Atualizar" : "Adicionar") Produto</h2>
@@ -16,87 +16,152 @@
         </div>
         <form method="post" enctype="multipart/form-data">
             <div class="container row justify-content-around">
+
+
                 <input asp-for="Produto.Id" readonly hidden />
-                <input asp-for="Produto.ImgCapaUrl" readonly hidden />
+                <input asp-for="Produto.BoxArt" readonly hidden />
+                <input asp-for="Produto.Screenshot1" readonly hidden />
+                <input asp-for="Produto.Screenshot2" readonly hidden />
+                <input asp-for="Produto.Screenshot3" readonly hidden />
+                <input asp-for="Produto.Screenshot4" readonly hidden />
+                <input asp-for="Produto.Screenshot5" readonly hidden />
+                <input asp-for="Produto.Screenshot6" readonly hidden />
+
+
                 <div class="form-group row mt-3 col-8">
                     <label asp-for="Produto.Titulo" class="form-label"></label>
                     <input asp-for="Produto.Titulo" class="form-control" />
                     <span asp-validation-for="Produto.Titulo" class="mt-2 text-danger"></span>
                 </div>
+
                 <div class="form-group row mt-3 col-4">
-                    <label asp-for="Produto.Ano" class="form-label"></label>
-                    <input asp-for="Produto.Ano" class="form-control" />
-                    <span asp-validation-for="Produto.Ano" class="mt-2 text-danger"></span>
+                    <label asp-for="Produto.DataLancamento" class="form-label"></label>
+                    <input asp-for="Produto.DataLancamento" class="form-control" />
+                    <span asp-validation-for="Produto.DataLancamento" class="mt-2 text-danger"></span>
                 </div>
+
                 <div class="form-group row mt-3">
                     <label asp-for="Produto.Descricao" class="form-label"></label>
                     <textarea asp-for="Produto.Descricao" class="form-control" rows="5" style="padding: 0px !important" />@Model.Produto.Descricao</textarea>
                     <span asp-validation-for="Produto.Descricao" class="mt-2 text-danger"></span>
                 </div>
+
                 <div class="form-group row mt-3 col-6">
                     <label asp-for="Produto.Desenvolvedor" class="form-label"></label>
                     <input asp-for="Produto.Desenvolvedor" class="form-control" />
                     <span asp-validation-for="Produto.Desenvolvedor" class="mt-2 text-danger"></span>
                 </div>
+
                 <div class="form-group row mt-3 col-6">
                     <label asp-for="Produto.Distribuidor" class="form-label"></label>
                     <input asp-for="Produto.Distribuidor" class="form-control" />
                     <span asp-validation-for="Produto.Distribuidor" class="mt-2 text-danger"></span>
                 </div>
+
                 <div class="form-group row mt-3 col-6">
-                    <label asp-for="Produto.PrecoListado" class="form-label"></label>
-                    <input asp-for="Produto.PrecoListado" class="form-control" />
-                    <span asp-validation-for="Produto.PrecoListado" class="mt-2 text-danger"></span>
-                </div>
-                <div class="form-group row mt-3 col-6">
-                    <label asp-for="Produto.Preco" class="form-label"></label>
-                    <input asp-for="Produto.Preco" class="form-control" placeholder="1 - 10000" />
-                    <span asp-validation-for="Produto.Preco" class="mt-2 text-danger"></span>
-                </div>
-                <div class="form-group row mt-3 col-6">
-                    <label asp-for="Produto.Preco50" class="form-label"></label>
-                    <input asp-for="Produto.Preco50" class="form-control" />
-                    <span asp-validation-for="Produto.Preco50" class="mt-2 text-danger"></span>
-                </div>
-                <div class="form-group row mt-3 col-6">
-                    <label asp-for="Produto.Preco100" class="form-label"></label>
-                    <input asp-for="Produto.Preco100" class="form-control" />
-                    <span asp-validation-for="Produto.Preco100" class="mt-2 text-danger"></span>
-                </div>
-                <div class="form-group row mt-3">
-                    <label asp-for="Produto.ImgCapaUrl" class="form-label"></label>
-                    <input type="file" accept="image/*" id="imgcapa" name="capa" class="form-control" />
-                </div>
-                <div class="form-group row mt-3 col-6">
-                    <label asp-for="Produto.PlataformaId" class="form-label"></label>
-                    <select asp-for="Produto.PlataformaId" asp-items="@Model.ListaPlataformas" class="form-select">
+                    <label asp-for="Produto.Plataforma" class="form-label"></label>
+                    <select asp-for="Produto.Plataforma" asp-items="@Model.ListaPlataformas" class="form-select">
                         <option disabled selected>--Selecione uma Plataforma--</option>
                     </select>
-                    <span asp-validation-for="Produto.PlataformaId" class="mt-2 text-danger"></span>
+                    <span asp-validation-for="Produto.Plataforma" class="mt-2 text-danger"></span>
                 </div>
+
                 <div class="form-group row mt-3 col-6">
-                    <label asp-for="Produto.CategoriaId" class="form-label"></label>
-                    <select asp-for="Produto.CategoriaId" asp-items="@Model.ListaCategorias" class="form-select">
-                        <option disabled selected>--Selecione uma Categoria--</option>
+                    <label asp-for="Produto.Genero" class="form-label"></label>
+                    <select asp-for="Produto.Genero" asp-items="@Model.ListaGeneros" class="form-select">
+                        <option disabled selected>--Selecione um Gênero--</option>
                     </select>
-                    <span asp-validation-for="Produto.CategoriaId" class="mt-2 text-danger"></span>
+                    <span asp-validation-for="Produto.Genero" class="mt-2 text-danger"></span>
                 </div>
-                <div class="col-12 mt-1">
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Classificacao" class="form-label"></label>
+                    <select asp-for="Produto.Classificacao" asp-items="@Model.ListaClassificacao" class="form-select">
+                        <option disabled selected>--Selecione um Gênero--</option>
+                    </select>
+                    <span asp-validation-for="Produto.Classificacao" class="mt-2 text-danger"></span>
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Jogadores" class="form-label"></label>
+                    <select asp-for="Produto.Jogadores" asp-items="@Model.ListaJogadores" class="form-select">
+                        <option disabled selected>--Selecione um Gênero--</option>
+                    </select>
+                    <span asp-validation-for="Produto.Jogadores" class="mt-2 text-danger"></span>
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Metascore" class="form-label"></label>
+                    <input asp-for="Produto.Metascore" class="form-control" placeholder="0 para 'TBD'" />
+                    <span asp-validation-for="Produto.Metascore" class="mt-2 text-danger"></span>
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.PrecoNormal" class="form-label"></label>
+                    <input asp-for="Produto.PrecoNormal" class="form-control" placeholder="1 - 10000" />
+                    <span asp-validation-for="Produto.PrecoNormal" class="mt-2 text-danger"></span>
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.PrecoPromo" class="form-label"></label>
+                    <input asp-for="Produto.PrecoPromo" class="form-control" />
+                    <span asp-validation-for="Produto.PrecoPromo" class="mt-2 text-danger"></span>
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.LinkTrailer" class="form-label"></label>
+                    <input asp-for="Produto.LinkTrailer" class="form-control" />
+                    <span asp-validation-for="Produto.LinkTrailer" class="mt-2 text-danger"></span>
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.BoxArt" class="form-label"></label>
+                    <input type="file" accept="image/*" id="boxart" name="boxArt" class="form-control" />
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Screenshot1" class="form-label"></label>
+                    <input type="file" accept="image/*" id="ss1" name="screen1" class="form-control" />
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Screenshot2" class="form-label"></label>
+                    <input type="file" accept="image/*" id="ss2" name="screen2" class="form-control" />
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Screenshot3" class="form-label"></label>
+                    <input type="file" accept="image/*" id="ss3" name="screen3" class="form-control" />
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Screenshot4" class="form-label"></label>
+                    <input type="file" accept="image/*" id="ss4" name="screen4" class="form-control" />
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Screenshot5" class="form-label"></label>
+                    <input type="file" accept="image/*" id="ss5" name="screen5" class="form-control" />
+                </div>
+
+                <div class="form-group row mt-3 col-6">
+                    <label asp-for="Produto.Screenshot6" class="form-label"></label>
+                    <input type="file" accept="image/*" id="ss6" name="screen6" class="form-control" />
+                </div>
+
+
+                <div class="col-12 mt-1 mb-3">
                     @if (Model.Produto.Id != 0)
                     {
                         <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-check-square"></i>&nbsp; Atualizar</button>
                     }
                     else
                     {
-                        <button type="submit" class="btn btn-primary mt-3" onclick="return ValidateImage()"><i class="bi bi-check-square"></i>&nbsp; Adicionar</button>
+                        <button type="submit" class="btn btn-primary mt-3" onclick="return ValidateImages()"><i class="bi bi-check-square"></i>&nbsp; Adicionar</button>
                     }
                 </div>
             </div>
         </form>
-    </div>
-    <div class="container col-2 my-auto mx-auto">
-        <img src="@Model.Produto.ImgCapaUrl" width="100%" />
-        <h5 class="text-center mt-2">@(Model.Produto.Id != 0 ? "Capa atual" : "")</h5>
     </div>
 </div>
 
@@ -115,15 +180,57 @@
     });
 </script>
 <script>
-    function ValidateImage(){
-        if (document.getElementById("imgcapa").value == ""){
+    function ValidateImages(){
+        if (document.getElementById("boxart").value == ""){
             Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Adicione uma imagem!'})
+            text: 'Adicione a BoxArt!'})
             return false
-            }
-            return true
+        };
+        if (document.getElementById("ss1").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione os Screenshots!'})
+            return false
+        };
+        if (document.getElementById("ss2").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione os Screenshots!'})
+            return false
+        };
+        if (document.getElementById("ss3").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione os Screenshots!'})
+            return false
+        };
+        if (document.getElementById("ss4").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione os Screenshots!'})
+            return false
+        };
+        if (document.getElementById("ss5").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione os Screenshots!'})
+            return false
+        };
+        if (document.getElementById("ss6").value == ""){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Adicione os Screenshots!'})
+            return false
+        };
+        return true
     }
 </script>
 }

@@ -29,5 +29,6 @@ namespace RubyGameStore.Models.Models
 
         [NotMapped]
         public double PrecoAtual { get; set; }
+
     }
 }

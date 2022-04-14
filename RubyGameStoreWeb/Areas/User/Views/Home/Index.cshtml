@@ -1,26 +1,64 @@
 ﻿@model IEnumerable<Produto>
+@using RubyGameStore.Helper.StaticNames;
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row mt-3">
+<style>
+    body {
+        background-color: #fff;
+    }
+</style>
+
+<div class="row mt-3" style="margin-bottom: 80px">
     @foreach (var obj in Model)
     {
-        <div class="col-lg-3 col-md-4 col-sm-6 mt-3">
-            <div class="col-12" style="border:1px solid; border-radius: 10px">
-                <div class="card px-2 py-3 justify-content-between" style="height:535px; background-color: #f2f2f2; border-radius: 10px; box-shadow: 0px 0px 10px 2px #d3d1d1">
-                    <div style="height:300px">
-                        <img src="@obj.ImgCapaUrl" class="rounded" style="height:100%; width:100%; object-fit:contain; position: relative; top:0">
-                    </div>
-                    <div class="p-2 row align-content-center">
-                        <p class="card-title h4 text-primary" style="font-size:1.4rem">@obj.Titulo</p>
-                        <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Desenvolvedor:</b> @obj.Desenvolvedor</p>
-                        <p class="card-title text-secondary" style="line-height: 0.9; font-size:0.85rem"><b>Plataforma:</b> @obj.Plataforma.NomePlataforma</p>
-                        <p class="card-title h5 text-primary" style="line-height: 0.8; font-size:1.2rem">R$ @obj.Preco.ToString("N2")</p>
-                        <p class="card-title text-muted" style="line-height:0.8; font-size:0.95rem">Em até 12x de no cartão de crédito</p>
-                        <a class="btn btn-primary mx-auto rounded col-10 mt-2" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">Ver mais</a>
-                    </div>
-                </div>
+        <div class="col-12 col-md-6 col-lg-4 position-relative home-card">
+            <section class="my-2">
+                <img src="@obj.BoxArt" class="rounded-2 mt-1" style="width:100%; height:100%; background-size:contain">
+            </section>
+            <div class="row px-1">
+                <section class="col-9" style="height:auto">
+                    <h3 class="text-white"><strong>@obj.Titulo</strong></h3>
+                    <p class="text-white">
+                        Desenvolvedor: @obj.Desenvolvedor <br>
+                        Distribuidor: @obj.Distribuidor <br>
+                        Plataforma: @obj.Plataforma (@obj.DataLancamento.ToString("yyyy"))
+                    </p>
+                </section>
+                <section class="col-3 text-end" style="padding-right: 2%">
+                    @if (obj.Plataforma == Plataforma.NSW)
+                    {
+                        <img src="~/images/assets/plataformas/nintendo.svg" style="height: 70px; width: 70px; -webkit-filter: invert(100%)">
+                    }
+                    @if (obj.Plataforma == Plataforma.PC)
+                    {
+                        <img src="~/images/assets/plataformas/PC.svg" style="height: 65px; width: 65px; -webkit-filter: invert(100%)">
+                    }
+                    @if (obj.Plataforma == Plataforma.PS4 || obj.Plataforma == Plataforma.PS5)
+                    {
+                        <img src="~/images/assets/plataformas/playstation.svg" style="height: 65px; width: 65px; -webkit-filter: invert(100%)">
+                    }
+                    @if (obj.Plataforma == Plataforma.XONE || obj.Plataforma == Plataforma.XSXS)
+                    {
+                        <img src="~/images/assets/plataformas/xbox.svg" style="height: 70px; width: 70px; -webkit-filter: invert(100%)">
+                    }
+                </section>
+            </div>
+            <div class="row mb-3 position-absolute bottom-0 w-100">
+                @if (obj.PrecoPromo != 0)
+                {
+                    <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">
+                        <small><s>R$ @obj.PrecoNormal.ToString("N2")</s></small> <b>R$ @obj.PrecoPromo.ToString("N2")</b>
+                    </h5>
+                }
+                else
+                {
+                    <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">
+                        <b>R$ @obj.PrecoNormal.ToString("N2")</b>
+                    </h5>
+                }
+                <a class="btn btn-primary col-11 mx-auto" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">Ver Detalhes</a>
             </div>
         </div>
     }

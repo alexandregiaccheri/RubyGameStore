@@ -6,10 +6,11 @@ namespace RubyGameStore.Data.Repository
 {
     public class CarrinhoRepository : Repository<Carrinho>, ICarrinhoRepository
     {
-        private readonly RubyGameStoreDbContext dbContext;
-        public CarrinhoRepository(RubyGameStoreDbContext context) : base(context)
+        private readonly RubyGameStoreDbContext _dbContext;
+
+        public CarrinhoRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
         {
-            dbContext = context;
+            _dbContext = dbContext;
         }
 
         public void AdicionarAoCarrinho(Carrinho carrinho, int quantidade)

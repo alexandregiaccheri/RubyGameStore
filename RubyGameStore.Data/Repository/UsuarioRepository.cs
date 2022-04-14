@@ -6,10 +6,11 @@ namespace RubyGameStore.Data.Repository
 {
     public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
     {
-        private readonly RubyGameStoreDbContext dbContext;
-        public UsuarioRepository(RubyGameStoreDbContext context) : base(context)
+        private readonly RubyGameStoreDbContext _dbContext;
+
+        public UsuarioRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
         {
-            dbContext = context;
+            _dbContext = dbContext;
         }
     }
 }

@@ -6,14 +6,15 @@ namespace RubyGameStore.Data.Repository
 {
     public class PedidoDetalhesRepository : Repository<PedidoDetalhes>, IPedidoDetalhesRepository
     {
-        private readonly RubyGameStoreDbContext dbContext;
-        public PedidoDetalhesRepository(RubyGameStoreDbContext context) : base(context)
+        private readonly RubyGameStoreDbContext _dbContext;
+
+        public PedidoDetalhesRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
         {
-            context = dbContext;
+            _dbContext = dbContext;
         }
         public void Update(PedidoDetalhes pedidoDetalhes)
         {
-            dbContext.PedidosDetalhes.Update(pedidoDetalhes);
+            _dbContext.PedidosDetalhes.Update(pedidoDetalhes);
         }
     }
 }
