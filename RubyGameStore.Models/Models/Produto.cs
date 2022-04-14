@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RubyGameStore.Models.Models
 {
@@ -12,10 +13,17 @@ namespace RubyGameStore.Models.Models
         [Display(Name = "Título")]
         public string Titulo { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(1970, 2032)]
-        [Display(Name = "Ano de lançamento")]
-        public int Ano { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]        
+        [Display(Name = "Data de Lançamento")]
+        public DateTime DataLancamento { get; set; }
+
+        [NotMapped]
+        [ValidateNever]
+        public string AnoLancamento { get; set; }
+
+        [NotMapped]
+        [ValidateNever]
+        public string DataFormatada { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Descrição")]
@@ -41,23 +49,18 @@ namespace RubyGameStore.Models.Models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Range(0, 100)]
-        [Display(Name = "MetaScore (Deixe '0' caso 'tbd')")]
+        [Display(Name = "MetaScore (Deixe zero caso ainda não possua metascore)")]
         public int Metascore { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Range(1, 10000)]
-        [Display(Name = "Preço")]
-        public double Preco { get; set; }
+        [Display(Name = "Preço Normal")]
+        public double PrecoNormal { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(1, 10000)]
-        [Display(Name = "Preço 50 - 100")]
-        public double Preco50 { get; set; }
-
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(1, 10000)]
-        [Display(Name = "Preço 100+")]
-        public double Preco100 { get; set; }
+        [Range(0, 10000)]
+        [Display(Name = "Preço Promocional - Deixe ZERO para não aplicar promoção!")]
+        public double PrecoPromo { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
@@ -71,32 +74,32 @@ namespace RubyGameStore.Models.Models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Screen1")]
+        [Display(Name = "Captura de Tela")]
         public string Screenshot1 { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Screen2")]
+        [Display(Name = "Captura de Tela")]
         public string Screenshot2 { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Screen3")]
+        [Display(Name = "Captura de Tela")]
         public string Screenshot3 { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Screen4")]
+        [Display(Name = "Captura de Tela")]
         public string Screenshot4 { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Screen5")]
+        [Display(Name = "Captura de Tela")]
         public string Screenshot5 { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Screen6")]
+        [Display(Name = "Captura de Tela")]
         public string Screenshot6 { get; set; }        
         
     }

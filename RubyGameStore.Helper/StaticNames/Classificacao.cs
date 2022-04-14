@@ -9,6 +9,6 @@ namespace RubyGameStore.Helper.StaticNames
         public const string ESRB_T = "Teen";
         public const string ESRB_M = "Mature";
         public const string ESRB_A = "Adults Only";
-        public const string ESRB_P = "Pending";
+        public const string ESRB_RP = "Pending";
     }
 }

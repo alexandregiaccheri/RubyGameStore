@@ -14,7 +14,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
     public class CarrinhoController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        
+
         public CarrinhoVM CarrinhoVM { get; set; }
 
         public CarrinhoController(IUnitOfWork unitOfWork)
@@ -35,9 +35,14 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
             foreach (var itemCarrinho in CarrinhoVM.ListaCarrinho)
             {
-                itemCarrinho.PrecoAtual = PrecoBaseadoNaQuantidade(itemCarrinho.Quantidade, itemCarrinho.Produto.Preco,
-                    itemCarrinho.Produto.Preco50, itemCarrinho.Produto.Preco100);
-                CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.PrecoAtual;
+                if (itemCarrinho.Produto.PrecoPromo == 0)
+                {
+                    CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoNormal;
+                }
+                else
+                {
+                    CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoPromo;
+                }
             }
 
             return View(CarrinhoVM);
@@ -69,13 +74,18 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             {
                 TempData["StatusMessage"] = "É necessário que você complete seu cadastro para poder realizar compras!";
                 return RedirectToPage("/Account/Manage/Index", new { area = "Identity" });
-            }            
+            }
 
             foreach (var itemCarrinho in CarrinhoVM.ListaCarrinho)
             {
-                itemCarrinho.PrecoAtual = PrecoBaseadoNaQuantidade(itemCarrinho.Quantidade, itemCarrinho.Produto.Preco,
-                    itemCarrinho.Produto.Preco50, itemCarrinho.Produto.Preco100);
-                CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.PrecoAtual;
+                if (itemCarrinho.Produto.PrecoPromo == 0)
+                {
+                    CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoNormal;
+                }
+                else
+                {
+                    CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoPromo;
+                }
             }
             return View(CarrinhoVM);
         }
@@ -88,15 +98,20 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (claim.Value != CarrinhoVM.PedidoCabecalho.UsuarioId) return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
 
-            CarrinhoVM.ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto");            
+            CarrinhoVM.ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto");
             CarrinhoVM.PedidoCabecalho.DataHoraPedido = DateTime.Now;
             CarrinhoVM.PedidoCabecalho.StatusPedido = Pedido.Pendente;
-            CarrinhoVM.PedidoCabecalho.StatusPagamento = Pagamento.Pendente;            
+            CarrinhoVM.PedidoCabecalho.StatusPagamento = Pagamento.Pendente;
             foreach (var itemCarrinho in CarrinhoVM.ListaCarrinho)
             {
-                itemCarrinho.PrecoAtual = PrecoBaseadoNaQuantidade(itemCarrinho.Quantidade, itemCarrinho.Produto.Preco,
-                    itemCarrinho.Produto.Preco50, itemCarrinho.Produto.Preco100);
-                CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.PrecoAtual;
+                if (itemCarrinho.Produto.PrecoPromo == 0)
+                {
+                    CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoNormal;
+                }
+                else
+                {
+                    CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoPromo;
+                }
             }
 
             _unitOfWork.PedidoCabecalhoRepo.Add(CarrinhoVM.PedidoCabecalho);
@@ -168,7 +183,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             var claimsIdentity = new ClaimsIdentity(User.Claims);
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            if(pedidoCabecalho.UsuarioId != claim.Value) return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
+            if (pedidoCabecalho.UsuarioId != claim.Value) return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
 
             if (User.IsInRole("Empresa"))
             {
@@ -215,13 +230,6 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             _unitOfWork.CarrinhoRepo.Remove(carrinhoDB);
             _unitOfWork.Save();
             return RedirectToAction("Index");
-        }
-
-        private double PrecoBaseadoNaQuantidade(int quantidade, double preco, double preco50, double preco100)
-        {
-            if (quantidade > 100) return preco100;
-            else if (quantidade >= 50 && quantidade < 100) return preco50;
-            else return preco;
         }
 
         public bool RedirecionarCadastro(CarrinhoVM vm)

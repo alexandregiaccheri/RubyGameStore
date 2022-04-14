@@ -6,31 +6,31 @@ namespace RubyGameStore.Data.Repository
 {
     public class ProdutoRepository : Repository<Produto>, IProdutoRepository
     {
-        private readonly RubyGameStoreDbContext dbContext;
+        private readonly RubyGameStoreDbContext _dbContext;
 
-        public ProdutoRepository(RubyGameStoreDbContext context) : base(context)
+        public ProdutoRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
         {
-            dbContext = context;
+            _dbContext = dbContext;
         }
 
         public void Update(Produto obj)
         {
-            var queryObj = dbContext.Produtos.FirstOrDefault(o => o.Id == obj.Id);
+            var queryObj = _dbContext.Produtos.FirstOrDefault(o => o.Id == obj.Id);
             if (queryObj != null)
             {
-                queryObj.Titulo = obj.Titulo;
-                queryObj.Descricao = obj.Descricao;
-                queryObj.Desenvolvedor = obj.Desenvolvedor;
-                queryObj.Distribuidor = obj.Distribuidor;
-                queryObj.Plataforma = obj.Plataforma;
                 queryObj.Classificacao = obj.Classificacao;
+                queryObj.DataLancamento = obj.DataLancamento;
+                queryObj.Desenvolvedor = obj.Desenvolvedor;
+                queryObj.Descricao = obj.Descricao;
+                queryObj.Distribuidor = obj.Distribuidor;
                 queryObj.Genero = obj.Genero;
                 queryObj.Jogadores = obj.Jogadores;
                 queryObj.LinkTrailer = obj.LinkTrailer;
                 queryObj.Metascore = obj.Metascore;
-                queryObj.Preco = obj.Preco;
-                queryObj.Preco50 = obj.Preco50;
-                queryObj.Preco100 = obj.Preco100;
+                queryObj.Plataforma = obj.Plataforma;
+                queryObj.PrecoNormal = obj.PrecoNormal;
+                queryObj.PrecoPromo = obj.PrecoPromo;                
+                queryObj.Titulo = obj.Titulo;
 
                 if (obj.BoxArt != null)
                 {

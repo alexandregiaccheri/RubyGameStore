@@ -14,7 +14,7 @@ function carregarDataTable() {
             { "data": "distribuidor" },
             { "data": "genero" },
             { "data": "plataforma" },
-            { "data": "preco" },
+            { "data": "precoNormal" },
             {
                 "data": "id",
                 "render": function (data) {

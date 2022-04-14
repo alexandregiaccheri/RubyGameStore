@@ -2,9 +2,8 @@
 
 namespace RubyGameStore.Data.Repository.IRepository
 {
-    public interface IEmpresaRepository : IRepository<Empresa>
+    public interface ICupomRepository : IRepository<Cupom>
     {
-        void Update(Empresa empresa);
 
     }
 }

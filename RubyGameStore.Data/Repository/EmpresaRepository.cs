@@ -6,25 +6,27 @@ namespace RubyGameStore.Data.Repository
 {
     public class EmpresaRepository : Repository<Empresa>, IEmpresaRepository
     {
-        private readonly RubyGameStoreDbContext dbContext;
-        public EmpresaRepository(RubyGameStoreDbContext context) : base(context)
+        private readonly RubyGameStoreDbContext _dbContext;
+
+        public EmpresaRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
         {
-            dbContext = context;
+            _dbContext = dbContext;
         }
 
         public void Update(Empresa obj)
         {
-            var queryObj = dbContext.Empresas.FirstOrDefault(o => o.Id == obj.Id);
+            var queryObj = _dbContext.Empresas.FirstOrDefault(o => o.Id == obj.Id);
             if (queryObj != null)
             {
-                queryObj.NomeEmpresa = obj.NomeEmpresa;
-                queryObj.CNPJEmpresa = obj.CNPJEmpresa;
-                queryObj.TelefoneEmpresa = obj.TelefoneEmpresa;
-                queryObj.LogradouroEmpresa = obj.LogradouroEmpresa;
-                queryObj.CidadeEmpresa = obj.CidadeEmpresa;
-                queryObj.EstadoEmpresa = obj.EstadoEmpresa;
                 queryObj.CEPEmpresa = obj.CEPEmpresa;
+                queryObj.CidadeEmpresa = obj.CidadeEmpresa;
+                queryObj.CNPJEmpresa = obj.CNPJEmpresa;
+                queryObj.EstadoEmpresa = obj.EstadoEmpresa;
+                queryObj.LogradouroEmpresa = obj.LogradouroEmpresa;
+                queryObj.NomeEmpresa = obj.NomeEmpresa;
+                queryObj.TelefoneEmpresa = obj.TelefoneEmpresa;
             }
         }
+
     }
 }

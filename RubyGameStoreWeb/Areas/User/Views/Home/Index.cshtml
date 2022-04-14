@@ -4,6 +4,12 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    body {
+        background-color: #fff;
+    }
+</style>
+
 <div class="row mt-3" style="margin-bottom: 80px">
     @foreach (var obj in Model)
     {
@@ -14,9 +20,11 @@
             <div class="row px-1">
                 <section class="col-9" style="height:auto">
                     <h3 class="text-white"><strong>@obj.Titulo</strong></h3>
-                    <p class="text-white">Desenvolvedor: @obj.Desenvolvedor <br>
-                                          Distribuidor: @obj.Distribuidor <br>
-                                          Plataforma: @obj.Plataforma (@obj.Ano)</p>
+                    <p class="text-white">
+                        Desenvolvedor: @obj.Desenvolvedor <br>
+                        Distribuidor: @obj.Distribuidor <br>
+                        Plataforma: @obj.Plataforma (@obj.DataLancamento.ToString("yyyy"))
+                    </p>
                 </section>
                 <section class="col-3 text-end" style="padding-right: 2%">
                     @if (obj.Plataforma == Plataforma.NSW)
@@ -38,7 +46,18 @@
                 </section>
             </div>
             <div class="row mb-3 position-absolute bottom-0 w-100">
-                <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">R$ @obj.Preco.ToString("N2")</h5>
+                @if (obj.PrecoPromo != 0)
+                {
+                    <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">
+                        <small><s>R$ @obj.PrecoNormal.ToString("N2")</s></small> <b>R$ @obj.PrecoPromo.ToString("N2")</b>
+                    </h5>
+                }
+                else
+                {
+                    <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">
+                        <b>R$ @obj.PrecoNormal.ToString("N2")</b>
+                    </h5>
+                }
                 <a class="btn btn-primary col-11 mx-auto" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">Ver Detalhes</a>
             </div>
         </div>

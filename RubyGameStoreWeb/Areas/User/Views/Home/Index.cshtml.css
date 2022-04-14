@@ -1,8 +1,9 @@
 ﻿.home-card {
-    background-color: #333333;
-    border: solid 2px white;
+    background-color: #333;
+    border: solid 2px #fff;
     border-radius: 7px;
 }
+
 
 @media (min-width: 320px) {
     .home-card {

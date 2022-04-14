@@ -7,24 +7,24 @@ namespace RubyGameStore.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly RubyGameStoreDbContext dbContext;
+        private readonly RubyGameStoreDbContext _dbContext;
 
-        internal DbSet<T> dbSet;
+        internal DbSet<T> _dbSet;
 
         public Repository(RubyGameStoreDbContext context)
         {
-            dbContext = context;
-            dbSet = dbContext.Set<T>();
+            _dbContext = context;
+            _dbSet = _dbContext.Set<T>();
         }
 
         public void Add(T entity)
         {
-            dbSet.Add(entity);
+            _dbSet.Add(entity);
         }
 
         public IEnumerable<T> GetAll(string? incluirPropriedades = null)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = _dbSet;
 
             if (incluirPropriedades != null)
             {
@@ -38,7 +38,7 @@ namespace RubyGameStore.Data.Repository
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter, string? incluirPropriedades = null)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = _dbSet;
 
             query = query.Where(filter);
 
@@ -54,7 +54,7 @@ namespace RubyGameStore.Data.Repository
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? incluirPropriedades = null)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = _dbSet;
 
             query = query.Where(filter);
 
@@ -70,12 +70,12 @@ namespace RubyGameStore.Data.Repository
 
         public void Remove(T entity)
         {
-            dbSet.Remove(entity);
+            _dbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-            dbSet.RemoveRange(entities);
+            _dbSet.RemoveRange(entities);
         }
     }
 }

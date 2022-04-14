@@ -38,7 +38,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
                     new SelectListItem { Value = Classificacao.ESRB_T, Text = Classificacao.ESRB_T },
                     new SelectListItem { Value = Classificacao.ESRB_M, Text = Classificacao.ESRB_M },
                     new SelectListItem { Value = Classificacao.ESRB_A, Text = Classificacao.ESRB_A },
-                    new SelectListItem { Value = Classificacao.ESRB_P, Text = Classificacao.ESRB_P },
+                    new SelectListItem { Value = Classificacao.ESRB_RP, Text = Classificacao.ESRB_RP },
                 },
 
                 ListaGeneros = new[]

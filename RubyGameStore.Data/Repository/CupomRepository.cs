@@ -4,11 +4,11 @@ using RubyGameStore.Models.Models;
 
 namespace RubyGameStore.Data.Repository
 {
-    public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
+    public class CupomRepository : Repository<Cupom>, ICupomRepository
     {
         private readonly RubyGameStoreDbContext _dbContext;
 
-        public UsuarioRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
+        public CupomRepository(RubyGameStoreDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
