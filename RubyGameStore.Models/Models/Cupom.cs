@@ -11,6 +11,9 @@ namespace RubyGameStore.Models.Models
         [Display(Name = "Código do Cupom")]
         public string CodCupom { get; set; }
 
+        [Required]
+        public DateTime DataHoraCriacao { get; set; }
+
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Descrição do cupom")]
         public string Descricao { get; set; }

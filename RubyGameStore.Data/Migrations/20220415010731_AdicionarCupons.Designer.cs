@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RubyGameStore.Data.Data;
 
@@ -11,9 +12,10 @@ using RubyGameStore.Data.Data;
 namespace RubyGameStore.Data.Migrations
 {
     [DbContext(typeof(RubyGameStoreDbContext))]
-    partial class RubyGameStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220415010731_AdicionarCupons")]
+    partial class AdicionarCupons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,55 +253,6 @@ namespace RubyGameStore.Data.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Carrinhos");
-                });
-
-            modelBuilder.Entity("RubyGameStore.Models.Models.Cupom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("CodCupom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataHoraCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("QuantidadeUsos")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("TipoDesconto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ValidadeCupom")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ValorDescontoPorcento")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ValorDescontoReais")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorMaximoDesconto")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorRequerido")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cupons");
                 });
 
             modelBuilder.Entity("RubyGameStore.Models.Models.Empresa", b =>

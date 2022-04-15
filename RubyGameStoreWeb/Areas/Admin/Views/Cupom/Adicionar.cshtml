@@ -1,0 +1,92 @@
+﻿@model Cupom
+@{
+    ViewData["Title"] = "Adicionar Cupom";
+}
+
+<div class="container row mt-3">
+    <div class="col-6">
+        <h2>Adicionar Cupom</h2>
+    </div>
+    <div class="col-6 text-end my-auto">
+        <a asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+    </div>
+</div>
+
+<form method="post">
+    <input asp-for="Id" hidden readonly />
+
+    <div class="container row justify-content-around">
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="CodCupom" class="form-label"></label>
+            <input asp-for="CodCupom" class="form-control" />
+            <span asp-validation-for="CodCupom" class="text-danger mt-2"></span>
+        </div>
+
+        <div class="form-group row mt-3">
+            <label asp-for="Descricao" class="form-label"></label>
+            <textarea asp-for="Descricao" class="form-control" rows="5" style="padding: 0px !important" />Digite a uma boa descrição aqui</textarea>
+            <span asp-validation-for="Descricao" class="mt-2 text-danger"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-6">
+            <label asp-for="TipoDesconto" class="form-label"></label>
+            <select asp-for="TipoDesconto" asp-items="ViewBag.ListaDesconto" class="form-select">
+                <option disabled selected>--Tipo de Desconto--</option>
+            </select>
+            <span asp-validation-for="TipoDesconto" class="mt-2 text-danger"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="QuantidadeUsos" class="form-label"></label>
+            <input asp-for="QuantidadeUsos" class="form-control" />
+            <span asp-validation-for="QuantidadeUsos" class="text-danger mt-2"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="ValidadeCupom" class="form-label"></label>
+            <input asp-for="ValidadeCupom" class="form-control" />
+            <span asp-validation-for="ValidadeCupom" class="text-danger mt-2"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="ValorDescontoPorcento" class="form-label"></label>
+            <input asp-for="ValorDescontoPorcento" class="form-control" />
+            <span asp-validation-for="ValorDescontoPorcento" class="text-danger mt-2"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="ValorDescontoReais" class="form-label"></label>
+            <input asp-for="ValorDescontoReais" class="form-control" />
+            <span asp-validation-for="ValorDescontoReais" class="text-danger mt-2"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="ValorMaximoDesconto" class="form-label"></label>
+            <input asp-for="ValorMaximoDesconto" class="form-control" />
+            <span asp-validation-for="ValorMaximoDesconto" class="text-danger mt-2"></span>
+        </div>
+
+        <div class="form-group row mt-3 col-12 col-md-6">
+            <label asp-for="ValorRequerido" class="form-label"></label>
+            <input asp-for="ValorRequerido" class="form-control" />
+            <span asp-validation-for="ValorRequerido" class="text-danger mt-2"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Criar Cupom</button>
+    </div>
+</form>
+
+@section Scripts
+{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable  tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+        toolbar_mode: 'floating',
+        height: 200
+    });
+</script>
+}
