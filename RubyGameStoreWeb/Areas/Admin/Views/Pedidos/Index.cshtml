@@ -30,39 +30,39 @@
     }
 }
 
-<div class="bg-dark" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
-    <h2 class="text-white text-center p-2">Gerenciar Pedidos</h2>
+<div class="mt-3" style="/*border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px*/">
+    <h2 class="text-center p-2">Gerenciar Pedidos</h2>
 </div>
 
 <div class="p-2 d-md-flex justify-content-center">
     <ul class="list-group list-group-horizontal-sm">
         <li class="list-group-item @todos">
-            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="todos" class="text-danger" style="text-decoration: none">Todos</a>
+            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="todos" class="text-danger" style="text-decoration: none; font-weight: bold">Todos</a>
         </li>
     </ul>
     <ul class="list-group list-group-horizontal-sm">
         <li class="list-group-item @aprovado">
-            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="aprovado" class="text-danger" style="text-decoration: none">Aprovado</a>
+            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="aprovado" class="text-danger" style="text-decoration: none; font-weight: bold">Aprovados</a>
         </li>
     </ul>
     <ul class="list-group list-group-horizontal-sm">
         <li class="list-group-item @processando">
-            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="processando" class="text-danger" style="text-decoration: none">Processando</a>
+            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="processando" class="text-danger" style="text-decoration: none; font-weight: bold">Processando</a>
         </li>
     </ul>
     <ul class="list-group list-group-horizontal-sm">
         <li class="list-group-item @concluido">
-            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="concluido" class="text-danger" style="text-decoration: none">Concluído</a>
+            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="concluido" class="text-danger" style="text-decoration: none; font-weight: bold">Concluídos</a>
         </li>
     </ul>
     <ul class="list-group list-group-horizontal-sm">
         <li class="list-group-item @cancelado">
-            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="cancelado" class="text-danger" style="text-decoration: none">Cancelado</a>
+            <a asp-controller="Pedidos" asp-action="Index" asp-route-status="cancelado" class="text-danger" style="text-decoration: none; font-weight: bold">Cancelados</a>
         </li>
     </ul>
 </div>
 
-<div class="container mt-3">
+<div class="container mt-3 pb-3">
     <table class="table table-hover my-auto" style="vertical-align: middle" width="100%" id="indexPedidos">
         <thead>
             <tr class="my-auto">
@@ -72,7 +72,7 @@
                 <th data-priority="5">Status</th>
                 <th data-priority="6">Pagamento</th>
                 <th data-priority="4">Total</th>
-                <th class="col-1" data-priority="2"></th>
+                <th data-priority="2" class="col-1" >Editar</th>
             </tr>
         </thead>
     </table>

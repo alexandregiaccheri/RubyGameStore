@@ -14,3 +14,15 @@ body {
     min-height: calc(100vh - 140px);
     margin-bottom: 60px;    
 }
+
+div.form-group {
+    margin-bottom: 25px !important
+}
+
+div.form-floating {
+    margin-bottom: 25px !important
+}
+
+.field-validation-error {
+    height: 0px
+}

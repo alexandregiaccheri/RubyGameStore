@@ -17,8 +17,8 @@ namespace RubyGameStoreWeb.ViewComponents
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
             var carrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claims.Value);
+
             int totalCarrinho = 0;
             foreach (var c in carrinho)
             {

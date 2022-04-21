@@ -285,10 +285,10 @@ namespace RubyGameStore.Data.Migrations
                     b.Property<DateTime>("ValidadeCupom")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ValorDescontoPorcento")
+                    b.Property<int?>("ValorDescontoPorcento")
                         .HasColumnType("int");
 
-                    b.Property<double>("ValorDescontoReais")
+                    b.Property<double?>("ValorDescontoReais")
                         .HasColumnType("float");
 
                     b.Property<double>("ValorMaximoDesconto")
@@ -358,6 +358,9 @@ namespace RubyGameStore.Data.Migrations
                     b.Property<string>("CodRastreio")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CupomId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataHoraEnvio")
                         .HasColumnType("datetime2");
 
@@ -370,9 +373,15 @@ namespace RubyGameStore.Data.Migrations
                     b.Property<DateTime>("DataVencimento")
                         .HasColumnType("datetime2");
 
+                    b.Property<double?>("DescontoAplicado")
+                        .HasColumnType("float");
+
                     b.Property<string>("EstadoEntrega")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("FreteAplicado")
+                        .HasColumnType("float");
 
                     b.Property<string>("LogradouroEntrega")
                         .IsRequired()
@@ -409,6 +418,8 @@ namespace RubyGameStore.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CupomId");
 
                     b.HasIndex("UsuarioId");
 
@@ -640,11 +651,17 @@ namespace RubyGameStore.Data.Migrations
 
             modelBuilder.Entity("RubyGameStore.Models.Models.PedidoCabecalho", b =>
                 {
+                    b.HasOne("RubyGameStore.Models.Models.Cupom", "Cupom")
+                        .WithMany()
+                        .HasForeignKey("CupomId");
+
                     b.HasOne("RubyGameStore.Models.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Cupom");
 
                     b.Navigation("Usuario");
                 });

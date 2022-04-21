@@ -5,7 +5,7 @@ namespace RubyGameStore.Models.Models
     public class Cupom
     {
         [Key]
-        public int Id { get; set; }        
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Código do Cupom")]
@@ -34,10 +34,10 @@ namespace RubyGameStore.Models.Models
         public DateTime ValidadeCupom { get; set; }
 
         [Display(Name = "Valor do desconto em reais")]
-        public double ValorDescontoReais { get; set; }
+        public double? ValorDescontoReais { get; set; }
 
         [Display(Name = "Valor do desconto em porcentagem")]
-        public int ValorDescontoPorcento { get; set; }
+        public int? ValorDescontoPorcento { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Valor máximo do desconto")]

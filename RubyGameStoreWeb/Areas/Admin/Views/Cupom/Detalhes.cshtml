@@ -1,0 +1,104 @@
+﻿@model Cupom
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="container mx-auto row mt-3">
+    <div class="col-8 p-0 text-start">
+        <h2 style="text-transform: capitalize; font-family:'Segoe UI';font-weight: 500">Cupom Nº @Model.Id | Status: @Model.Status</h2>
+    </div>
+    <div class="col-4 p-0 text-end my-auto">
+        <a asp-action="Index" class="btn btn-outline-dark"><i class="bi bi-arrow-left"></i>&nbsp; Voltar</a>
+    </div>
+</div>
+<hr />
+
+<div class="container mx-auto row mt-3">
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mt-2 mb-3">
+        <h3 class="text-center fw-bold">Cupom</h3>
+        <hr class="mx-auto w-75" />
+        <div>
+            <div class="row">
+                <p class="col-6">ID: </p>
+                <p class="col-6 text-end">@Model.Id</p>
+            </div>
+            <div class="row">
+                <p class="col-4">Código: </p>
+                <p class="col-8 text-end">@Model.CodCupom</p>
+            </div class="row">
+            <div class="row">
+                <p class="col-5">Criado em: </p>
+                <p class="col-7 text-end">@Model.DataHoraCriacao.ToLocalTime()</p>
+            </div>
+        </div>        
+    </div>
+
+
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3">
+        <h3 class="text-center fw-bold">Condições</h3>
+        <hr class="mx-auto w-75" />
+        <div class="row">
+            <p class="col-6">Usos: </p>
+            <p class="col-6 text-end">@(Model.QuantidadeUsos == -1 ? "Ilimitados" : @Model.QuantidadeUsos + " Restante(s)")</p>
+        </div>
+        <div class="row">
+            <p class="col-5">Válidade: </p>
+            <p class="col-7 text-end">@Model.ValidadeCupom.ToLocalTime()</p>
+        </div>
+        <div class="row">
+            <p class="col-6">Total Mínimo: </p>
+            <p class="col-6 text-end">R$ @Model.ValorRequerido.ToString("N2")</p>
+        </div>
+        <div class="row">
+            <p class="col-7">Desconto Máximo: </p>
+            <p class="col-5 text-end">R$ @Model.ValorMaximoDesconto.ToString("N2")</p>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3">
+        <h3 class="text-center fw-bold">Desconto</h3>
+        <hr class="mx-auto w-75" />
+        <div class="row">
+            <p class="col-6">Tipo: </p>
+            <p class="col-6 text-end">@Model.TipoDesconto</p>
+        </div>
+        <div class="row">
+            <p class="col-6">Valor: </p>
+            <p class="col-6 text-end">@(Model.TipoDesconto == "Reais" ? $"R$ {@Model.ValorDescontoReais.ToString()}" : $"{@Model.ValorDescontoPorcento} %")</p>
+        </div>
+    </div>
+
+
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3">
+        <h3 class="text-center fw-bold">Descrição</h3>
+        <hr class="mx-auto w-75" />
+        <p>@Html.Raw(Model.Descricao)</p>
+    </div>
+
+    @if (Model.Status == true)
+    {
+        <div class="w-auto text-center mx-auto my-2">
+            <p class="alert-danger p-2">ATENÇÃO: Não será possível desfazer esta ação!</p>
+            <a onclick="Confirmar('/Admin/Cupom/Desativar?cupomId=@Model.Id')" class="btn btn-primary">Desativar</a>
+        </div>        
+    }
+</div>
+
+@section Scripts{
+<script>
+    function Confirmar(url){
+        Swal.fire({
+            title: 'Desativar Cupom?',
+            showCancelButton: true,
+            confirmButtonColor: '#c62e2e',
+            cancelButtonColor: '#2b77c0',
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Não'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.replace(url)
+            }
+        })
+    }
+</script>
+}

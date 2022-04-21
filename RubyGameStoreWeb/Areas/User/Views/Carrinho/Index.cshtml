@@ -2,25 +2,43 @@
 @using RubyGameStore.Helper.StaticNames
 @{
     ViewData["Title"] = "Carrinho";
-}
+
+    var radioCheck1 = "";
+    var radioCheck2 = "";
+
+    if (Context.Session.GetString(Sessao.FreteAplicado) != null)
+    {
+        if (Context.Session.GetString(Sessao.FreteAplicado) == "Normal")
+        {
+            radioCheck1 = "checked=\"\"";
+            radioCheck2 = "";
+        }
+
+        if (Context.Session.GetString(Sessao.FreteAplicado) == "Expressa")
+        {
+            radioCheck1 = "";
+            radioCheck2 = "checked=\"\"";
+        }
+    }
+} 
 
 <div class="container row mx-auto">
-    <div class="bg-dark d-flex justify-content-center" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
-        <h2 class="text-white text-center p-2"><i class="bi bi-cart"></i>&nbsp; Meu Carrinho</h2>
-    </div>
-    <div class="text-center text-sm-start">
-        <br />
-        <div class="row">
-            <div class="">
-                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
-            </div>
-
-        </div>
-        <br />
-    </div>
     <div class="col-12 d-flex flex-column flex-lg-row">
         <div class="col-12 col-md-8 my-2 mx-auto">
+            <div class="d-flex row justify-content-between py-2 mt-3">
+                <div class="col-12 col-md-4">
+                    <h2 class="text-center">Meu Carrinho</h2>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
+                </div>
+            </div>
             <hr style="height: 2px" />
+            @if (Model.ListaCarrinho.Count() < 1)
+            {
+                <br />
+                <h4>Seu carrinho está vazio!</h4>
+            }
             @foreach (var item in Model.ListaCarrinho)
             {
                 <div class="d-flex flex-column flex-lg-row my-2 px-1" style="padding-right:2%">
@@ -115,7 +133,60 @@
                 <hr style="height: 2px" />
             }
         </div>
-        <div class="col-12 offset-md-1 col-lg-3" style="border:1px solid black; border-radius:10px; margin-left:2%; height:fit-content">
+        <div class="col-12 offset-md-1 my-3 col-lg-3" style="border:1px solid black; border-radius:10px; margin-left:2%; height:fit-content">
+            <div class="w-100 mx-auto p-3">
+                <div class="">
+                    <p class="">Seleciona a entrega:</p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" @radioCheck1 onclick="frete(1)">
+                            Normal: R$ 7.99
+                        </label>
+                        <br /><small>
+                            Estimativa: 7 a 12 dias úteis
+                            <br /> (Grátis acima de R$ 200)
+                        </small>
+                    </div>
+                    <hr class="w-75 mx-auto" />
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" @radioCheck2 onclick="frete(2)">
+                            Expressa: R$ 17.99
+                        </label>
+                        <br /><small>Estimativa: 2 a 5 dias úteis</small>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mx-auto" />
+            @if (TempData["erroCupom"] != null)
+            {
+                <p class="text-center alert-danger">@TempData["erroCupom"]</p>
+            }
+
+            @if (Context.Session.GetString(Sessao.CupomAplicado) == null)
+            {
+                <form method="post">
+                    <div class="form-floating w-75 mx-auto">
+                        <input class="form-control mb-1" asp-for="@Model.CodCupom" />
+                        <label class="form-label" asp-for="@Model.CodCupom"></label>
+                        <div class="w-100 text-center">
+                            <button asp-action="AplicarCupom" asp-route-CodCupom="@Model.CodCupom" type="submit" class="btn btn-outline-dark mt-2 mx-auto">Aplicar Cupom</button>
+                        </div>
+                    </div>
+                </form>
+            }
+
+            else
+            {
+                <div class="row">
+                    <h5 class="text-center">Cupom Aplicado:</h5>
+                    <h3 class="text-center">@Context.Session.GetString(Sessao.CupomAplicado)</h3>
+                    <a class="text-center" asp-action="LimparCupom"><i class="bi-x-lg"></i>Remover</a>
+                </div>
+            }
+            <hr class="mx-auto" />
+
             <div class="d-flex p-3 justify-content-between">
                 <div style="line-height:1rem">
                     <p>
@@ -133,51 +204,42 @@
                         <p>R$&nbsp;</p>
                         <p id="totalProdutos">@Model.PedidoCabecalho.TotalPedido.ToString("N2")</p>
                     </div>
-                    <p id="frete">
-                        Selecione
-                    </p>
+                    @if (Context.Session.GetString(Sessao.FreteAplicado) != null)
+                    {
+                        @if (Context.Session.GetString(Sessao.FreteAplicado) == "Normal")
+                        {
+                            @if (Model.PedidoCabecalho.TotalPedido >= 200)
+                            {
+                                <p>Frete Grátis</p>
+                            }
+                            else
+                            {
+                                <p>R$ 7.99</p>
+                            }
+                        }
+
+                        @if (Context.Session.GetString(Sessao.FreteAplicado) == "Expressa")
+                        {
+                            <p>R$ 17.99</p>
+                        }
+                    }
+                    else
+                    {
+                        <p id="campoFrete">Selecione</p>
+                    }
+
                     <p>
-                        - R$ 25.95
+                        @(Model.PedidoCabecalho.DescontoAplicado == null ? "Nenhum" : "- R$ " + Model.PedidoCabecalho.DescontoAplicado?.ToString("N2"))
                     </p>
                 </div>
             </div>
+
             <hr class=" mx-auto" />
-            <div class="w-100 mx-auto p-3">
-                <div class="">
-                    <p class="">Seleciona a entrega:</p>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
-                            Normal: R$ 7.99 
-                        </label>
-                        <br /><small>Estimativa: 7 a 12 dias úteis 
-                            <br /> (Grátis acima de R$ 200)</small>
-                    </div>
-                    <hr class="w-75" />
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-                            Expressa: R$ 17.99
-                        </label>                        
-                        <br /><small>Estimativa: 2 a 5 dias úteis</small>
-                    </div>
-                </div>
-            </div>
-            <hr class=" mx-auto" />
-            <form method="post">
-                <div class="form-floating w-75 mx-auto">
-                    <input class="form-control" />
-                    <label class="form-label">Cupom</label>
-                    <div class="w-100 text-center">
-                        <button type="submit" class="btn btn-outline-dark mt-2 mx-auto">Aplicar Cupom</button>
-                    </div>
-                </div>
-            </form>
-            <hr class="mx-auto" />
+
             <div class="p-3">
                 <div class="d-flex justify-content-center">
                     <p class="text-center"><b>Total Final:</b> R$ </p>
-                    <p id="total">@Model.PedidoCabecalho.TotalPedido.ToString("N2")</p>
+                    <p id="total">@Model.TotalFinal.ToString("N2")</p>
                 </div>
 
                 <div class="text-center">
@@ -187,10 +249,11 @@
                             <a href="#" class="btn btn-outline-dark disabled text-center" style="min-width:200px" disabled>Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
                         </div>
                     }
+
                     else
                     {
                         <div class="mx-auto">
-                            <a asp-action="CriarPedido" class="btn btn-success" style="min-width:200px">Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
+                            <a onclick="verificaFrete('campoFrete')" class="btn btn-success" style="min-width:200px">Revisar Pedido &nbsp;<i class="bi bi-arrow-right"></i></a>
                         </div>
                     }
                 </div>
@@ -200,35 +263,5 @@
 </div>
 
 @section Scripts{
-<script>
-    $(document).ready(function(){
-        $('#optionsRadios1').click(function(){
-            var padrao = document.getElementById('optionsRadios1')
-            if(padrao.checked){
-                var elementoTotal = document.getElementById('totalProdutos');
-                var totalProdutos = parseFloat(elementoTotal.textContent);
-                if(totalProdutos < 200){
-                    var frete = 7.99;
-                    document.getElementById('frete').innerHTML = "R$ " + frete;
-                    document.getElementById('total').innerHTML = (totalProdutos + frete).toFixed(2);
-                }
-                else{
-                    document.getElementById('frete').innerHTML = "Frete Grátis";
-                    document.getElementById('total').innerHTML = totalProdutos.toFixed(2);
-                }
-            }
-        });
-        $('#optionsRadios2').click(function(){
-            var expressa = document.getElementById('optionsRadios2')
-            if(expressa.checked){
-                var elementoTotal = document.getElementById('totalProdutos');
-                var totalProdutos = parseFloat(elementoTotal.textContent);
-                    var frete = 17.99;
-                    document.getElementById('frete').innerHTML = "R$ " + frete;
-                    document.getElementById('total').innerHTML = (totalProdutos + frete).toFixed(2);
-            };
-        });
-    })
-</script>
-<script type="text/javascript" src="~/js/carrinho.js"></script>
+<script src="~/js/carrinho-index.js"></script>
 }

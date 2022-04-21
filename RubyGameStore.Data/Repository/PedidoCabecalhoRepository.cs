@@ -33,7 +33,7 @@ namespace RubyGameStore.Data.Repository
             pedidoDB.SessionId = sessionId;
             pedidoDB.PaymentIntentId = paymentIntentId;
             pedidoDB.DataPagamento = DateTime.Now;
-        }      
+        }
 
         public void DefinirEntrega(int id, string transportadora, string rastreio)
         {

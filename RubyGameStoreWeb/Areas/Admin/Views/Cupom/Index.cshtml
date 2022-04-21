@@ -1,8 +1,31 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gerenciar Cupons";
 }
 
-<h1>Index</h1>
+<div class="container row mt-3">
+    <div class="col-6">
+        <h2>Gerenciar Cupons</h2>
+    </div>
+    <div class="col-6 text-end my-auto">
+        <a asp-action="Adicionar" class="btn btn-primary"><i class="bi bi-plus-square"></i>&nbsp; Adicionar Cupom</a>
+    </div>
+</div>
 
-<a class="btn btn-primary" asp-action="Adicionar">Adicionar</a>
+<div class="container mt-3">
+    <table class="table table-hover my-auto" style="vertical-align: middle" width="100%" id="index">
+        <thead>
+            <tr class="my-auto">
+                <th class="col-2" data-priority="1">ID</th>
+                <th class="col-4" data-priority="2">Cupom</th>
+                <th class="col-3" data-priority="5">Tipo</th>
+                <th class="col-3" data-priority="4">Status</th>                
+                <th data-priority="3"></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+<script src="~/js/cupom.js"></script>
+}

@@ -29,7 +29,7 @@ namespace RubyGameStore.Data.Repository
                 queryObj.Metascore = obj.Metascore;
                 queryObj.Plataforma = obj.Plataforma;
                 queryObj.PrecoNormal = obj.PrecoNormal;
-                queryObj.PrecoPromo = obj.PrecoPromo;                
+                queryObj.PrecoPromo = obj.PrecoPromo;
                 queryObj.Titulo = obj.Titulo;
 
                 if (obj.BoxArt != null)

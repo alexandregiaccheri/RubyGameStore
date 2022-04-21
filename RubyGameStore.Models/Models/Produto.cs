@@ -13,7 +13,7 @@ namespace RubyGameStore.Models.Models
         [Display(Name = "Título")]
         public string Titulo { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório")]        
+        [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Data de Lançamento")]
         public DateTime DataLancamento { get; set; }
 
@@ -100,7 +100,7 @@ namespace RubyGameStore.Models.Models
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
         [Display(Name = "Captura de Tela")]
-        public string Screenshot6 { get; set; }        
-        
+        public string Screenshot6 { get; set; }
+
     }
 }

@@ -15,6 +15,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        [BindProperty]
         public CarrinhoVM CarrinhoVM { get; set; }
 
         public CarrinhoController(IUnitOfWork unitOfWork)
@@ -27,7 +28,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            CarrinhoVM = new()
+            CarrinhoVM = new CarrinhoVM()
             {
                 ListaCarrinho = _unitOfWork.CarrinhoRepo.GetAll(c => c.UsuarioId == claim.Value, incluirPropriedades: "Produto"),
                 PedidoCabecalho = new PedidoCabecalho()
@@ -39,19 +40,83 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 {
                     CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoNormal;
                 }
+
                 else
                 {
                     CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoPromo;
                 }
+
             }
 
+            CarrinhoVM.TotalFinal = CarrinhoVM.PedidoCabecalho.TotalPedido;
+
+            var cupomDB = _unitOfWork.CupomRepo.GetFirstOrDefault(c => c.CodCupom == HttpContext.Session.GetString(Sessao.CupomAplicado));
+            if (cupomDB != null)
+            {
+                // Se econtrar o cupom, faz validações
+                if (cupomDB.Status == false)
+                {
+                    TempData["erroCupom"] = "Cupom Inválido!";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.ValidadeCupom < CarrinhoVM.PedidoCabecalho.DataHoraPedido || cupomDB.QuantidadeUsos == 0)
+                {
+                    TempData["erroCupom"] = "Cupom Expirado!";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.ValorRequerido > CarrinhoVM.PedidoCabecalho.TotalPedido)
+                {
+                    TempData["erroCupom"] = $"Cupom válido somente para compras a partir de R$ {cupomDB.ValorRequerido.ToString("N2")}!";
+                    return View(CarrinhoVM);
+                }
+
+                // Passando por todas as validações, salva o desconto apropriado
+                if (cupomDB.TipoDesconto == TipoDesconto.Reais)
+                {
+                    CarrinhoVM.PedidoCabecalho.DescontoAplicado = (double)cupomDB.ValorDescontoReais;
+                }
+
+                if (cupomDB.TipoDesconto == TipoDesconto.Porcentagem)
+                {
+                    var desconto = (CarrinhoVM.PedidoCabecalho.TotalPedido / 100) * (int)cupomDB.ValorDescontoPorcento;
+                    if (desconto > cupomDB.ValorMaximoDesconto) desconto = cupomDB.ValorMaximoDesconto;
+                    CarrinhoVM.PedidoCabecalho.DescontoAplicado = desconto;
+                }
+
+                CarrinhoVM.TotalFinal -= (double)CarrinhoVM.PedidoCabecalho.DescontoAplicado;
+            }
+
+            if (HttpContext.Session.GetString(Sessao.FreteAplicado) != null)
+            {
+                if (HttpContext.Session.GetString(Sessao.FreteAplicado) == "Normal")
+                {
+                    if (CarrinhoVM.PedidoCabecalho.TotalPedido >= 200)
+                    {
+                        CarrinhoVM.SelecionaFrete = 0;
+                    }
+                    else
+                    {
+                        CarrinhoVM.SelecionaFrete = 7.99;
+                    }
+                }
+                else
+                {
+                    CarrinhoVM.SelecionaFrete = 17.99;
+                }
+                CarrinhoVM.TotalFinal += CarrinhoVM.SelecionaFrete;
+            }
             return View(CarrinhoVM);
         }
 
         public IActionResult CriarPedido()
         {
+            // Pega a identidade do usuário logado
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            // Busca o usuário no banco de dados
             var usuario = _unitOfWork.UsuarioRepo.GetFirstOrDefault(u => u.Id == claim.Value);
 
             CarrinhoVM = new CarrinhoVM()
@@ -82,11 +147,81 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 {
                     CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoNormal;
                 }
+
                 else
                 {
                     CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoPromo;
                 }
+
             }
+
+            CarrinhoVM.TotalFinal = CarrinhoVM.PedidoCabecalho.TotalPedido;
+
+            var cupomDB = _unitOfWork.CupomRepo.GetFirstOrDefault(c => c.CodCupom == HttpContext.Session.GetString(Sessao.CupomAplicado));
+            if (cupomDB != null)
+            {
+                // Se econtrar o cupom, faz validações
+                if (cupomDB.Status == false)
+                {
+                    ViewData["erroCupom"] = "Cupom Inválido!";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.ValidadeCupom < CarrinhoVM.PedidoCabecalho.DataHoraPedido)
+                {
+                    ViewData["erroCupom"] = "Cupom Expirado!";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.QuantidadeUsos == 0)
+                {
+                    ViewData["erroCupom"] = "Este cupom já foi usado.";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.ValorRequerido > CarrinhoVM.PedidoCabecalho.TotalPedido)
+                {
+                    ViewData["erroCupom"] = "Valor insuficiente para este cupom. Adicione mais produtos ou remova o cupom para continuar.";
+                    return View(CarrinhoVM);
+                }
+
+                // Passando por todas as validações, salva o desconto apropriado
+                if (cupomDB.TipoDesconto == TipoDesconto.Reais)
+                {
+                    CarrinhoVM.PedidoCabecalho.DescontoAplicado = (double)cupomDB.ValorDescontoReais;
+                    CarrinhoVM.TotalFinal -= (double)CarrinhoVM.PedidoCabecalho.DescontoAplicado;
+                }
+
+                if (cupomDB.TipoDesconto == TipoDesconto.Porcentagem)
+                {
+                    var desconto = (CarrinhoVM.PedidoCabecalho.TotalPedido / 100) * (int)cupomDB.ValorDescontoPorcento;
+                    if (desconto > cupomDB.ValorMaximoDesconto) desconto = cupomDB.ValorMaximoDesconto;
+                    CarrinhoVM.PedidoCabecalho.DescontoAplicado = desconto;
+                    CarrinhoVM.TotalFinal -= (double)CarrinhoVM.PedidoCabecalho.DescontoAplicado;
+                }
+
+            }
+
+            if (HttpContext.Session.GetString(Sessao.FreteAplicado) == "Normal")
+            {
+                if (CarrinhoVM.PedidoCabecalho.TotalPedido >= 200)
+                {
+                    CarrinhoVM.PedidoCabecalho.FreteAplicado = 0;
+                }
+                else
+                {
+                    CarrinhoVM.PedidoCabecalho.FreteAplicado = 7.99;
+                }
+
+            }
+
+            else
+            {
+                CarrinhoVM.PedidoCabecalho.FreteAplicado = 17.99;
+            }
+
+            CarrinhoVM.TotalFinal += CarrinhoVM.PedidoCabecalho.FreteAplicado;
+
             return View(CarrinhoVM);
         }
 
@@ -102,6 +237,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             CarrinhoVM.PedidoCabecalho.DataHoraPedido = DateTime.Now;
             CarrinhoVM.PedidoCabecalho.StatusPedido = Pedido.Pendente;
             CarrinhoVM.PedidoCabecalho.StatusPagamento = Pagamento.Pendente;
+
             foreach (var itemCarrinho in CarrinhoVM.ListaCarrinho)
             {
                 if (itemCarrinho.Produto.PrecoPromo == 0)
@@ -112,6 +248,73 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 {
                     CarrinhoVM.PedidoCabecalho.TotalPedido += itemCarrinho.Quantidade * itemCarrinho.Produto.PrecoPromo;
                 }
+            }
+
+
+            // Verifica se existe um cupom na sessão e busca o cupom no banco
+            var cupomDB = _unitOfWork.CupomRepo.GetFirstOrDefault(c => c.CodCupom == HttpContext.Session.GetString(Sessao.CupomAplicado));
+            if (cupomDB != null)
+            {
+                // Se econtrar o cupom, faz validações
+                if (cupomDB.Status == false)
+                {
+                    ViewData["erroCupom"] = "Cupom Inválido!";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.ValidadeCupom < CarrinhoVM.PedidoCabecalho.DataHoraPedido)
+                {
+                    ViewData["erroCupom"] = "Cupom Expirado!";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.QuantidadeUsos == 0)
+                {
+                    ViewData["erroCupom"] = "Este cupom já foi usado.";
+                    return View(CarrinhoVM);
+                }
+
+                if (cupomDB.ValorRequerido > CarrinhoVM.PedidoCabecalho.TotalPedido)
+                {
+                    ViewData["erroCupom"] = "Valor insuficiente para este cupom. Adicione mais produtos ou remova o cupom para continuar.";
+                    return View(CarrinhoVM);
+                }
+
+                // Passando por todas as validações, salva o desconto apropriado
+                if (cupomDB.TipoDesconto == TipoDesconto.Reais)
+                {
+                    CarrinhoVM.PedidoCabecalho.DescontoAplicado = (double)cupomDB.ValorDescontoReais;
+                    if (cupomDB.QuantidadeUsos != -1) cupomDB.QuantidadeUsos -= 1;
+                }
+
+                if (cupomDB.TipoDesconto == TipoDesconto.Porcentagem)
+                {
+                    var desconto = (CarrinhoVM.PedidoCabecalho.TotalPedido / 100) * (int)cupomDB.ValorDescontoPorcento;
+                    if (desconto > cupomDB.ValorMaximoDesconto) desconto = cupomDB.ValorMaximoDesconto;
+                    CarrinhoVM.PedidoCabecalho.DescontoAplicado = desconto;
+                    if (cupomDB.QuantidadeUsos != -1) cupomDB.QuantidadeUsos -= 1;
+                }
+
+                if (HttpContext.Session.GetString(Sessao.FreteAplicado) == "Normal")
+                {
+                    if (CarrinhoVM.PedidoCabecalho.TotalPedido >= 200)
+                    {
+                        CarrinhoVM.PedidoCabecalho.FreteAplicado = 0;
+                    }
+                    else
+                    {
+                        CarrinhoVM.PedidoCabecalho.FreteAplicado = 7.99;
+                    }
+
+                }
+
+                else
+                {
+                    CarrinhoVM.PedidoCabecalho.FreteAplicado = 17.99;
+                }
+
+                _unitOfWork.Save();
+
             }
 
             _unitOfWork.PedidoCabecalhoRepo.Add(CarrinhoVM.PedidoCabecalho);
@@ -147,23 +350,51 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                     CancelUrl = domain + $"User/Carrinho",
                 };
 
+                string nomeProdutos = "| ";
                 foreach (var item in CarrinhoVM.ListaCarrinho)
                 {
-                    var sessionLineItem = new SessionLineItemOptions
+                    nomeProdutos += $"{item.Produto.Titulo} x {item.Quantidade} | ";
+                }
+
+                double? desconto;
+                if (CarrinhoVM.PedidoCabecalho.DescontoAplicado != null)
+                {
+                    desconto = CarrinhoVM.PedidoCabecalho.DescontoAplicado;
+                }
+                else
+                {
+                    desconto = 0;
+                }
+
+                var sessionLineItemProdutos = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
                     {
-                        PriceData = new SessionLineItemPriceDataOptions
+                        Currency = "brl",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
-                            Currency = "brl",
-                            ProductData = new SessionLineItemPriceDataProductDataOptions
-                            {
-                                Name = item.Produto.Titulo
-                            },
-                            UnitAmount = (long)item.PrecoAtual * 100
+                            Name = nomeProdutos                                                            
                         },
-                        Quantity = item.Quantidade
-                    };
-                    options.LineItems.Add(sessionLineItem);
+                        UnitAmount = (long)((CarrinhoVM.PedidoCabecalho.TotalPedido - desconto) * 100)
+                    },
+                    Quantity = 1
                 };
+                options.LineItems.Add(sessionLineItemProdutos);
+
+                var sessionLineItemFrete = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        Currency = "brl",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = "Frete"
+                        },
+                        UnitAmount = (long)(CarrinhoVM.PedidoCabecalho.FreteAplicado * 100)
+                    },
+                    Quantity = 1
+                };
+                options.LineItems.Add(sessionLineItemFrete);
 
                 var service = new SessionService();
                 Session session = service.Create(options);
@@ -230,6 +461,54 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             _unitOfWork.CarrinhoRepo.Remove(carrinhoDB);
             _unitOfWork.Save();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult AplicarCupom(string CodCupom)
+        {
+            var cupomDB = _unitOfWork.CupomRepo.GetFirstOrDefault(c => c.CodCupom == CodCupom);
+
+            if (cupomDB == null)
+            {
+                TempData["erroCupom"] = "Cupom Inválido!";
+                return RedirectToAction("Index");
+            }
+
+            if (cupomDB.Status == false)
+            {
+                TempData["erroCupom"] = "Cupom Expirado!";
+                return RedirectToAction("Index");
+            }
+
+            if (cupomDB.QuantidadeUsos != -1 && cupomDB.QuantidadeUsos == 0)
+            {
+                TempData["erroCupom"] = "Cupom Expirado!";
+                return RedirectToAction("Index");
+            }
+
+            HttpContext.Session.SetString(Sessao.CupomAplicado, cupomDB.CodCupom);
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult LimparCupom()
+        {
+            HttpContext.Session.Remove(Sessao.CupomAplicado);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DefinirFrete(int idFrete)
+        {
+            if (idFrete == 1)
+            {
+                HttpContext.Session.SetString(Sessao.FreteAplicado, "Normal");
+                return RedirectToAction("Index");
+            }
+
+            else
+            {
+                HttpContext.Session.SetString(Sessao.FreteAplicado, "Expressa");
+                return RedirectToAction("Index");
+            }
         }
 
         public bool RedirecionarCadastro(CarrinhoVM vm)

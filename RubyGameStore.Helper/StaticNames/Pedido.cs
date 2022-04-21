@@ -1,7 +1,7 @@
 ﻿namespace RubyGameStore.Helper.StaticNames
 {
     public class Pedido
-    {     
+    {
         //Status do pedido
         public const string Pendente = "Pendente";
         public const string Aprovado = "Aprovado";

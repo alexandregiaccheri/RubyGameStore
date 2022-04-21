@@ -95,14 +95,14 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             IFormFile? screen3, IFormFile? screen4, IFormFile? screen5, IFormFile? screen6)
         {
             if (ModelState.IsValid)
-            {               
+            {
                 // Verifica se algum arquivo foi enviado com o post
-                if (boxArt != null) produtoVM.Produto.BoxArt = UploadImagem(boxArt, produtoVM.Produto.BoxArt);                                               
+                if (boxArt != null) produtoVM.Produto.BoxArt = UploadImagem(boxArt, produtoVM.Produto.BoxArt);
                 if (screen1 != null) produtoVM.Produto.Screenshot1 = UploadImagem(screen1, produtoVM.Produto.Screenshot1);
-                if (screen2 != null) produtoVM.Produto.Screenshot2 = UploadImagem(screen2, produtoVM.Produto.Screenshot2);                
-                if (screen3 != null) produtoVM.Produto.Screenshot3 = UploadImagem(screen3, produtoVM.Produto.Screenshot3);                
-                if (screen4 != null) produtoVM.Produto.Screenshot4 = UploadImagem(screen4, produtoVM.Produto.Screenshot4);                
-                if (screen5 != null) produtoVM.Produto.Screenshot5 = UploadImagem(screen5, produtoVM.Produto.Screenshot5);                
+                if (screen2 != null) produtoVM.Produto.Screenshot2 = UploadImagem(screen2, produtoVM.Produto.Screenshot2);
+                if (screen3 != null) produtoVM.Produto.Screenshot3 = UploadImagem(screen3, produtoVM.Produto.Screenshot3);
+                if (screen4 != null) produtoVM.Produto.Screenshot4 = UploadImagem(screen4, produtoVM.Produto.Screenshot4);
+                if (screen5 != null) produtoVM.Produto.Screenshot5 = UploadImagem(screen5, produtoVM.Produto.Screenshot5);
                 if (screen6 != null) produtoVM.Produto.Screenshot6 = UploadImagem(screen6, produtoVM.Produto.Screenshot6);
 
                 // Se o ID é zero, cria um novo registro
@@ -111,7 +111,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
                     _unitOfWork.ProdutoRepo.Add(produtoVM.Produto);
                     TempData["sucesso"] = "Produto adicionado com sucesso!";
                 }
-                
+
                 // Se o ID não for zero, atualiza o registro existente
                 else
                 {
@@ -166,7 +166,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
 
                 // Apaga o arquivo salvo com metadata
                 System.IO.File.Delete(Path.Combine(upload, nomeArquivo + formato));
-                
+
                 // Link do arquivo a ser salvo no banco de dados
                 return @$"\images\produtos\" + "ruby_" + nomeArquivo + formato;
             }
@@ -208,7 +208,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 var imgExistente = Path.Combine(wwwRootPath, buscaProduto.Screenshot1.TrimStart('\\'));
-                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);             
+                if (System.IO.File.Exists(imgExistente)) System.IO.File.Delete(imgExistente);
             }
 
             if (buscaProduto.Screenshot2 != null)

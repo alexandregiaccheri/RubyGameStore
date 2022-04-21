@@ -18,7 +18,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        
+
         [TempData]
         public string StatusMessage { get; set; }
 

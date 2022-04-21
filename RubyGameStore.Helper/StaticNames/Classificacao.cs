@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-
-namespace RubyGameStore.Helper.StaticNames
+﻿namespace RubyGameStore.Helper.StaticNames
 {
     public class Classificacao
     {

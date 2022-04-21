@@ -44,12 +44,12 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
         public InputModel Input { get; set; }
 
         public string ProviderDisplayName { get; set; }
-        
+
         public string ReturnUrl { get; set; }
-        
+
         [TempData]
         public string ErrorMessage { get; set; }
-        
+
         public class InputModel
         {
             [Required(ErrorMessage = "Campo obrigatório")]

@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RubyGameStore.Helper\RubyGameStore.Helper.csproj" />
+  </ItemGroup>
+
 </Project>

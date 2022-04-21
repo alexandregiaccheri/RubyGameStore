@@ -16,6 +16,11 @@ namespace RubyGameStore.Models.Models
         [ValidateNever]
         public Usuario Usuario { get; set; }
 
+        public int? CupomId { get; set; }
+
+        [ForeignKey("CupomId")]
+        [ValidateNever]
+        public Cupom? Cupom { get; set; }
 
         //Pedido
         [Required]
@@ -29,6 +34,11 @@ namespace RubyGameStore.Models.Models
 
         [Required]
         public double TotalPedido { get; set; }
+
+        public double? DescontoAplicado { get; set; }
+
+        [Required]        
+        public double FreteAplicado { get; set; }
 
         public string? StatusPedido { get; set; }
 
