@@ -46,12 +46,9 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
                     new SelectListItem { Value = Generos.Acao, Text = Generos.Acao },
                     new SelectListItem { Value = Generos.Aventura, Text = Generos.Aventura },
                     new SelectListItem { Value = Generos.Casual, Text = Generos.Casual },
-                    new SelectListItem { Value = Generos.Corrida, Text = Generos.Corrida },
                     new SelectListItem { Value = Generos.Esporte, Text = Generos.Esporte },
                     new SelectListItem { Value = Generos.Estrategia, Text = Generos.Estrategia },
-                    new SelectListItem { Value = Generos.Luta, Text = Generos.Luta },
-                    new SelectListItem { Value = Generos.Plataforma, Text = Generos.Plataforma },
-                    new SelectListItem { Value = Generos.Ritmo, Text = Generos.Ritmo },
+                    new SelectListItem { Value = Generos.Outros, Text = Generos.Outros },
                     new SelectListItem { Value = Generos.RPG, Text = Generos.RPG }
                 },
 

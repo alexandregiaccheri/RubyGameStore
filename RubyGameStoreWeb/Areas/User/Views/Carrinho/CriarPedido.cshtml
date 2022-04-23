@@ -90,7 +90,14 @@
                 </div>
                 <div class="row">
                     <p class="col-6">Desconto: </p>
-                    <p class="col-6 text-end">@(Model.PedidoCabecalho.DescontoAplicado == null ? "Nenhum" : "R$ " + Model.PedidoCabecalho.DescontoAplicado)</p>
+                    @if (Model.PedidoCabecalho.DescontoAplicado == null)
+                    {
+                        <p class="col-6 text-end">Nenhum</p>
+                    }
+                    else
+                    {
+                        <p class="col-6 text-end">R$ @Model.PedidoCabecalho.DescontoAplicado?.ToString("N2")</p>
+                    }
                 </div>
                 <div class="row">
                     <p class="col-6">Valor dos Produtos: </p>

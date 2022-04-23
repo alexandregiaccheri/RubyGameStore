@@ -6,6 +6,7 @@ using RubyGameStore.Data.Repository;
 using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Helper;
 using Stripe;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,19 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+var cultureInfo = new[]
+{
+    new CultureInfo("pt-BR"),
+    new CultureInfo("en-US")
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR"),
+    SupportedCultures = cultureInfo,
+    SupportedUICultures = cultureInfo
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

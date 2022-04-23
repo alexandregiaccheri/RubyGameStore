@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RubyGameStore.Models.Models
 {
@@ -16,14 +15,6 @@ namespace RubyGameStore.Models.Models
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Data de Lançamento")]
         public DateTime DataLancamento { get; set; }
-
-        [NotMapped]
-        [ValidateNever]
-        public string AnoLancamento { get; set; }
-
-        [NotMapped]
-        [ValidateNever]
-        public string DataFormatada { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Display(Name = "Descrição")]
@@ -53,12 +44,10 @@ namespace RubyGameStore.Models.Models
         public int Metascore { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(1, 10000)]
         [Display(Name = "Preço Normal")]
         public double PrecoNormal { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Range(0, 10000)]
         [Display(Name = "Preço Promocional - Deixe ZERO para não aplicar promoção!")]
         public double PrecoPromo { get; set; }
 
