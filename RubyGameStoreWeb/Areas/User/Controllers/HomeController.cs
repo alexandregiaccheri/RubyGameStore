@@ -64,12 +64,12 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 }
 
                 // Seleciona os elementos do banco de dados e os exibe de 10 em 10
-                var lista9 = novaBusca.ListaProdutos.ToList();
+                var lista10 = novaBusca.ListaProdutos.ToList();
                 ViewBag.ProdutosCount = novaBusca.ListaProdutos.Count();
-                if (idx < lista9.Count())                
-                    novaBusca.ListaProdutos = lista9.GetRange(idx - 10, idx);                
+                if (idx < lista10.Count())                
+                    novaBusca.ListaProdutos = lista10.GetRange(idx - 10, idx);                
                 else                
-                    novaBusca.ListaProdutos = lista9.GetRange(idx - 10, lista9.Count() % 10);                
+                    novaBusca.ListaProdutos = lista10.GetRange(idx - 10, lista10.Count() % 10);                
 
                 return View(novaBusca);
             }
@@ -223,13 +223,13 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                         break;
                 }
 
-                var lista9 = novaBusca.ListaProdutos.ToList();
+                var lista10 = novaBusca.ListaProdutos.ToList();
 
                 ViewBag.ProdutosCount = novaBusca.ListaProdutos.Count();
-                if (idx < lista9.Count())                
-                    novaBusca.ListaProdutos = lista9.GetRange(idx - 10, idx);                
+                if (idx < lista10.Count())                
+                    novaBusca.ListaProdutos = lista10.GetRange(idx - 10, idx);                
                 else                
-                    novaBusca.ListaProdutos = lista9.GetRange(idx - 10, lista9.Count() % 10);                
+                    novaBusca.ListaProdutos = lista10.GetRange(idx - 10, lista10.Count() % 10);                
 
                 return View(novaBusca);
             }
@@ -299,8 +299,9 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
         public IActionResult LimparTexto()
         {
+            ViewBag.IDX = 1;
             HttpContext.Session.Remove(Sessao.FiltroBusca);
-            return RedirectToAction("Busca");
+            return RedirectToAction("Busca", new { idx = 1 });
         }
 
     }
