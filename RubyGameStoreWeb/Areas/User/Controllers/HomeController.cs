@@ -199,7 +199,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 // Se o usuário digitou algo na busca, realiza a query
                 if (HttpContext.Session.GetString(Sessao.FiltroBusca) != null)
                 {
-                    var texto = HttpContext.Session.GetString(Sessao.FiltroBusca).ToUpper().TrimStart().TrimEnd();
+                    var texto = HttpContext.Session.GetString(Sessao.FiltroBusca).ToUpper().Trim();
                     novaBusca.ListaProdutos = novaBusca.ListaProdutos.Where(p =>
                     p.Titulo.ToUpper().Contains(texto) || p.Desenvolvedor.ToUpper().Contains(texto) || p.Distribuidor.ToUpper().Contains(texto));
                 }
@@ -210,7 +210,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                         novaBusca.ListaProdutos = novaBusca.ListaProdutos.OrderByDescending(p => p.Titulo);
                         break;
                     case Ordenacao.MaisNovos:
-                        novaBusca.ListaProdutos = novaBusca.ListaProdutos.OrderBy(p => p.DataLancamento);
+                        novaBusca.ListaProdutos = novaBusca.ListaProdutos.OrderByDescending(p => p.DataLancamento);
                         break;
                     case Ordenacao.MenorPreco:
                         novaBusca.ListaProdutos = novaBusca.ListaProdutos.OrderBy(p => p.PrecoNormal);

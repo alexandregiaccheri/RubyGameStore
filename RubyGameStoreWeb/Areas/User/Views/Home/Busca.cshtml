@@ -243,7 +243,7 @@
                                     <div class="col-12 col-md-5 p-1 py-0 text-center">
                                         <p style="line-height:normal;margin:0">@obj.Plataforma</p>
                                         <h5 class="fw-bold" style="font-family:Play; color: #292">R$ @obj.PrecoNormal.ToString("N2")</h5>
-                                        <a class="btn btn-primary" style="min-width:120px">Ver Mais</a>
+                                        <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id" class="btn btn-primary" style="min-width:120px">Ver Mais</a>
                                     </div>
                                 </div>
                             </div>

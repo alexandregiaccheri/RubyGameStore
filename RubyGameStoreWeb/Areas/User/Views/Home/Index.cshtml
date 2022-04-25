@@ -5,19 +5,27 @@
 }
 <style>
     body {
-        background-color: #fff;
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top;
     }
 
     .home-card {
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
+        transition: all linear 0.1s;
     }
+
+        .home-card:hover {
+            background-color: #300;            
+        }
 
     #nswitch {
         cursor: pointer;
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
         transition: all linear 0.2s;
     }
@@ -33,8 +41,8 @@
 
     #computer {
         cursor: pointer;
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
         transition: all linear 0.2s;
     }
@@ -50,8 +58,8 @@
 
     #ps4 {
         cursor: pointer;
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
         transition: all linear 0.2s;
     }
@@ -67,8 +75,8 @@
 
     #ps5 {
         cursor: pointer;
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
         transition: all linear 0.2s;
     }
@@ -84,8 +92,8 @@
 
     #xone {
         cursor: pointer;
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
         transition: all linear 0.2s;
     }
@@ -101,8 +109,8 @@
 
     #xseries {
         cursor: pointer;
-        background-color: #333;
-        border: solid 2px #fff;
+        background-color: #222;
+        border: solid 2px #000;
         border-radius: 7px;
         transition: all linear 0.2s;
     }
@@ -117,8 +125,7 @@
         }
 </style>
 
-<div class="row text-center py-2" style="background-color:#444; border: solid 2px #fff; border-radius: 7px; background-image:url('/images/assets/home/controllers.jpg');
-                                         background-position:center; background-size:cover; background-blend-mode:overlay">
+<div class="row text-center py-2" style="background-color:#444; border: solid 2px #000; border-radius: 7px; background-image:url('/images/assets/home/controllers.jpg'); background-position:center; background-size:cover; background-blend-mode:overlay">
     <div class="container row pb-3 mx-auto" style="width:auto">
         <h2 class="text-white text-center" style="font-family:Play">Bem vindo a Ruby Game Store!</h2>
         <h5 class="text-white text-center" style="font-family:Play">Aqui você encontra os melhores jogos, lançamentos e muito mais!</h5>
@@ -138,7 +145,7 @@
 </div>
 
 <div class="row">
-    <div class="pt-2 pb-3 col-6" style="background-color:#333; border: solid 2px #fff; border-radius: 7px;">
+    <div class="pt-2 pb-3 col-6" style="background-color:#222; border: solid 2px #000; border-radius: 7px;">
         <h2 class="text-white text-center mb-1 fw-bold" style="font-family:Play">Novidades</h2>
         <div class="col-12">
             <div id="destaques" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -182,7 +189,7 @@
         </div>
     </div>
 
-    <div class="pt-2 pb-3 col-6" style="background-color:#333; border: solid 2px #fff; border-radius: 7px;">
+    <div class="pt-2 pb-3 col-6" style="background-color:#222; border: solid 2px #000; border-radius: 7px;">
         <h2 class="text-white mb-1 text-center fw-bold" style="font-family:Play">Mais Vendidos</h2>
         <div class="col-12">
             <div id="destaques" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -227,92 +234,99 @@
     </div>
 </div>
 
-<div class="row text-center py-2" style="background-color:#111; border: solid 2px #fff; border-radius: 7px;">
+<div class="row text-center py-2" style="background-color:#111; border: solid 2px #000; border-radius: 7px;">
     <h1 class="fw-bold text-white col-12" style="font-family:Play">Procure por Plataforma</h1>
 </div>
 
 <div class="row text-center">
     <div onclick="location.href='#';" id="nswitch" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/nintendo.svg" class="col-3 p-2" style="filter:invert(1); height: 7rem; width: contain" />
+        <img src="~/images/assets/plataformas/nintendo.svg" class="col-3 p-1" style="filter:invert(1); height: 7rem; width: contain" />
         <h3 class="text-white my-auto" style="font-family:Play">Nintendo Switch</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem"><i class="bi bi-chevron-double-right"></i></h3>
+        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
     </div>
     <div onclick="location.href='#';" id="computer" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/PC.svg" class="col-3 p-3" style="filter:invert(1); height: 7rem; width:contain" />
+        <img src="~/images/assets/plataformas/PC.svg" class="col-3 p-2" style="filter:invert(1); height: 7rem; width:contain" />
         <h3 class="text-white my-auto" style="font-family:Play">Computador</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem"><i class="bi bi-chevron-double-right"></i></h3>
+        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
     </div>
     <div onclick="location.href='#';" id="ps4" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-3" style="filter:brightness(10); height: 7rem; width:contain" />
+        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-2" style="filter:brightness(10); height: 7rem; width:contain" />
         <h3 class="text-white my-auto" style="font-family:Play">Playstation 4</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem"><i class="bi bi-chevron-double-right"></i></h3>
+        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
     </div>
     <div onclick="location.href='#';" id="ps5" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-3" style="filter:brightness(10); height: 7rem; width:contain" />
+        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-2" style="filter:brightness(10); height: 7rem; width:contain" />
         <h3 class="text-white my-auto" style="font-family:Play">Playstation 5</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem"><i class="bi bi-chevron-double-right"></i></h3>
+        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
     </div>
     <div onclick="location.href='#';" id="xone" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-4" style="filter:invert(1); height: 7rem; width:contain" />
+        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-3" style="filter:invert(1); height: 7rem; width:contain" />
         <h3 class="text-white my-auto" style="font-family:Play">Xbox One</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem"><i class="bi bi-chevron-double-right"></i></h3>
+        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
     </div>
     <div onclick="location.href='#';" id="xseries" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-4" style="filter:invert(1); height: 7rem; width:contain" />
+        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-3" style="filter:invert(1); height: 7rem; width:contain" />
         <h3 class="text-white my-auto" style="font-family:Play">Xbox Series</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem"><i class="bi bi-chevron-double-right"></i></h3>
+        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
     </div>
 </div>
 
-<div class="row text-center py-2" style="background-color:#111; border: solid 2px #fff; border-radius: 7px;">
+<div class="row text-center py-2" style="background-color:#111; border: solid 2px #000; border-radius: 7px;">
     <h1 class="fw-bold text-white col-12" style="font-family:Play">Jogos em Destaque</h1>
 </div>
 
 <div class="row" style="margin-bottom: 80px">
     @foreach (var obj in Model)
     {
-        <div class="col-12 col-md-6 col-lg-4 position-relative home-card">
-            <section class="my-2">
-                <img src="@obj.BoxArt" class="rounded-2 mt-1" style="width:100%; height:100%; background-size:contain">
-            </section>
-            <div class="row px-1">
-                <section class="col-9" style="height:auto">
-                    <h3 class="text-white"><strong>@obj.Titulo</strong></h3>
-                    <p class="text-white">
+        <div class="col-12 col-md-6 col-lg-4 col-xxl-3 p-2 d-flex flex-column home-card" style="height: 470px">
+            <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id" class="mb-2" style="width:100%; height:40%">
+                <div class="mb-2 rounded-2" style="background: url('@obj.BoxArt.Replace("\\", "/")');
+                                            height: 100%; width: 100%; background-size: cover;
+                                            background-position: center;">
+                </div>
+            </a>
+            <div class="px-1" style="height:45%">
+                <div style="height:auto">
+                    <div class="d-flex justify-content-between" style="width:inherit">
+                        <div class="my-auto">
+                            <h3 class="text-white" style="font-family:Play"><strong>@obj.Titulo</strong></h3>
+                        </div>
+                        <div class="col-3 text-end">
+                            @if (obj.Plataforma == Plataforma.NSW)
+                            {
+                                <img src="~/images/assets/plataformas/nintendo.svg" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                            }
+                            @if (obj.Plataforma == Plataforma.PC)
+                            {
+                                <img src="~/images/assets/plataformas/PC.svg" class="p-1" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                            }
+                            @if (obj.Plataforma == Plataforma.PS4 || obj.Plataforma == Plataforma.PS5)
+                            {
+                                <img src="~/images/assets/plataformas/playstation.svg" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                            }
+                            @if (obj.Plataforma == Plataforma.XONE || obj.Plataforma == Plataforma.XSXS)
+                            {
+                                <img src="~/images/assets/plataformas/xbox.svg" class="p-1" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                            }
+                        </div>
+                    </div>
+                    <p class="text-white" style="font-family:Play">
                         Desenvolvedor: @obj.Desenvolvedor <br>
                         Distribuidor: @obj.Distribuidor <br>
                         Plataforma: @obj.Plataforma (@obj.DataLancamento.ToString("yyyy"))
                     </p>
-                </section>
-                <section class="col-3 text-end" style="padding-right: 2%">
-                    @if (obj.Plataforma == Plataforma.NSW)
-                    {
-                        <img src="~/images/assets/plataformas/nintendo.svg" style="height: 70px; width: 70px; -webkit-filter: invert(100%)">
-                    }
-                    @if (obj.Plataforma == Plataforma.PC)
-                    {
-                        <img src="~/images/assets/plataformas/PC.svg" style="height: 65px; width: 65px; -webkit-filter: invert(100%)">
-                    }
-                    @if (obj.Plataforma == Plataforma.PS4 || obj.Plataforma == Plataforma.PS5)
-                    {
-                        <img src="~/images/assets/plataformas/playstation.svg" style="height: 65px; width: 65px; -webkit-filter: invert(100%)">
-                    }
-                    @if (obj.Plataforma == Plataforma.XONE || obj.Plataforma == Plataforma.XSXS)
-                    {
-                        <img src="~/images/assets/plataformas/xbox.svg" style="height: 70px; width: 70px; -webkit-filter: invert(100%)">
-                    }
-                </section>
+                </div>
             </div>
-            <div class="row mb-3 position-absolute bottom-0 w-100">
+            <div class="row mb-3" style="height:15%">
                 @if (obj.PrecoPromo != 0)
                 {
-                    <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">
+                    <h5 class="text-end" style="color: lightgreen; font-family:Play; margin-top: 10px; margin-right: 8px">
                         <small><s>R$ @obj.PrecoNormal.ToString("N2")</s></small> <b>R$ @obj.PrecoPromo.ToString("N2")</b>
                     </h5>
                 }
                 else
                 {
-                    <h5 class="text-end" style="color: lightgreen; font-family:Arial; margin-top: 10px; margin-right: 8px">
+                    <h5 class="text-end" style="color: lightgreen; font-family:Play; margin-top: 10px; margin-right: 8px">
                         <b>R$ @obj.PrecoNormal.ToString("N2")</b>
                     </h5>
                 }

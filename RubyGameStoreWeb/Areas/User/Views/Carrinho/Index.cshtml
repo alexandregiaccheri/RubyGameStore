@@ -22,15 +22,25 @@
     }
 } 
 
+<style>
+    body {
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 10%) 0%, rgba(10, 10, 10, 100%) 65%), url('/images/assets/home/controllers.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: white;
+    }
+</style>
+
 <div class="container row mx-auto">
     <div class="col-12 d-flex flex-column flex-lg-row">
         <div class="col-12 col-md-8 my-2 mx-auto">
             <div class="d-flex row justify-content-between py-2 mt-3">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6">
                     <h2 class="text-center">Meu Carrinho</h2>
                 </div>
-                <div class="col-12 col-md-4 text-center">
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
+                <div class="col-12 col-md-6 text-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-light" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
                 </div>
             </div>
             <hr style="height: 2px" />
@@ -41,7 +51,7 @@
             }
             @foreach (var item in Model.ListaCarrinho)
             {
-                <div class="d-flex flex-column flex-lg-row my-2 px-1" style="padding-right:2%">
+                <div class="d-flex flex-column flex-lg-row my-2 py-2 px-2" style="padding-right:2%; background-color: #222; border-radius:10px">
                     <section class="my-auto col-12 col-lg-5">
                         <img src="@item.Produto.BoxArt" class="rounded-3 mt-1 px-auto" style="width:100%; height:100%; background-size:contain">
                     </section>
@@ -49,9 +59,9 @@
                         <p class="my-md-auto"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p><hr class="d-md-none">
                         <p>R$ @(item.Produto.PrecoPromo != 0 ? item.Produto.PrecoPromo.ToString("N2") : @item.Produto.PrecoNormal.ToString("N2")) x @item.Quantidade Unidade(s)</p>
                         <div class="row mx-0 mb-2 justify-content-lg-start justify-content-center">
-                            <a asp-action="Decrementar" asp-route-carrinhoId="@item.Id" class="btn btn-outline-dark col-3" style="max-width: 60px; margin-right: 4px"><i class="bi bi-dash-lg"></i></a>
-                            <a onclick="remover('/User/Carrinho/Remover?carrinhoId=@item.Id')" class="btn btn-outline-dark col-3" style="max-width: 60px; margin-right: 4px"><i class="bi bi-trash"></i></a>
-                            <a asp-action="Incrementar" asp-route-carrinhoId="@item.Id" class="btn btn-outline-dark col-3" style="max-width: 60px"><i class="bi bi-plus-lg"></i></a>
+                            <a asp-action="Decrementar" asp-route-carrinhoId="@item.Id" class="btn btn-outline-light col-3" style="max-width: 60px; margin-right: 4px"><i class="bi bi-dash-lg"></i></a>
+                            <a onclick="remover('/User/Carrinho/Remover?carrinhoId=@item.Id')" class="btn btn-outline-light col-3" style="max-width: 60px; margin-right: 4px"><i class="bi bi-trash"></i></a>
+                            <a asp-action="Incrementar" asp-route-carrinhoId="@item.Id" class="btn btn-outline-light col-3" style="max-width: 60px"><i class="bi bi-plus-lg"></i></a>
                         </div>
                     </div>
                     <div class="d-flex flex-row flex-lg-column justify-content-center my-auto">
@@ -59,19 +69,19 @@
                             <div class="my-auto text-end mx-1">
                                 @if (item.Produto.Plataforma == Plataforma.NSW)
                                 {
-                                    <img src="~/images/assets/plataformas/nintendo.svg" style="height: 60px; width: 60px">
+                                    <img src="~/images/assets/plataformas/nintendo.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                 }
                                 @if (item.Produto.Plataforma == Plataforma.PC)
                                 {
-                                    <img src="~/images/assets/plataformas/PC.svg" style="height: 60px; width: 60px">
+                                    <img src="~/images/assets/plataformas/PC.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                 }
                                 @if (item.Produto.Plataforma == Plataforma.PS4 || item.Produto.Plataforma == Plataforma.PS5)
                                 {
-                                    <img src="~/images/assets/plataformas/playstation.svg" style="height: 60px; width: 60px">
+                                    <img src="~/images/assets/plataformas/playstation.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                 }
                                 @if (item.Produto.Plataforma == Plataforma.XONE || item.Produto.Plataforma == Plataforma.XSXS)
                                 {
-                                    <img src="~/images/assets/plataformas/xbox.svg" style="height: 60px; width: 60px">
+                                    <img src="~/images/assets/plataformas/xbox.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                 }
                             </div>
                             <div class="text-white my-auto">
@@ -101,8 +111,8 @@
                                 }
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mx-1 my-auto" style="border: 1px black solid; border-radius: 10px; padding:6px">
-                            <img src="~/images/assets/misc/metacritic.svg" class="" style="height:40px; width:40px" />
+                        <div class="d-flex justify-content-between mx-1 my-auto" style="border: 1px white solid; border-radius: 10px; padding:6px">
+                            <img src="~/images/assets/misc/metacritic.svg" style="height:40px; width:40px" />
                             @if (item.Produto.Metascore > 74)
                             {
                                 <div class="my-auto" style="color:white; background-color:#6c3; border-radius:6px; vertical-align:middle; text-align:center; width:40px; height: 40px; line-height:40px">
@@ -133,7 +143,7 @@
                 <hr style="height: 2px" />
             }
         </div>
-        <div class="col-12 offset-md-1 my-3 col-lg-3" style="border:1px solid black; border-radius:10px; margin-left:2%; height:fit-content">
+        <div class="col-12 col-md-8 mx-md-auto col-lg-4 mx-lg-2 col-xl-3 my-3" style="border:1px solid #555; border-radius:10px; margin-left:2%; height:fit-content; background-color: #222">
             <div class="w-100 mx-auto p-3">
                 <div class="">
                     <p class="">Seleciona a entrega:</p>
@@ -168,10 +178,10 @@
             {
                 <form method="post">
                     <div class="form-floating w-75 mx-auto">
-                        <input class="form-control mb-1" asp-for="@Model.CodCupom" />
+                        <input class="form-control mb-1" style="background-color: #333; background: #333" asp-for="@Model.CodCupom" />
                         <label class="form-label" asp-for="@Model.CodCupom"></label>
                         <div class="w-100 text-center">
-                            <button asp-action="AplicarCupom" asp-route-CodCupom="@Model.CodCupom" type="submit" class="btn btn-outline-dark mt-2 mx-auto">Aplicar Cupom</button>
+                            <button asp-action="AplicarCupom" asp-route-CodCupom="@Model.CodCupom" type="submit" class="btn btn-outline-light mt-2 mx-auto">Aplicar Cupom</button>
                         </div>
                     </div>
                 </form>
