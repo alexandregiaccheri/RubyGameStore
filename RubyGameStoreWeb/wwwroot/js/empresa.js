@@ -19,8 +19,8 @@ function carregarDataTable() {
                 "render": function (data) {
                     return `
                         <div class="btn-group">
-                            <a href="/Admin/Empresa/Upsert?id=${data}" class="btn btn-warning mx-2"><i class="bi bi-pencil-square"></i></a>
-                            <a onClick=Apagar('/Admin/Empresa/Delete?id=${data}') class="btn btn-danger"><i class="bi bi-x-square"></i></a>
+                            <a href="/Admin/Empresa/Upsert?id=${data}" class="btn btn-outline-light mx-2"><i class="bi bi-pencil-square"></i></a>
+                            <a onClick=Apagar('/Admin/Empresa/Delete?id=${data}') class="btn btn-outline-light"><i class="bi bi-x-square"></i></a>
                         </div>
                     `
                 }

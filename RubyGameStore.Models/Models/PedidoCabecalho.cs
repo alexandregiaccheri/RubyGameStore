@@ -44,6 +44,7 @@ namespace RubyGameStore.Models.Models
 
         public string? StatusPagamento { get; set; }
 
+        [Display(Name = "Código do Rastreio")]
         public string? CodRastreio { get; set; }
 
         public string? Transportadora { get; set; }

@@ -17,12 +17,12 @@
             @foreach (var login in Model.CurrentLogins)
             {
                 <tr>
-                    <td id="@($"login-provider-{login.LoginProvider}")">@login.ProviderDisplayName</td>
+                    <td id="@($"login-provider-{login.LoginProvider}")" class="text-center align-middle">@login.ProviderDisplayName</td>
                     <td>
                         @if (Model.ShowRemoveButton)
                         {
                             <form id="@($"remove-login-{login.LoginProvider}")" asp-page-handler="RemoveLogin" method="post">
-                                <div>
+                                <div class="text-center">
                                     <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
                                     <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
                                     <button type="submit" class="btn btn-primary" title="Remover esta conta @login.ProviderDisplayName do seu perfil.">Remover</button>
@@ -44,7 +44,7 @@
     <h4>Adicione uma rede social para fazer login</h4>
     <hr />
     <form id="link-login-form" asp-page-handler="LinkLogin" method="post" class="form-group">
-        <div id="socialLoginList" class="row mb-4">
+        <div id="socialLoginList" class="row">
             @foreach (var provider in Model.OtherLogins)
             {
                 <div class="col-12 mb-2">

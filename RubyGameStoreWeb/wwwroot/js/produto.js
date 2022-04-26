@@ -11,7 +11,6 @@ function carregarDataTable() {
         "columns": [
             { "data": "titulo" },
             { "data": "desenvolvedor" },
-            { "data": "distribuidor" },
             { "data": "genero" },
             { "data": "plataforma" },
             { "data": "precoNormal" },
@@ -20,8 +19,8 @@ function carregarDataTable() {
                 "render": function (data) {
                     return `
                         <div class="btn-group">
-                            <a href="/Admin/Produto/Upsert?id=${data}" class="btn btn-outline-dark mx-2"><i class="bi bi-pencil"></i></a>
-                            <a onClick=ApagarProduto('/Admin/Produto/Delete?id=${data}') class="btn btn-outline-dark"><i class="bi bi-x-lg"></i></a>
+                            <a href="/Admin/Produto/Upsert?id=${data}" class="btn btn-outline-light mx-2"><i class="bi bi-pencil"></i></a>
+                            <a onClick=ApagarProduto('/Admin/Produto/Delete?id=${data}') class="btn btn-outline-light"><i class="bi bi-x-lg"></i></a>
                         </div>
                     `
                 }

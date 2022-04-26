@@ -6,7 +6,7 @@
 
 <form method="post">
     <div class="row container mx-auto p-0">
-        <div class="col-12 col-lg-4 col-xl-3 my-4 p-3 d-md-flex d-lg-block" style="border: 1px solid black; border-radius: 10px; height:fit-content">
+        <div class="col-12 col-lg-4 col-xl-3 my-4 p-3 d-md-flex d-lg-block transparent-box">
             <div class="col-12 col-md-6 col-lg-12">
                 @if (Context.Session.GetString(Sessao.FiltroBusca) != null)
                 {
@@ -207,7 +207,7 @@
         <div class="col-12 col-lg-8 col-xl-9 mx-auto row" style="height:fit-content">
             <div class="mt-3">
                 <div>
-                    <h2 class="text-center p-2">Busca Avançada</h2>
+                    <h2 class="text-center p-2" style="font-family:Play">Busca Avançada</h2>
                 </div>
                 <div class="text-end" style="margin-top: -15px">
                     @if (Context.Session.GetString(Sessao.Ordenacao) == null)
@@ -229,7 +229,7 @@
                 {
                     @foreach (var obj in Model.ListaProdutos)
                     {
-                        <div class="col-12 mx-auto">
+                        <div class="col-12 mx-auto mb-2 transparent-box">
                             <div class="d-flex flex-column flex-md-row">
                                 <div class="col-12 col-md-3 my-auto p-2">
                                     <img src="@obj.BoxArt" class="w-100 rounded-2" style="background-size:contain" />
@@ -247,26 +247,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="mb-2" style="height:2px" />
-                        </div>
+                        </div>                        
                     }
                 }
                 else
                 {
-                    <h5 class="p-5">Nenhum resultado encontrado :(</h5>
+                    <h5 class="p-5 transparent-box">Nenhum resultado encontrado :(</h5>
                 }
             }
-            <div class="d-flex justify-content-center mb-3">
+            <div class="d-flex w-auto justify-content-center align-items-center my-3 py-1 mx-auto transparent-box">
                 @if (ViewBag.IDX == 1)
                 {
-                    <p class="btn btn-primary disabled" style="height:40px; width:60px"><i class="bi bi-arrow-left"></i></p>
+                    <a class="btn btn-primary disabled" style="height:40px; width:60px"><i class="bi bi-arrow-left"></i></a>
                 }
                 else
                 {
                     <a asp-action="Busca" asp-route-idx="@(ViewBag.IDX - 1)" class="btn btn-primary" style="height:40px; width:60px"><i class="bi bi-arrow-left"></i></a>
                 }
 
-                <p class="btn btn-outline-dark disabled mx-3" style="height:40px; width:60px">@(ViewBag.IDX)</p>
+                <a class="btn btn-outline-light disabled mx-3" style="height:40px; width:60px">@(ViewBag.IDX)</a>
 
                 @{
                     var verificaFim = (ViewBag.IDX * 10);
@@ -279,7 +278,7 @@
                 }
                 else
                 {
-                    <p class="btn btn-primary disabled" style="height:40px; width:60px"><i class="bi bi-arrow-right"></i></p>
+                    <a class="btn btn-primary disabled" style="height:40px; width:60px"><i class="bi bi-arrow-right"></i></a>
                 }
             </div>
         </div>

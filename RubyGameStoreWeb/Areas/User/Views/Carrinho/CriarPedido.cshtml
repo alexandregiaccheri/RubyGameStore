@@ -7,23 +7,23 @@
 }
 
 <form method="post">
-    <div class="mt-3 d-flex">
-        <div class="col-4">
-            <a asp-controller="Carrinho" asp-action="Index" class="btn btn-outline-dark" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
+    <div class="mt-3 mx-auto d-flex flex-column flex-md-row justify-content-md-between">
+        <div class="text-center text-md-start mb-2 my-md-0">
+            <a asp-controller="Carrinho" asp-action="Index" class="btn btn-light" style="min-width:200px"><i class="bi bi-arrow-left"></i>&nbsp; Continuar Comprando</a>
         </div>
-        <div class="col-4">
-            <h2 class="text-center">Revisar Pedido</h2>
+        <div class="text-center">
+            <h2 style="font-family:Play">Revisar Pedido</h2>
         </div>
         @if (Model.PedidoCabecalho.TotalPedido <= 0 || Context.Session.GetString(Sessao.FreteAplicado) == null)
         {
-            <div class="col-4 my-auto text-end">
+            <div class="my-auto text-end">
                 <button type="submit" asp-action="CriarPedido" class="btn btn-success" style="min-width:200px" disabled>Pagamento &nbsp;<i class="bi bi-check2"></i></button>
             </div>
         }
         else
         {
-            <div class="col-4 my-auto text-end">
-                <button type="submit" asp-action="CriarPedido" class="btn btn-outline-success" style="min-width:200px">Pagamento &nbsp;<i class="bi bi-check2"></i></button>
+            <div class="my-auto text-end">
+                <button type="submit" asp-action="CriarPedido" class="btn btn-success" style="min-width:200px">Pagamento &nbsp;<i class="bi bi-check2"></i></button>
             </div>
         }
     </div>
@@ -38,65 +38,65 @@
     <input asp-for="PedidoCabecalho.EstadoEntrega" hidden readonly />
     <input asp-for="PedidoCabecalho.CEPEntrega" hidden readonly />
 
-    <div class="container row mx-auto">
-        <div class="col-12 col-md-6 col-lg-4 my-2 mx-auto text-start p-2">
+    <div class="row mx-auto">
+        <div class="col-12 col-md-6 col-lg-5 my-2 mx-auto text-start py-2 px-3" style="padding-right:2%; background-color: rgba(34, 34, 34, 70%); border-radius:10px">
             <h4 class="text-center fw-bold">Endereço de Entrega</h4>
             <hr class="w-75 mx-auto" style="height:2px" />
 
             <div>
                 <div class="row">
-                    <p class="col-6">Destinatário: </p>
-                    <p class="col-6 text-end">@Model.PedidoCabecalho.NomeDestinatario</p>
+                    <p class="col-4">Destinatário: </p>
+                    <p class="col-8 text-end">@Model.PedidoCabecalho.NomeDestinatario</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Telefone: </p>
-                    <p class="col-6 text-end">@Model.PedidoCabecalho.TelefoneContato</p>
+                    <p class="col-4">Telefone: </p>
+                    <p class="col-8 text-end">@Model.PedidoCabecalho.TelefoneContato</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Logradouro: </p>
-                    <p class="col-6 text-end">@Model.PedidoCabecalho.LogradouroEntrega</p>
+                    <p class="col-4">Logradouro: </p>
+                    <p class="col-8 text-end">@Model.PedidoCabecalho.LogradouroEntrega</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Cidade: </p>
-                    <p class="col-6 text-end">@Model.PedidoCabecalho.CidadeEntrega</p>
+                    <p class="col-4">Cidade: </p>
+                    <p class="col-8 text-end">@Model.PedidoCabecalho.CidadeEntrega</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Estado: </p>
-                    <p class="col-6 text-end">@Model.PedidoCabecalho.EstadoEntrega</p>
+                    <p class="col-4">Estado: </p>
+                    <p class="col-8 text-end">@Model.PedidoCabecalho.EstadoEntrega</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">CEP: </p>
-                    <p class="col-6 text-end">@Model.PedidoCabecalho.CEPEntrega</p>
+                    <p class="col-4">CEP: </p>
+                    <p class="col-8 text-end">@Model.PedidoCabecalho.CEPEntrega</p>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4 my-2 mx-auto text-start p-2">
+        <div class="col-12 col-md-6 col-lg-5 my-2 mx-auto text-start py-2 px-3" style="padding-right:2%; background-color: rgba(34, 34, 34, 70%); border-radius:10px">
             <h4 class="text-center fw-bold">Resumo do Pedido</h4>
             <hr class="w-75 mx-auto" style="height:2px" />
 
             <div>
                 <div class="row">
-                    <p class="col-6">Previsão de entrega: </p>
-                    <p class="col-6 text-end">@DateTime.Now.AddDays(4).ToShortDateString() ~ @DateTime.Now.AddDays(10).ToShortDateString()</p>
+                    <p class="col-5">Previsão: </p>
+                    <p class="col-7 text-end">@DateTime.Now.AddDays(4).ToShortDateString() ~ @DateTime.Now.AddDays(10).ToShortDateString()</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Tipo de entrega: </p>
-                    <p class="col-6 text-end">@Context.Session.GetString(Sessao.FreteAplicado)</p>
+                    <p class="col-5">Tipo de entrega: </p>
+                    <p class="col-7 text-end">@Context.Session.GetString(Sessao.FreteAplicado)</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Frete: </p>
-                    <p class="col-6 text-end">@(Model.PedidoCabecalho.FreteAplicado == 0 ? "Grátis" : "R$ " + Model.PedidoCabecalho.FreteAplicado)</p>
+                    <p class="col-5">Frete: </p>
+                    <p class="col-7 text-end">@(Model.PedidoCabecalho.FreteAplicado == 0 ? "Grátis" : "R$ " + Model.PedidoCabecalho.FreteAplicado)</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Desconto: </p>
+                    <p class="col-5">Desconto: </p>
                     @if (Model.PedidoCabecalho.DescontoAplicado == null)
                     {
-                        <p class="col-6 text-end">Nenhum</p>
+                        <p class="col-7 text-end">Nenhum</p>
                     }
                     else
                     {
-                        <p class="col-6 text-end">R$ @Model.PedidoCabecalho.DescontoAplicado?.ToString("N2")</p>
+                        <p class="col-7 text-end">R$ @Model.PedidoCabecalho.DescontoAplicado?.ToString("N2")</p>
                     }
                 </div>
                 <div class="row">
@@ -104,8 +104,8 @@
                     <p class="col-6 text-end">R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</p>
                 </div>
                 <div class="row">
-                    <p class="col-6">Total Final: </p>
-                    <p class="col-6 text-end">R$ @Model.TotalFinal.ToString("N2")</p>
+                    <p class="col-5">Total Final: </p>
+                    <p class="col-7 text-end">R$ @Model.TotalFinal.ToString("N2")</p>
                 </div>
             </div>
         </div>
@@ -128,19 +128,19 @@
                                 <div class="my-auto text-end mx-1">
                                     @if (item.Produto.Plataforma == Plataforma.NSW)
                                     {
-                                        <img src="~/images/assets/plataformas/nintendo.svg" style="height: 60px; width: 60px">
+                                        <img src="~/images/assets/plataformas/nintendo.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                     }
                                     @if (item.Produto.Plataforma == Plataforma.PC)
                                     {
-                                        <img src="~/images/assets/plataformas/PC.svg" style="height: 60px; width: 60px">
+                                        <img src="~/images/assets/plataformas/PC.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                     }
                                     @if (item.Produto.Plataforma == Plataforma.PS4 || item.Produto.Plataforma == Plataforma.PS5)
                                     {
-                                        <img src="~/images/assets/plataformas/playstation.svg" style="height: 60px; width: 60px">
+                                        <img src="~/images/assets/plataformas/playstation.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                     }
                                     @if (item.Produto.Plataforma == Plataforma.XONE || item.Produto.Plataforma == Plataforma.XSXS)
                                     {
-                                        <img src="~/images/assets/plataformas/xbox.svg" style="height: 60px; width: 60px">
+                                        <img src="~/images/assets/plataformas/xbox.svg" style="height: 60px; width: 60px; filter: invert(1) brightness(10)">
                                     }
                                 </div>
                                 <div class="text-white my-auto">
@@ -170,7 +170,7 @@
                                     }
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between mx-1 my-auto" style="border: 1px black solid; border-radius: 10px; padding:6px">
+                            <div class="d-flex justify-content-between mx-1 my-auto" style="border: 1px white solid; border-radius: 10px; padding:6px">
                                 <img src="~/images/assets/misc/metacritic.svg" class="" style="height:40px; width:40px" />
                                 @if (item.Produto.Metascore > 74)
                                 {

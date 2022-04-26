@@ -31,7 +31,7 @@ function carregarDataTable() {
                 "render": function (data) {
                     return `
                         <div class="btn-group">
-                            <a href="/Admin/Cupom/Detalhes?id=${data}" class="btn btn-outline-dark mx-2">Detalhes</a>
+                            <a href="/Admin/Cupom/Detalhes?id=${data}" class="btn btn-outline-light mx-2">Detalhes</a>
                         </div>
                     `
                 }

@@ -68,7 +68,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
 
                 if (cupomDB.ValorRequerido > CarrinhoVM.PedidoCabecalho.TotalPedido)
                 {
-                    TempData["erroCupom"] = $"Cupom válido somente para compras a partir de R$ {cupomDB.ValorRequerido.ToString("N2")}!";
+                    TempData["erroCupom"] = $"Este cupom só concede descontos em compras a partir de R$ {cupomDB.ValorRequerido.ToString("N2")}!";
                     return View(CarrinhoVM);
                 }
 
@@ -326,7 +326,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 {
                     ProdutoId = itemCarrinho.ProdutoId,
                     PedidoId = CarrinhoVM.PedidoCabecalho.Id,
-                    Preco = itemCarrinho.PrecoAtual,
+                    Preco = itemCarrinho.Produto.PrecoPromo != 0 ? itemCarrinho.Produto.PrecoPromo : itemCarrinho.Produto.PrecoNormal,
                     Quantidade = itemCarrinho.Quantidade
                 };
                 _unitOfWork.PedidoDetalhesRepo.Add(pedidoDetalhes);

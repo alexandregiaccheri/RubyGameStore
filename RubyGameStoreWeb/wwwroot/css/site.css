@@ -4,15 +4,66 @@ html {
     position: relative;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+body {
+    background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 10%) 0%, 
+                        rgba(10, 10, 10, 100%) 65%), url('/images/assets/home/controllers.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    min-height: calc(100vh - 140px);
+    margin-bottom: 60px;
 }
 
-body {
-    min-height: calc(100vh - 140px);
-    margin-bottom: 60px;    
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #333 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="datetime-local"],
+input[type="datetime"],
+input[type="button"]{
+    background: #333;
+    color: white;
+}
+
+    input[type="text"]:disabled,
+    input[type="password"]:disabled,
+    input[type="email"]:disabled,
+    input[type="number"]:disabled {
+        background: #555;
+        color: lightgray;
+    }
+
+.form-control,
+.form-control:focus, 
+.form-control:placeholder-shown,
+.form-select {
+    background: #333;
+    color: white;
+}
+
+.table {
+    border-radius: 10px;
+    border: 1px solid #444;    
+    
+    color: white;
+    background: rgba(34, 34, 34, 70%);
+    --bs-table-hover-bg: rgba(34, 34, 34, 70%);
+    --bs-table-hover-color: white;
 }
 
 div.form-group {
@@ -25,4 +76,11 @@ div.form-floating {
 
 .field-validation-error {
     height: 0px
+}
+
+.transparent-box {
+    background-color: rgba(34, 34, 34, 80%);
+    border: 1px solid #555;
+    border-radius: 10px;    
+    height: fit-content;
 }

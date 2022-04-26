@@ -56,19 +56,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-var cultureInfo = new[]
-{
-    new CultureInfo("pt-BR"),
-    new CultureInfo("en-US")
-};
-
-app.UseRequestLocalization(new RequestLocalizationOptions
-{
-    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR"),
-    SupportedCultures = cultureInfo,
-    SupportedUICultures = cultureInfo
-});
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

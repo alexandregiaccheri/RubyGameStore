@@ -17,13 +17,13 @@
 }
 
 <div class="mt-3" style="/*border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px*/">
-    <h2 class="text-center p-2">Detalhes do Pedido</h2>
+    <h2 class="text-center p-2" style="font-family:Play">Detalhes do Pedido</h2>
 </div>
 <div class="text-center">
     <p>Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido</p>
 </div>
 
-<div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
+<div class="col-12 col-md-9 row mx-auto mt-2 transparent-box">
     <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
         <h4>Status do Pedido</h4>
         <div>
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
+<div class="col-12 col-md-9 row mx-auto mt-2 transparent-box">
     <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
         <h4>Endereço de Entrega</h4>
         <div>
@@ -84,7 +84,7 @@
         <div>
             @foreach (var item in Model.PedidoDetalhes)
             {
-                <div class="row my-2">
+                <div class="row my-2" style="background-color: rgba(34, 34, 34, 70%)">
                     <div class="col-12 col-md-2" style="height: 120px">
                         <img src="@item.Produto.BoxArt" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
                     </div>
@@ -97,7 +97,7 @@
                         <br />
                         <a href="#" style="text-decoration: none">Deixe um comentario</a>
                         <br />
-                        <a href="#" class="btn btn-outline-dark rounded mt-1">Devolver</a>
+                        <a href="#" class="btn btn-outline-light rounded mt-2">Devolver</a>
                     </div>
                 </div>
                 <hr />
@@ -106,5 +106,5 @@
     </div>
 </div>
 <div class="text-end my-auto">
-    <a asp-action="Index" class="btn btn-outline-dark mb-2"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+    <a asp-action="Index" class="btn btn-outline-light mb-3"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
 </div>
