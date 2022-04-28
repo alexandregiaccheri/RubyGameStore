@@ -34,4 +34,8 @@
     <Folder Include="wwwroot\images\produtos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\HomeIndex.css" />
+  </ItemGroup>
+
 </Project>

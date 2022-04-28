@@ -4,11 +4,20 @@
     else ViewData["Title"] = "Adicionar Produto";
 }
 
+<style>
+    body {
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 50%) 35%), radial-gradient(circle at center bottom, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+</style>
+
 <div class="row">
     <div class="container col-12">
         <div class="container row mt-3">
             <div class="col-6">
-                <h2>@(Model.Produto.Id != 0 ? "Atualizar" : "Adicionar") Produto</h2>
+                <h2 class="font-play">@(Model.Produto.Id != 0 ? "Atualizar" : "Adicionar") Produto</h2>
             </div>
             <div class="col-6 text-end my-auto">
                 <a asp-action="Index" class="btn btn-outline-light"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
@@ -43,7 +52,7 @@
 
                 <div class="form-group row mt-3">
                     <label asp-for="Produto.Descricao" class="form-label"></label>
-                    <textarea asp-for="Produto.Descricao" class="form-control" rows="5" style="padding: 0px !important" />@Model.Produto.Descricao</textarea>
+                    <textarea asp-for="Produto.Descricao" class="form-control tinytext" rows="5" style="padding: 0px !important; background-color: black">@Model.Produto.Descricao</textarea>
                     <span asp-validation-for="Produto.Descricao" class="mt-2 text-danger"></span>
                 </div>
 
@@ -172,66 +181,65 @@
     <partial name="_ValidationScriptsPartial" />
     }
 <script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable  tinymcespellchecker',
-        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
-        toolbar_mode: 'floating',
-        height: 300
-    });
-</script>
-<script>
-    function ValidateImages(){
-        if (document.getElementById("boxart").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione a BoxArt!'});
-            return false;
-        };
-        if (document.getElementById("ss1").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione os Screenshots!'});
-            return false;
-        };
-        if (document.getElementById("ss2").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione os Screenshots!'})
-            return false
-        };
-        if (document.getElementById("ss3").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione os Screenshots!'});
-            return false;
-        };
-        if (document.getElementById("ss4").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione os Screenshots!'});
-            return false;
-        };
-        if (document.getElementById("ss5").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione os Screenshots!'});
-            return false;
-        };
-        if (document.getElementById("ss6").value == ""){
-            Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Adicione os Screenshots!'});
-            return false;
-        };
-        return true;
-    }
+        tinymce.init({
+            selector: 'textarea',
+            toolbar_mode: 'floating',
+            skin: "oxide-dark",
+            content_css: "dark",
+            height: 300
+        });
+
+        function ValidateImages(){
+            if (document.getElementById("boxart").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione a BoxArt!'});
+                return false;
+            };
+            if (document.getElementById("ss1").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione os Screenshots!'});
+                return false;
+            };
+            if (document.getElementById("ss2").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione os Screenshots!'})
+                return false
+            };
+            if (document.getElementById("ss3").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione os Screenshots!'});
+                return false;
+            };
+            if (document.getElementById("ss4").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione os Screenshots!'});
+                return false;
+            };
+            if (document.getElementById("ss5").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione os Screenshots!'});
+                return false;
+            };
+            if (document.getElementById("ss6").value == ""){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Adicione os Screenshots!'});
+                return false;
+            };
+            return true;
+        }
 </script>
 }

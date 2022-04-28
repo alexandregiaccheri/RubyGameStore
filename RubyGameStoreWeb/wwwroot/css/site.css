@@ -4,21 +4,20 @@ html {
     position: relative;
 }
 
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
 body {
-    background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 10%) 0%, 
-                        rgba(10, 10, 10, 100%) 65%), url('/images/assets/home/controllers.jpg');
+    background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 10%) 0%, rgba(10, 10, 10, 100%) 65%), url('/images/assets/home/controllers.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     color: white;
     min-height: calc(100vh - 140px);
     margin-bottom: 60px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
 }
 
 input:-webkit-autofill,
@@ -35,7 +34,7 @@ input[type="email"],
 input[type="number"],
 input[type="datetime-local"],
 input[type="datetime"],
-input[type="button"]{
+input[type="button"] {
     background: #333;
     color: white;
 }
@@ -49,17 +48,17 @@ input[type="button"]{
     }
 
 .form-control,
-.form-control:focus, 
+.form-control:focus,
 .form-control:placeholder-shown,
-.form-select {
+.form-select,
+.tinytext {
     background: #333;
     color: white;
 }
 
 .table {
     border-radius: 10px;
-    border: 1px solid #444;    
-    
+    border: 1px solid #444;
     color: white;
     background: rgba(34, 34, 34, 70%);
     --bs-table-hover-bg: rgba(34, 34, 34, 70%);
@@ -67,11 +66,11 @@ input[type="button"]{
 }
 
 div.form-group {
-    margin-bottom: 25px !important
+    margin-bottom: 1rem !important
 }
 
 div.form-floating {
-    margin-bottom: 25px !important
+    margin-bottom: 1rem !important
 }
 
 .field-validation-error {
@@ -80,7 +79,212 @@ div.form-floating {
 
 .transparent-box {
     background-color: rgba(34, 34, 34, 80%);
-    border: 1px solid #555;
-    border-radius: 10px;    
+    border: 2px solid #333;
+    border-radius: 7px;
     height: fit-content;
+}
+
+.home-card {
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.1s;
+}
+
+    .home-card:hover {
+        background-color: #300;
+    }
+
+#nswitch {
+    cursor: pointer;
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.2s;
+}
+
+    #nswitch:hover {
+        background-color: #555;
+        background-image: url('/images/assets/home/nsw.jpg');
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: overlay;
+        transition: 0.15s;
+    }
+
+#computer {
+    cursor: pointer;
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.2s;
+}
+
+    #computer:hover {
+        background-color: #555;
+        background-image: url('/images/assets/home/gamingpc.jpg');
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: overlay;
+        transition: 0.15s;
+    }
+
+#ps4 {
+    cursor: pointer;
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.2s;
+}
+
+    #ps4:hover {
+        background-color: #555;
+        background-image: url('/images/assets/home/ps4.jpg');
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: overlay;
+        transition: 0.15s;
+    }
+
+#ps5 {
+    cursor: pointer;
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.2s;
+}
+
+    #ps5:hover {
+        background-color: #555;
+        background-image: url('/images/assets/home/ps5.jpg');
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: overlay;
+        transition: 0.15s;
+    }
+
+#xone {
+    cursor: pointer;
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.2s;
+}
+
+    #xone:hover {
+        background-color: #555;
+        background-image: url('/images/assets/home/xone.jpg');
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: overlay;
+        transition: 0.15s;
+    }
+
+#xseries {
+    cursor: pointer;
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+    transition: all linear 0.2s;
+}
+
+    #xseries:hover {
+        background-color: #555;
+        background-image: url('/images/assets/home/xseries.jpg');
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: overlay;
+        transition: 0.15s;
+    }
+
+.icones-tech {
+    height: 65px;
+}
+
+.links-curriculo {
+    color: white;
+    cursor: pointer;
+    font-family: Play;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.carousel-imglancamentos {
+    width: 100%;
+    aspect-ratio: 16/9;
+    filter: brightness(75%);
+    border: 2px solid #222;
+}
+
+.carousel-precolancamentos,
+.carousel-preco {
+    color: #fff;
+    font-family: Play;
+    font-weight: bolder;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.icones-plat-carousel {
+    height: 45px;
+    width: 45px;
+    filter: invert(1) brightness(10);
+}
+
+.home-box {
+    background-color: #222;
+    border: solid 2px #000;
+    border-radius: 7px;
+}
+
+.font-play {
+    font-family: Play;
+}
+
+.carousel-imagem {
+    aspect-ratio: 16/9;
+    filter: brightness(75%);
+}
+
+.barra-titulo {
+    background-color: #111;
+    border: solid 2px #000;
+    border-radius: 7px;
+}
+
+.preco-home-card {
+    color: lightgreen;
+    font-family: Play;
+    margin-top: 10px;
+    margin-right: 8px;
+}
+
+.icones-card {
+    height: 70px;
+    width: 70px;
+    filter: invert(1) brightness(10);
+}
+
+.card-titulo {
+    background-color: #444;
+    border: solid 2px #000;
+    border-radius: 7px;
+    background-image: url('/images/assets/home/controllers.jpg');
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+
+.icones-escolha-plat {
+    filter: invert(1) brightness(10);
+    height: 7rem;
+    width: contain;
+}
+
+/*VerProduto*/
+.preco-produto {
+    color: lightgreen;
+    font-family: Play;
+    font-size: 1.6rem;
+    line-height: 1.6;
 }

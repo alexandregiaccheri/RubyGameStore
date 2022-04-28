@@ -5,8 +5,17 @@
     ViewData["Title"] = "Entrar";
 }
 
+<style>
+    body {
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 50%) 35%), radial-gradient(circle at center bottom, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+</style>
+
 <h1 class="pt-2">@ViewData["Title"]</h1>
-<div class="row">
+<div class="row px-1">
     <div class="col-md-6">
         <section>
             <form id="account" method="post">

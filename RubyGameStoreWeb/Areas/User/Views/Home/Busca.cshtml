@@ -232,7 +232,9 @@
                         <div class="col-12 mx-auto mb-2 transparent-box">
                             <div class="d-flex flex-column flex-md-row">
                                 <div class="col-12 col-md-3 my-auto p-2">
-                                    <img src="@obj.BoxArt" class="w-100 rounded-2" style="background-size:contain" />
+                                    <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">
+                                        <img src="@obj.BoxArt" class="w-100 rounded-2" style="background-size:contain" />
+                                    </a>
                                 </div>
                                 <div class="col-12 col-md-9 my-auto p-2 d-flex flex-column flex-md-row">
                                     <div class="col-12 col-md-7 my-auto p-1 py-0 d-flex flex-column text-center">
@@ -242,12 +244,12 @@
                                     </div>
                                     <div class="col-12 col-md-5 p-1 py-0 text-center">
                                         <p style="line-height:normal;margin:0">@obj.Plataforma</p>
-                                        <h5 class="fw-bold" style="font-family:Play; color: #292">R$ @obj.PrecoNormal.ToString("N2")</h5>
+                                        <h5 class="fw-bold" style="font-family:Play; color: lightgreen">R$ @obj.PrecoNormal.ToString("N2")</h5>
                                         <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id" class="btn btn-primary" style="min-width:120px">Ver Mais</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     }
                 }
                 else

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using RubyGameStore.Helper.StaticNames
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -15,12 +16,13 @@
     <link rel="stylesheet" href="~/RubyGameStoreWeb.styles.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Play&display=swap">
+    @RenderSection("Styles", false)
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="min-height:80px">
-            <div class="container-fluid">
+            <div class="container-fluid font-play">
                 <a class="navbar-brand px-3" asp-area="User" asp-controller="Home" asp-action="Index"><i class="bi bi-gem"></i>&nbsp; Ruby Game Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,44 +31,47 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" asp-area="User" asp-controller="Home" asp-action="Busca" asp-route-idx="1">
-                                Home
+                                Buscar
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gêneros</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">TBD</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Cupom" asp-action="Index">Cupom</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Clientes</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Empresas</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Produtos</a>
+                                <a class="dropdown-item" href="#">Ação</a>
+                                <a class="dropdown-item" href="#">Aventura</a>
+                                <a class="dropdown-item" href="#">Casual</a>
+                                <a class="dropdown-item" href="#">Esporte</a>
+                                <a class="dropdown-item" href="#">Estratégia</a>
+                                <a class="dropdown-item" href="#">Outros</a>
+                                <a class="dropdown-item" href="#">RPG</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gênero</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plataformas</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">TBD</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Clientes</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Empresas</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Produtos</a>
+                                <a class="dropdown-item">Nintendo Switch</a>
+                                <a class="dropdown-item">PC</a>
+                                <a class="dropdown-item">Playstation 4</a>
+                                <a class="dropdown-item">Playstation 5</a>
+                                <a class="dropdown-item">Xbox One</a>
+                                <a class="dropdown-item">Xbox Series</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plataforma</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Pedidos" asp-action="Index">Nintendo Switch</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">PC</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Playstation 4</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Playstation 5</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Xbox One</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Xbox Series</a>
-                            </div>
-                        </li>
+                        @if (User.IsInRole(Autorizacao.Admin) || User.IsInRole(Autorizacao.Funcionario))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Clientes</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Empresa" asp-action="Index">Empresas</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Cupom" asp-action="Index">Cupom</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Produto" asp-action="Index">Produtos</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -84,7 +89,7 @@
     <footer class="footer bg-primary">
         <div class="container text-white d-flex">
             <p class="mx-2 py-0 my-0" style="line-height:60px">&copy; 2022 - Alexandre Giaccheri -</p>
-            <a class="mx-2 py-0 my-0 text-white text-decoration-none" style="line-height:60px" href="https://github.com/alexandregiaccheri/RubyGameStore" target="_blank"><i class="bi bi-github"></i>&nbsp; Código-fonte</a>
+            <a class="mx-2 py-0 my-0 text-white text-decoration-none" style="line-height:60px" href="https://github.com/alexandregiaccheri/RubyGameStore" target="_blank"><i class="bi bi-github"></i>&nbsp;</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -81,18 +81,18 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
             public string SobrenomeUsuario { get; set; }
 
             [Display(Name = "Logradouro (Rua, Nº)")]
-            public string? LogradouroUsuario { get; set; }
+            public string LogradouroUsuario { get; set; }
 
             [Display(Name = "Cidade")]
-            public string? CidadeUsuario { get; set; }
+            public string CidadeUsuario { get; set; }
 
             [Display(Name = "Estado")]
-            public string? EstadoUsuario { get; set; }
+            public string EstadoUsuario { get; set; }
 
             [Display(Name = "CEP")]
-            public string? CEPUsuario { get; set; }
+            public string CEPUsuario { get; set; }
 
-            public string? Autorizacao { get; set; }
+            public string Autorizacao { get; set; }
 
             [ValidateNever]
             public IEnumerable<SelectListItem> ListaAutorizacao { get; set; }

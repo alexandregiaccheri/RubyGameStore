@@ -5,17 +5,17 @@
 
 <div class="container mx-auto row mt-3">
     <div class="col-8 p-0 text-start">
-        <h2 style="text-transform: capitalize; font-family:'Segoe UI';font-weight: 500">Cupom Nº @Model.Id | Status: @Model.Status</h2>
+        <h2 class="font-play" style="text-transform: capitalize">Cupom Nº @Model.Id | Status: @Model.Status</h2>
     </div>
     <div class="col-4 p-0 text-end my-auto">
-        <a asp-action="Index" class="btn btn-outline-dark"><i class="bi bi-arrow-left"></i>&nbsp; Voltar</a>
+        <a asp-action="Index" class="btn btn-outline-light"><i class="bi bi-arrow-left"></i>&nbsp; Voltar</a>
     </div>
 </div>
 <hr />
 
 <div class="container mx-auto row mt-3">
-    <div class="col-12 col-md-6 col-lg-5 mx-auto mt-2 mb-3">
-        <h3 class="text-center fw-bold">Cupom</h3>
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mt-2 mb-3 py-2 transparent-box">
+        <h3 class="text-center fw-bold font-play">Cupom</h3>
         <hr class="mx-auto w-75" />
         <div>
             <div class="row">
@@ -34,8 +34,8 @@
     </div>
 
 
-    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3">
-        <h3 class="text-center fw-bold">Condições</h3>
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3 py-2 transparent-box">
+        <h3 class="text-center fw-bold font-play">Condições</h3>
         <hr class="mx-auto w-75" />
         <div class="row">
             <p class="col-6">Usos: </p>
@@ -55,8 +55,8 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3">
-        <h3 class="text-center fw-bold">Desconto</h3>
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3 py-2 transparent-box">
+        <h3 class="text-center fw-bold font-play">Desconto</h3>
         <hr class="mx-auto w-75" />
         <div class="row">
             <p class="col-6">Tipo: </p>
@@ -69,8 +69,8 @@
     </div>
 
 
-    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3">
-        <h3 class="text-center fw-bold">Descrição</h3>
+    <div class="col-12 col-md-6 col-lg-5 mx-auto mb-3 py-2 transparent-box">
+        <h3 class="text-center fw-bold font-play">Descrição</h3>
         <hr class="mx-auto w-75" />
         <p>@Html.Raw(Model.Descricao)</p>
     </div>

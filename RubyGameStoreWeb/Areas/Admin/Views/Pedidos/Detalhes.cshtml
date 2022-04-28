@@ -16,35 +16,32 @@
     }
 }
 
-
-    <div class="bg-dark" style="border: solid 1px black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px">
-        <h2 class="text-white text-center p-2">Detalhes do Pedido</h2>
+<div class="col-12 col-md-6 col-lg-4 row mx-auto p-2 mt-3 transparent-box text-center">
+    <h3 class="font-play">Controle do Pedido</h3>
+    @if (Model.PedidoCabecalho.StatusPedido == Pedido.Aprovado)
+    {
+        <a onclick="Processar(@Model.PedidoCabecalho.Id)" class="btn btn-outline-info mx-auto my-2">PROCESSAR</a>
+    }
+    @if (Model.PedidoCabecalho.StatusPedido == Pedido.Processando)
+    {
+        <a asp-action="Enviar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-outline-light mx-auto my-2">ENVIAR</a>
+    }
+    @if (Model.PedidoCabecalho.StatusPedido == Pedido.Aprovado || Model.PedidoCabecalho.StatusPedido == Pedido.Processando)
+    {
+        <a onclick="Cancelar(@Model.PedidoCabecalho.Id)" class="btn btn-outline-danger mx-auto my-2">CANCELAR</a>
+    }
+    <div class="text-center">
+        <p>
+            Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido            
+        </p>
     </div>
+</div>
 
-    <div class="mt-1 text-center">
-        <p>Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido</p>
-    </div>
 
-    <div class="container text-center">
-        <div class="row">
-            @if (Model.PedidoCabecalho.StatusPedido == Pedido.Aprovado)
-            {
-                <a asp-action="Processar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-primary mx-auto mb-1 col-10 col-md-8 col-lg-7">Processar</a>
-            }
-            @if (Model.PedidoCabecalho.StatusPedido == Pedido.Processando)
-            {
-                <a asp-action="Enviar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-outline-dark mx-auto mb-1 col-10 col-md-8 col-lg-7">Enviar</a>
-            }
-            @if (Model.PedidoCabecalho.StatusPedido == Pedido.Aprovado || Model.PedidoCabecalho.StatusPedido == Pedido.Processando)
-            {
-                <a asp-action="Cancelar" asp-route-id="@Model.PedidoCabecalho.Id" class="btn btn-danger mx-auto mb-1 col-10 col-md-8 col-lg-7">Cancelar</a>
-            }
-        </div>
-    </div>
-
-    <div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
-        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-            <h4>Status do Pedido</h4>
+<div class="row">
+    <div class="col-12 col-md-5 mx-auto mt-2 transparent-box font-play">
+        <div class="col-12 my-auto mx-auto text-center p-4" style="height: fit-content">
+            <h4 class="font-play">Status do Pedido</h4>
             <div>
                 <p>
                     <b>@Model.PedidoCabecalho.StatusPedido</b> <br />
@@ -53,21 +50,26 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-            <h4>Status do Pagamento</h4>
+    </div>
+
+    <div class="col-12 col-md-5 mx-auto mt-2 transparent-box font-play">
+        <div class="col-12 my-auto mx-auto text-center p-4" style="height: fit-content">
+            <h4 class="font-play">Status do Pagamento</h4>
             <div>
                 <p>
                     <b>Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b> <br />
                     Status: @Model.PedidoCabecalho.StatusPagamento <br />
-                    @pagamento
+                    @pagamento <br />                    
                 </p>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="col-12 col-md-9 row mx-auto mt-2" style="border: solid 1px darkgray; border-radius:5px">
-        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-            <h4>Endereço de Entrega</h4>
+<div class="row">
+    <div class="col-12 col-md-5 mx-auto mt-2 transparent-box font-play">
+        <div class="col-12 my-auto mx-auto text-center p-4" style="height: fit-content">
+            <h4 class="font-play">Endereço para Envio</h4>
             <div>
                 <p>
                     Destinatário: @Model.PedidoCabecalho.NomeDestinatario <br />
@@ -76,8 +78,10 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 col-md-6 my-auto mx-auto text-start p-4" style="height: fit-content">
-            <h4>Dados do Envio</h4>
+    </div>
+    <div class="col-12 col-md-5 mx-auto mt-2 transparent-box font-play">
+        <div class="col-12 my-auto mx-auto text-center p-4" style="height: fit-content">
+            <h4 class="font-play">Dados do Envio</h4>
             @if (Model.PedidoCabecalho.Transportadora != null)
             {
                 <p>
@@ -90,40 +94,45 @@
             else
             {
                 <p>
-                    Quando o seu pedido for enviado, os dados do envio (transportadora, código do rastreio e data e hora do envio) vão aparecer bem aqui!
+                    Aguardando o envio.
                 </p>
             }
         </div>
     </div>
+</div>
 
-    <div class="container row mx-auto">
-        <div class="col-12 col-md-9 my-2 mx-auto text-start p-4">
-            <h4>Você comprou:</h4>
-            <hr />
-            <div>
-                @foreach (var item in Model.PedidoDetalhes)
-                {
-                    <div class="row my-2">
-                        <div class="col-12 col-md-2" style="height: 120px">
-                            <img src="@item.Produto.BoxArt" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
-                        </div>
-                        <div class="col-12 col-md-5 my-md-auto container">
-                            <p class="my-md-auto text-center text-md-start"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p>
-                            <p class="text-center text-md-start">R$ @item.Preco.ToString("N2") x @item.Quantidade Unidade(s)</p>
-                        </div>
-                        <div class="col-5 my-md-auto">
-                            <a href="#" style="text-decoration: none">Precisa de ajuda?</a>
-                            <br />
-                            <a href="#" style="text-decoration: none">Deixe um comentario</a>
-                            <br />
-                            <a href="#" class="btn btn-outline-dark rounded mt-1">Devolver</a>
-                        </div>
+<div class="container row mx-auto">
+    <div class="col-12 col-md-9 my-2 mx-auto text-start p-4">
+        <h4>Itens do Pedido:</h4>
+        <hr />
+        <div>
+            @foreach (var item in Model.PedidoDetalhes)
+            {
+                <div class="row my-2" style="background-color: rgba(34, 34, 34, 70%)">
+                    <div class="col-12 col-md-2" style="height: 120px">
+                        <img src="@item.Produto.BoxArt" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
                     </div>
-                    <hr />
-                }
-            </div>
+                    <div class="col-12 col-md-5 my-md-auto container">
+                        <p class="my-md-auto text-center text-md-start"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p>
+                        <p class="text-center text-md-start">R$ @item.Preco.ToString("N2") x @item.Quantidade Unidade(s)</p>
+                    </div>
+                    <div class="col-5 my-md-auto">
+                        <a href="#" style="text-decoration: none">Precisa de ajuda?</a>
+                        <br />
+                        <a href="#" style="text-decoration: none">Deixe um comentario</a>
+                        <br />
+                        <a href="#" class="btn btn-outline-light rounded mt-2">Devolver</a>
+                    </div>
+                </div>
+                <hr />
+            }
         </div>
     </div>
-    <div class="text-end my-auto">
-        <a asp-action="Index" class="btn btn-primary mb-2"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
-    </div>
+</div>
+<div class="text-end my-auto">
+    <a asp-action="Index" class="btn btn-outline-light mb-3"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+</div>
+
+@section Scripts{
+<script src="~/js/ControlePedido.js"></script>
+}

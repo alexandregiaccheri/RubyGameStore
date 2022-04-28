@@ -4,12 +4,21 @@
     else ViewData["Title"] = "Adicionar Usuário (CNPJ)";
 }
 
+<style>
+    body {
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 50%) 35%), radial-gradient(circle at center bottom, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+</style>
+
 <div class="container row mt-3">
     <div class="col-6">
-        <h2>@(Model.Id != 0 ? "Atualizar" : "Adicionar") Usuário (CNPJ)</h2>
+        <h2 class="font-play">@(Model.Id != 0 ? "Atualizar" : "Adicionar") Empresa</h2>
     </div>
     <div class="col-6 text-end my-auto">
-        <a asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+        <a asp-action="Index" class="btn btn-outline-light"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
     </div>
 </div>
 

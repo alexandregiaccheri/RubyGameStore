@@ -1,0 +1,6 @@
+﻿body {
+    background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+}

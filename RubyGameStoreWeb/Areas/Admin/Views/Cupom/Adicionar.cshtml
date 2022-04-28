@@ -3,12 +3,21 @@
     ViewData["Title"] = "Adicionar Cupom";
 }
 
+<style>
+    body {
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 50%) 35%), radial-gradient(circle at center bottom, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+</style>
+
 <div class="row mt-3 p-2">
     <div class="col-6">
-        <h2>Adicionar Cupom</h2>
+        <h2 class="font-play">Adicionar Cupom</h2>
     </div>
     <div class="col-6 text-end my-auto">
-        <a asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
+        <a asp-action="Index" class="btn btn-outline-light"><i class="bi bi-arrow-left-square"></i>&nbsp; Voltar</a>
     </div>
 </div>
 
@@ -70,7 +79,7 @@
 
         <div class="form-group mt-3 col-12 col-md-6">
             <label asp-for="Descricao" class="form-label"></label>
-            <textarea asp-for="Descricao" class="form-control" rows="5" style="padding: 0px !important" /></textarea>
+            <textarea asp-for="Descricao" class="form-control" rows="5" style="padding: 0px !important"></textarea>
             <span asp-validation-for="Descricao" class="mt-2 text-danger"></span>
         </div>
 
@@ -86,27 +95,5 @@
     @{
     <partial name="_ValidationScriptsPartial" />
     }
-<script>
-    $(document).ready(function(){
-        $('#selecaoTipo').change(function(){
-            var selecao = $('#selecaoTipo Option:Selected').text();
-            if(selecao == 'Porcentagem'){
-                $('#porcento').show();
-                $('#reais').hide();
-            }
-            else{
-                $('#porcento').hide();
-                $('#reais').show();
-            }
-        });
-    });
-
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable  tinymcespellchecker',
-        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
-        toolbar_mode: 'floating',
-        height: 200
-    });
-</script>
+<script src="~/js/AdicionarCupom.js"></script>
 }

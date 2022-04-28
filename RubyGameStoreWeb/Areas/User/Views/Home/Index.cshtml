@@ -3,133 +3,15 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<style>
-    body {
-        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: top;
-    }
+@section Styles{
+<link rel="stylesheet" href="css/HomeIndex.css" />
+}
 
-    .home-card {
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.1s;
-    }
-
-        .home-card:hover {
-            background-color: #300;
-        }
-
-    #nswitch {
-        cursor: pointer;
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.2s;
-    }
-
-        #nswitch:hover {
-            background-color: #555;
-            background-image: url('/images/assets/home/nsw.jpg');
-            background-position: center;
-            background-size: cover;
-            background-blend-mode: overlay;
-            transition: 0.15s;
-        }
-
-    #computer {
-        cursor: pointer;
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.2s;
-    }
-
-        #computer:hover {
-            background-color: #555;
-            background-image: url('/images/assets/home/gamingpc.jpg');
-            background-position: center;
-            background-size: cover;
-            background-blend-mode: overlay;
-            transition: 0.15s;
-        }
-
-    #ps4 {
-        cursor: pointer;
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.2s;
-    }
-
-        #ps4:hover {
-            background-color: #555;
-            background-image: url('/images/assets/home/ps4.jpg');
-            background-position: center;
-            background-size: cover;
-            background-blend-mode: overlay;
-            transition: 0.15s;
-        }
-
-    #ps5 {
-        cursor: pointer;
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.2s;
-    }
-
-        #ps5:hover {
-            background-color: #555;
-            background-image: url('/images/assets/home/ps5.jpg');
-            background-position: center;
-            background-size: cover;
-            background-blend-mode: overlay;
-            transition: 0.15s;
-        }
-
-    #xone {
-        cursor: pointer;
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.2s;
-    }
-
-        #xone:hover {
-            background-color: #555;
-            background-image: url('/images/assets/home/xone.jpg');
-            background-position: center;
-            background-size: cover;
-            background-blend-mode: overlay;
-            transition: 0.15s;
-        }
-
-    #xseries {
-        cursor: pointer;
-        background-color: #222;
-        border: solid 2px #000;
-        border-radius: 7px;
-        transition: all linear 0.2s;
-    }
-
-        #xseries:hover {
-            background-color: #555;
-            background-image: url('/images/assets/home/xseries.jpg');
-            background-position: center;
-            background-size: cover;
-            background-blend-mode: overlay;
-            transition: 0.15s;
-        }
-</style>
-
-<div class="row text-center py-2 align-middle" style="background-color:#444; border: solid 2px #000; border-radius: 7px; background-image:url('/images/assets/home/controllers.jpg'); background-position:center; background-size:cover; background-blend-mode:overlay">
+<div class="row text-center py-2 align-middle card-titulo">
     <div class="container row pb-3 mx-auto" style="width:auto">
-        <h2 class="text-white text-center" style="font-family:Play">Bem vindo a Ruby Game Store!</h2>
-        <h5 class="text-white text-center" style="font-family:Play">Aqui você encontra os melhores jogos, lançamentos e muito mais!</h5>
-        <p class="text-white text-center" style="font-family:Play">
+        <h2 class="text-white text-center font-play">Bem vindo a Ruby Game Store!</h2>
+        <h5 class="text-white text-center font-play">Aqui você encontra os melhores jogos, lançamentos e muito mais!</h5>
+        <p class="text-white text-center font-play">
             Não importa se você joga no PC, Playstation, Nintendo Switch ou Xbox, nós temos os melhores games
             para atender suas necessidades! Procure pelo nosso catálogo por plataforma ou gênero favorito e aproveite! São muitas ofertas e lançamentos no seu alcançe!
         </p>
@@ -145,196 +27,289 @@
 </div>
 
 <div class="row">
-    <div class="pt-2 pb-3 col-12 col-lg-7" style="background-color:#222; border: solid 2px #000; border-radius: 7px">
-        <h2 class="text-white text-center mb-2 fw-bold" style="font-family:Play">Lançamentos</h2>
+    <div class="pt-2 pb-3 col-12 col-lg-7 home-box">
+        <h2 class="text-white text-center mb-2 fw-bold font-play">Recomendados</h2>
         <div class="col-12">
-            <div id="lancamentos" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="recomendados" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="0" class="d-none active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="4" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="5" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="6" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="7" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="8" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="9" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#recomendados" data-bs-slide-to="10" aria-label="Slide 3"></button>
+                </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active position-relative" data-bs-interval="500">
-                        <img src="@Model.First().BoxArt" class="d-block w-100" style="filter:brightness(75%)">
-                        <div class="carousel-caption position-absolute bottom-0 start-0" style="width:fit-content">
-                            <h4 class="px-3 fw-bolder text-start" style="color:#fff; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-family:Play">R$ @Model.First().PrecoNormal.ToString("N2")</h4>
-                        </div>
+                        <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@Model.First().Id">
+                            <img src="@Model.First().BoxArt" class="d-block w-100 carousel-imagem">
+                            <div class="carousel-caption position-absolute start-0 row w-100">
+                                <div class="col-6 px-5 text-start">
+                                    @if (Model.First().Plataforma == Plataforma.NSW)
+                                    {
+                                        <img src="~/images/assets/plataformas/nintendo.svg" class="icones-plat-carousel">
+                                    }
+                                    @if (Model.First().Plataforma == Plataforma.PC)
+                                    {
+                                        <img src="~/images/assets/plataformas/PC.svg" class="p-1 icones-plat-carousel">
+                                    }
+                                    @if (Model.First().Plataforma == Plataforma.PS4 || Model.First().Plataforma == Plataforma.PS5)
+                                    {
+                                        <img src="~/images/assets/plataformas/playstation.svg" class="icones-plat-carousel">
+                                    }
+                                    @if (Model.First().Plataforma == Plataforma.XONE || Model.First().Plataforma == Plataforma.XSXS)
+                                    {
+                                        <img src="~/images/assets/plataformas/xbox.svg" class="p-1 icones-plat-carousel">
+                                    }
+                                </div>
+                                <h4 class="col-6 px-3 fw-bolder text-end mt-auto carousel-preco">R$ @Model.First().PrecoNormal.ToString("N2")</h4>
+                            </div>
+                        </a>
                     </div>
-                    @foreach (var obj in Model.ToList().GetRange(0, 5))
+                    @foreach (var obj in Model.ToList().GetRange(0, 10))
                     {
                         <div class="carousel-item position-relative" data-bs-interval="8000">
-                            <img src="@obj.BoxArt" class="w-100" style="aspect-ratio: 16/9; filter: brightness(75%)">
-                            <div class="carousel-caption position-absolute bottom-0 start-0" style="width:fit-content">
-                                <h4 class="px-3 fw-bolder text-start" style="color:#fff; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-family:Play">R$ @obj.PrecoNormal.ToString("N2")</h4>
-                            </div>
+                            <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">
+                                <img src="@obj.BoxArt" class="w-100 carousel-imagem">
+                                <div class="carousel-caption position-absolute start-0 row w-100">
+                                    <div class="col-6 px-5 text-start">
+                                        @if (obj.Plataforma == Plataforma.NSW)
+                                        {
+                                            <img src="~/images/assets/plataformas/nintendo.svg" class="icones-plat-carousel">
+                                        }
+                                        @if (obj.Plataforma == Plataforma.PC)
+                                        {
+                                            <img src="~/images/assets/plataformas/PC.svg" class="p-1 icones-plat-carousel">
+                                        }
+                                        @if (obj.Plataforma == Plataforma.PS4 || obj.Plataforma == Plataforma.PS5)
+                                        {
+                                            <img src="~/images/assets/plataformas/playstation.svg" class="icones-plat-carousel">
+                                        }
+                                        @if (obj.Plataforma == Plataforma.XONE || obj.Plataforma == Plataforma.XSXS)
+                                        {
+                                            <img src="~/images/assets/plataformas/xbox.svg" class="p-1" class="icones-plat-carousel">
+                                        }
+                                    </div>
+                                    <h4 class="col-6 px-3 fw-bolder text-end mt-auto carousel-preco">R$ @obj.PrecoNormal.ToString("N2")</h4>
+                                </div>
+                            </a>
                         </div>
                     }
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#lancamentos" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#lancamentos" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
     </div>
 
-    <div class="col-12 col-lg-5 py-1 py-xl-3 px-3 d-flex flex-column justify-content-center" style="background-color: #222; border: 2px solid black; border-radius: 7px">
+    <div class="col-12 col-lg-5 py-1 py-xl-3 px-3 d-flex flex-column justify-content-center home-box">
         <a style="font-family:Play; font-size:2rem; text-align:center">Alexandre Giaccheri</a>
         <a style="font-family:Play; font-size:1.5rem; text-align:center">Desenvolvedor FullStack</a>
         <hr class="mx-auto w-75" />
-        <a style="font-family:Play; font-size:1.2rem; text-align:center"><i class="bi bi-github"></i> &nbsp; GitHub: @Html.Raw("@")alexandregiaccheri</a>
-        <a style="font-family:Play; font-size:1.2rem; text-align:center"><i class="bi bi-linkedin"></i> &nbsp; LinkedIn: in/alexandregiaccheri</a>
-        <a style="font-family:Play; font-size:1.2rem; text-align:center"><i class="bi bi-envelope"></i> &nbsp; Email: contato@xande.dev</a>
-        <a style="font-family:Play; font-size:1.2rem; text-align:center"><i class="bi bi-telephone"></i> &nbsp; Telefone: (14) 99680-5658</a>
-        <a style="font-family:Play; font-size:1.2rem; text-align:center"><i class="bi bi-download"></i> &nbsp; Baixar Currículo (PDF)</a>
+        <a class="links-curriculo"><i class="bi bi-github"></i> &nbsp; GitHub: @Html.Raw("@")alexandregiaccheri</a>
+        <a class="links-curriculo"><i class="bi bi-linkedin"></i> &nbsp; LinkedIn: in/alexandregiaccheri</a>
+        <a class="links-curriculo"><i class="bi bi-envelope"></i> &nbsp; Email: contato@xande.dev</a>
+        <a class="links-curriculo"><i class="bi bi-telephone"></i> &nbsp; Telefone: (14) 99680-5658</a>
+        <a class="links-curriculo"><i class="bi bi-download"></i> &nbsp; Baixar Currículo (PDF)</a>
         <hr class="w-75 mx-auto" />
-        <div class="d-flex mx-auto" style="width:fit-content; border-radius:10px">
-            <div class="">
-                <img class="p-2" style="height:75px" src="~/images/assets/home/NET_Core_Logo.svg" />
+        <div class="d-flex mx-auto">
+            <div>
+                <img class="p-2 icones-tech" title=".NET Core" src="~/images/assets/home/NET_Core_Logo.svg" />
             </div>
-            <div class="">
-                <img class="p-2" style="height:75px" src="~/images/assets/home/CSS3_and_HTML5_logos_and_wordmarks.svg" />
+            <div>
+                <img class="p-2 icones-tech" title="CSS3 e HTML5" src="~/images/assets/home/CSS3_and_HTML5_logos_and_wordmarks.svg" />
             </div>
-            <div class="">
-                <img class="p-2" style="height:75px" src="~/images/assets/home/Bootstrap_logo.svg" />
+            <div>
+                <img class="p-2 icones-tech" title="Bootstrap 5" src="~/images/assets/home/Bootstrap_logo.svg" />
             </div>
-            <div class="">
-                <img class="p-2" style="height:75px" src="~/images/assets/home/Unofficial_JavaScript_logo_2.svg" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 col-md-5" style="background-color: #222; border: 2px solid black; border-radius: 7px">
-    </div>
-    <div class="pt-2 pb-3 col-12 col-md-12" style="background-color:#222; border: solid 2px #000; border-radius: 7px;">
-        <h2 class="text-white text-center mb-2 fw-bold" style="font-family:Play">Lançamentos</h2>
-        <div class="col-12">
-            <div id="lancamentos" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active position-relative" data-bs-interval="500">
-                        <img src="@Model.First().BoxArt" class="d-block w-100" style="filter:brightness(75%)">
-                        <div class="carousel-caption position-absolute bottom-0 start-0" style="width:fit-content">
-                            <h4 class="px-3 fw-bolder text-start" style="color:#fff; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-family:Play">R$ @Model.First().PrecoNormal.ToString("N2")</h4>
-                        </div>
-                    </div>
-                    @foreach (var obj in Model.ToList().GetRange(0, 5))
-                    {
-                        <div class="carousel-item d-flex flex-row" data-bs-interval="8000">
-
-                            <div class="col-6 d-flex flex-row">
-                                <div class="d-flex flex-column col-6">
-                                    <img src="@obj.Screenshot1" class="col-6" style="width:100%; aspect-ratio: 16/9; filter: brightness(75%); border:2px solid #222">
-                                    <img src="@obj.Screenshot2" class="col-6" style="width:100%; aspect-ratio: 16/9; filter: brightness(75%); border:2px solid #222">
-                                </div>
-                                <div class="d-flex flex-column col-6">
-                                    <img src="@obj.Screenshot3" class="col-6" style="width:100%; aspect-ratio: 16/9; filter: brightness(75%); border:2px solid #222">
-                                    <img src="@obj.Screenshot4" class="col-6" style="width:100%; aspect-ratio: 16/9; filter: brightness(75%); border:2px solid #222">
-                                </div>
-                            </div>
-
-                            <div class="col-6 position-relative">
-                                <img src="@obj.BoxArt" class="w-100" style="aspect-ratio: 16/9; filter: brightness(75%); border:2px solid #222">
-
-                                <div class="carousel-caption text-end position-absolute bottom-0 end-0" style="width:fit-content%">
-                                    <h4 class="px-3 fw-bolder" style="color:#fff; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-family:Play">R$ @obj.PrecoNormal.ToString("N2")</h4>
-                                </div>
-                            </div>
-
-                        </div>
-                    }
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#lancamentos" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#lancamentos" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+            <div>
+                <img class="p-2 icones-tech" title="JavaScript" src="~/images/assets/home/Unofficial_JavaScript_logo_2.svg" />
             </div>
         </div>
     </div>
 </div>
 
-<div class="row text-center py-2" style="background-color:#111; border: solid 2px #000; border-radius: 7px;">
-    <h1 class="fw-bold text-white col-12" style="font-family:Play">Procure por Plataforma</h1>
+<div class="row text-center py-2 barra-titulo">
+    <h1 class="fw-bold text-white col-12 font-play">Procure por Plataforma</h1>
 </div>
 
 <div class="row text-center">
     <div onclick="location.href='#';" id="nswitch" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/nintendo.svg" class="col-3 p-1" style="filter:invert(1); height: 7rem; width: contain" />
-        <h3 class="text-white my-auto" style="font-family:Play">Nintendo Switch</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
+        <img src="~/images/assets/plataformas/nintendo.svg" class="col-3 p-1 icones-escolha-plat" />
+        <h3 class="text-white my-auto font-play">Nintendo Switch</h3>
+        <h3 class="mx-3"></h3>
     </div>
     <div onclick="location.href='#';" id="computer" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/PC.svg" class="col-3 p-2" style="filter:invert(1); height: 7rem; width:contain" />
-        <h3 class="text-white my-auto" style="font-family:Play">Computador</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
+        <img src="~/images/assets/plataformas/PC.svg" class="col-3 p-2 icones-escolha-plat" />
+        <h3 class="text-white my-auto font-play">Computador</h3>
+        <h3 class="mx-3"></h3>
     </div>
     <div onclick="location.href='#';" id="ps4" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-2" style="filter:brightness(10); height: 7rem; width:contain" />
-        <h3 class="text-white my-auto" style="font-family:Play">Playstation 4</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
+        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-2 icones-escolha-plat" />
+        <h3 class="text-white my-auto font-play">Playstation 4</h3>
+        <h3 class="mx-3"></h3>
     </div>
     <div onclick="location.href='#';" id="ps5" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-2" style="filter:brightness(10); height: 7rem; width:contain" />
-        <h3 class="text-white my-auto" style="font-family:Play">Playstation 5</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
+        <img src="~/images/assets/plataformas/playstation.svg" class="col-3 p-2 icones-escolha-plat" />
+        <h3 class="text-white my-auto font-play">Playstation 5</h3>
+        <h3 class="mx-3"></h3>
     </div>
     <div onclick="location.href='#';" id="xone" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-3" style="filter:invert(1); height: 7rem; width:contain" />
-        <h3 class="text-white my-auto" style="font-family:Play">Xbox One</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
+        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-3 icones-escolha-plat" />
+        <h3 class="text-white my-auto font-play">Xbox One</h3>
+        <h3 class="mx-3"></h3>
     </div>
     <div onclick="location.href='#';" id="xseries" class="col-12 col-md-6 col-lg-4 d-flex justify-content-between">
-        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-3" style="filter:invert(1); height: 7rem; width:contain" />
-        <h3 class="text-white my-auto" style="font-family:Play">Xbox Series</h3>
-        <h3 class="text-white my-auto mx-3" style="font-size:3rem">@*<i class="bi bi-chevron-double-right"></i>*@</h3>
+        <img src="~/images/assets/plataformas/xbox.svg" class="col-3 p-3 icones-escolha-plat" />
+        <h3 class="text-white my-auto font-play">Xbox Series</h3>
+        <h3 class="mx-3"></h3>
     </div>
 </div>
 
-<div class="row text-center py-2" style="background-color:#111; border: solid 2px #000; border-radius: 7px;">
-    <h1 class="fw-bold text-white col-12" style="font-family:Play">Jogos em Destaque</h1>
+<div class="row">
+    <div class="pt-2 pb-3 col-12 home-box">
+        <h2 class="text-white text-center mb-2 fw-bold font-play">Lançamentos</h2>
+        <div class="col-12">
+            <div id="lancamentos" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#lancamentos" data-bs-slide-to="0" class="d-none active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#lancamentos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#lancamentos" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#lancamentos" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#lancamentos" data-bs-slide-to="4" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#lancamentos" data-bs-slide-to="5" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-item d-flex flex-row active" data-bs-interval="500">
+                        <div class="col-6 d-flex flex-row">
+                            <div class="d-flex flex-column col-6">
+                                <img src="@Model.OrderByDescending(p => p.DataLancamento).First().Screenshot1" class="col-6 carousel-imglancamentos">
+                                <img src="@Model.OrderByDescending(p => p.DataLancamento).First().Screenshot2" class="col-6 carousel-imglancamentos">
+                            </div>
+                            <div class="d-flex flex-column col-6">
+                                <img src="@Model.OrderByDescending(p => p.DataLancamento).First().Screenshot3" class="col-6 carousel-imglancamentos">
+                                <img src="@Model.OrderByDescending(p => p.DataLancamento).First().Screenshot4" class="col-6 carousel-imglancamentos">
+                            </div>
+                        </div>
+
+                        <div class="col-6 position-relative">
+                            <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@Model.OrderByDescending(p => p.DataLancamento).First().Id">
+                                <img src="@Model.OrderByDescending(p => p.DataLancamento).First().BoxArt" class="w-100 carousel-imglancamentos">
+                                <div class="carousel-caption text-end position-absolute bottom-0 end-0">
+                                    <h4 class="px-3 carousel-precolancamentos">R$ @Model.OrderByDescending(p => p.DataLancamento).First().PrecoNormal.ToString("N2")</h4>
+                                </div>
+                                <div class="carousel-caption text-end position-absolute top-0 end-0 px-4">
+                                    @if (Model.First().Plataforma == Plataforma.NSW)
+                                    {
+                                        <img src="~/images/assets/plataformas/nintendo.svg" class="icones-plat-carousel">
+                                    }
+                                    @if (Model.First().Plataforma == Plataforma.PC)
+                                    {
+                                        <img src="~/images/assets/plataformas/PC.svg" class="p-1 icones-plat-carousel">
+                                    }
+                                    @if (Model.First().Plataforma == Plataforma.PS4 || Model.First().Plataforma == Plataforma.PS5)
+                                    {
+                                        <img src="~/images/assets/plataformas/playstation.svg" class="icones-plat-carousel">
+                                    }
+                                    @if (Model.First().Plataforma == Plataforma.XONE || Model.First().Plataforma == Plataforma.XSXS)
+                                    {
+                                        <img src="~/images/assets/plataformas/xbox.svg" class="p-1 icones-plat-carousel">
+                                    }
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    @foreach (var obj in Model.OrderByDescending(o => o.DataLancamento).ToList().GetRange(0, 5))
+                    {
+                        <div class="carousel-item d-flex flex-row" data-bs-interval="15000">
+                            <div class="col-6 d-flex flex-row">
+                                <div class="d-flex flex-column col-6">
+                                    <img src="@obj.Screenshot1" class="col-6 carousel-imglancamentos">
+                                    <img src="@obj.Screenshot2" class="col-6 carousel-imglancamentos">
+                                </div>
+                                <div class="d-flex flex-column col-6">
+                                    <img src="@obj.Screenshot3" class="col-6 carousel-imglancamentos">
+                                    <img src="@obj.Screenshot4" class="col-6 carousel-imglancamentos">
+                                </div>
+                            </div>
+
+                            <div class="col-6 position-relative">
+                                <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id">
+                                    <img src="@obj.BoxArt" class="w-100 carousel-imglancamentos">
+
+                                    <div class="carousel-caption text-end position-absolute bottom-0 end-0">
+                                        <h4 class="px-3 carousel-precolancamentos">R$ @obj.PrecoNormal.ToString("N2")</h4>
+                                    </div>
+                                    <div class="carousel-caption text-end position-absolute top-0 end-0 px-4">
+                                        @if (obj.Plataforma == Plataforma.NSW)
+                                        {
+                                            <img src="~/images/assets/plataformas/nintendo.svg" class="icones-plat-carousel">
+                                        }
+                                        @if (obj.Plataforma == Plataforma.PC)
+                                        {
+                                            <img src="~/images/assets/plataformas/PC.svg" class="p-1 icones-plat-carousel">
+                                        }
+                                        @if (obj.Plataforma == Plataforma.PS4 || obj.Plataforma == Plataforma.PS5)
+                                        {
+                                            <img src="~/images/assets/plataformas/playstation.svg" class="icones-plat-carousel">
+                                        }
+                                        @if (obj.Plataforma == Plataforma.XONE || obj.Plataforma == Plataforma.XSXS)
+                                        {
+                                            <img src="~/images/assets/plataformas/xbox.svg" class="p-1 icones-plat-carousel">
+                                        }
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="row" style="margin-bottom: 80px">
+<div class="row text-center py-2 barra-titulo">
+    <h1 class="fw-bold text-white col-12 font-play">Jogos em Destaque</h1>
+</div>
+
+<div class="row px-1" style="margin-bottom: 80px">
     @foreach (var obj in Model)
     {
         <div class="col-12 col-md-6 col-lg-4 col-xxl-3 p-2 d-flex flex-column home-card" style="height: 470px">
             <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id" class="mb-2" style="width:100%; height:40%">
                 <div class="mb-2 rounded-2" style="background: url('@obj.BoxArt.Replace("\\", "/")');
                                             height: 100%; width: 100%; background-size: cover;
-                                            background-position: center;">
-                </div>
+                                            background-position: center;"></div>
             </a>
             <div class="px-1" style="height:45%">
                 <div style="height:auto">
                     <div class="d-flex justify-content-between" style="width:inherit">
                         <div class="my-auto">
-                            <h3 class="text-white" style="font-family:Play"><strong>@obj.Titulo</strong></h3>
+                            <h3 class="text-white font-play"><strong>@obj.Titulo</strong></h3>
                         </div>
                         <div class="col-3 text-end">
                             @if (obj.Plataforma == Plataforma.NSW)
                             {
-                                <img src="~/images/assets/plataformas/nintendo.svg" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                                <img src="~/images/assets/plataformas/nintendo.svg" class="icones-card">
                             }
                             @if (obj.Plataforma == Plataforma.PC)
                             {
-                                <img src="~/images/assets/plataformas/PC.svg" class="p-1" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                                <img src="~/images/assets/plataformas/PC.svg" class="p-1 icones-card">
                             }
                             @if (obj.Plataforma == Plataforma.PS4 || obj.Plataforma == Plataforma.PS5)
                             {
-                                <img src="~/images/assets/plataformas/playstation.svg" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                                <img src="~/images/assets/plataformas/playstation.svg" class="icones-card">
                             }
                             @if (obj.Plataforma == Plataforma.XONE || obj.Plataforma == Plataforma.XSXS)
                             {
-                                <img src="~/images/assets/plataformas/xbox.svg" class="p-1" style="height: 70px; width: 70px; filter: invert(1) brightness(10)">
+                                <img src="~/images/assets/plataformas/xbox.svg" class="p-1 icones-card">
                             }
                         </div>
                     </div>
-                    <p class="text-white" style="font-family:Play">
+                    <p class="text-white font-play">
                         Desenvolvedor: @obj.Desenvolvedor <br>
                         Distribuidor: @obj.Distribuidor <br>
                         Plataforma: @obj.Plataforma (@obj.DataLancamento.ToString("yyyy"))
@@ -344,13 +319,13 @@
             <div class="row mb-3" style="height:15%">
                 @if (obj.PrecoPromo != 0)
                 {
-                    <h5 class="text-end" style="color: lightgreen; font-family:Play; margin-top: 10px; margin-right: 8px">
+                    <h5 class="text-end preco-home-card">
                         <small><s>R$ @obj.PrecoNormal.ToString("N2")</s></small> <b>R$ @obj.PrecoPromo.ToString("N2")</b>
                     </h5>
                 }
                 else
                 {
-                    <h5 class="text-end" style="color: lightgreen; font-family:Play; margin-top: 10px; margin-right: 8px">
+                    <h5 class="text-end preco-home-card">
                         <b>R$ @obj.PrecoNormal.ToString("N2")</b>
                     </h5>
                 }

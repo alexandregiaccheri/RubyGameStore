@@ -6,25 +6,25 @@
 
 <style>
     body {
-        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
+        background-image: radial-gradient(circle at center top, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 50%) 35%), radial-gradient(circle at center bottom, rgba(120, 0, 0, 100%) 0%, rgba(10, 10, 10, 100%) 35%);
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: top;
     }
 </style>
 
-<img id="myimg" src="@Model.Produto.BoxArt" hidden />
-
-
-<section class="row pt-2" style="width:100%; height:5em; position:relative">
-    <h1 class="col-12 text-white" style="position:absolute; bottom:0; font-family:Play; font-weight:bold">@Model.Produto.Titulo</h1>
+<section class="row pt-2 w-100" style="height:5em; position:relative">
+    <h1 class="col-12 position-absolute bottom-0 font-play fw-bold text-white">@Model.Produto.Titulo</h1>
 </section>
 
-<section class="d-flex flex-column-reverse flex-lg-row">
-    <div class=" col-12 col-lg-8 col-xl-9 p-1">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="box-shadow:0px 0px 6px 2px #333; padding:0.08rem">
+<section class="d-flex flex-column-reverse flex-lg-row" style="height:fit-content">
+    <div class=" col-12 col-lg-8 p-1">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="false" data-bs-interval="false" style="box-shadow:0px 0px 6px 2px #333; padding:0.08rem">
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <iframe class="carousel-item active" style="width:100%; aspect-ratio:16/9"
+                        src="@Model.Produto.LinkTrailer" frameborder="0" allowfullscreen>
+                </iframe>
+                <div class="carousel-item">
                     <img class="d-block w-100" src="@Model.Produto.Screenshot1">
                 </div>
                 <div class="carousel-item">
@@ -53,22 +53,21 @@
             </button>
         </div>
     </div>
-    <div class="container d-flex flex-column flex-md-row flex-lg-column mx-auto mx-lg-2 py-3 col-12 col-lg-4 col-xl-3 justify-content-between justify-content-md-around justify-content-lg-between" style="border: 2px solid #333; border-radius:10px; background-color: #222; min-height: auto">
+    <div class="container d-flex flex-column flex-md-row flex-lg-column mx-auto mx-lg-2 py-3 col-12 col-lg-4 justify-content-between justify-content-md-around justify-content-lg-between transparent-box" style="height:auto">
         <div class="col-12 col-md-6 col-lg-12 my-lg-auto">
             <img src="@Model.Produto.BoxArt" class="rounded-2" style="width:100%; background-size:contain" />
         </div>
-        @*<hr class="text-white d-none d-xl-block" />*@
         <div class="row my-auto p-2 d-flex flex-column">
-            <div class="col-12">
+            <div class="col-12 text-center">
                 @if (Model.Produto.PrecoPromo != 0)
                 {
-                    <p class="m-0" style="color: lightgreen; font-family:Play; font-size:1.6rem; line-height:1.6">
+                    <p class="m-0 preco-produto">
                         <small><s>R$ @Model.Produto.PrecoNormal.ToString("N2")</s></small> <b>R$ @Model.Produto.PrecoPromo.ToString("N2")</b>
                     </p>
                 }
                 else
                 {
-                    <p class="m-0" style="color: lightgreen; font-family:Play; font-size:1.6rem; line-height:1.6"><b>R$ @Model.Produto.PrecoNormal.ToString("N2")</b></p>
+                    <p class="m-0 preco-produto"><b>R$ @Model.Produto.PrecoNormal.ToString("N2")</b></p>
                 }
             </div>
             <form method="post" class="col-12 d-flex flex-column">
@@ -76,10 +75,6 @@
                 <input asp-for="@Model.Id" hidden readonly />
                 <input asp-for="@Model.Quantidade" hidden value="1" />
                 <div class="d-flex flex-row col-12">
-                    @*<div class="d-flex text-center mb-1">
-                        <label asp-for="Quantidade" class="text-white fw-bold my-auto" style="padding-right: 0.5rem"></label>
-                        <input asp-for="Quantidade" class="form-control text-center" style="width:60px" />
-                        </div>*@
                     <button type="submit" class="btn btn-success w-100"><i class="bi bi-cart-plus"></i>&nbsp; Adicionar ao Carrinho</button>
                 </div>
                 <div class="d-flex justify-content-between col-12 mt-2">
@@ -92,29 +87,29 @@
                 </div>
             </form>
         </div>
-        <div class="d-none d-xl-block p-2" style="border: 2px solid #333; border-radius:10px; background-color: #222; height: auto">
+        @*<div class="d-none d-xxl-block p-2" style="border: 2px solid #333; border-radius:10px; background-color: #222; height: auto">
             <h3 class="text-white text-center" style="font-family:Play">Parabéns</h3>
             <p class="text-white text-center" style="font-family:Play">
-                Você encontrou o <b>cupom secreto</b> elitista! <br />
-                Insira o cupom <b>"TelaGrande"</b> na próxima compra e ganhe R$ 10,00 de desconto!
+            Você encontrou o <b>cupom secreto</b> elitista! <br />
+            Insira o cupom <b>"TelaGrande"</b> na próxima compra e ganhe R$ 10,00 de desconto!
             </p>
-        </div>
+            </div>*@
     </div>
 </section>
 
 <section class="d-flex flex-column-reverse flex-lg-row mt-3">
-    <div class="container pt-3 pb-2 col-12 col-lg-8 col-xl-9 mb-3" style="border: 2px solid #333; border-radius:10px; background-color: #222; min-height: auto">
-        <h3 class="text-white" style="font-family:Play"><b>Descrição do Jogo:</b></h3>
-        <p style="color:white">@Html.Raw(@Model.Produto.Descricao)</p>
+    <div class="container pt-3 pb-2 col-12 col-lg-8 mb-3 transparent-box">
+        <h3 class="text-white font-play"><b>Descrição do Jogo:</b></h3>
+        <p>@Html.Raw(@Model.Produto.Descricao)</p>
     </div>
-    <div class="row col-12 col-lg-4 col-xl-3 mx-auto mx-lg-2 mb-3 p-1 d-flex flex-column flex-md-row flex-lg-column justify-content-between" style="border: 2px solid #333; border-radius:10px; background-color: #222; min-height:auto">
-        <p class="text-white text-center text-lg-start px-2 py-2 col-12 col-md-6 col-lg-12">
+    <div class="row col-12 col-lg-4 mx-auto mx-lg-2 mb-3 p-1 d-flex flex-column flex-md-row flex-lg-column justify-content-between transparent-box">
+        <p class="text-white text-center px-2 py-2 col-12 col-md-6 col-lg-12">
             <b>Desenvolvedor: </b>@Model.Produto.Desenvolvedor <br />
             <b>Distribuidor:</b> @Model.Produto.Distribuidor <br />
             <b>Plataforma:</b> @Model.Produto.Plataforma
         </p>
         <hr class="text-white d-md-none d-lg-block" />
-        <p class="text-white text-center text-lg-start px-2 py-2 col-12 col-md-6 col-lg-12">
+        <p class="text-white text-center px-2 py-2 col-12 col-md-6 col-lg-12">
             <b>Gênero: </b>@Model.Produto.Genero <br />
             <b>Data de Lançamento:</b> @Model.Produto.DataLancamento.ToString("dd/MM/yyyy") <br />
             <b>Jogadores:</b> @Model.Produto.Jogadores
@@ -195,95 +190,3 @@
         </div>
     </div>
 </section>
-
-@*<section class="container px-md-3 d-flex flex-column flex-md-row justify-content-end" style=" background-color: #333333">
-    <div class="col-12 col-md-7 col-xl-5 py-3 d-flex flex-column flex-md-row justify-content-between justify-content-lg-end">
-    <div class="d-flex container justify-content-md-between mx-auto col-md-8 col-lg-6 pb-3 pb-md-0">
-    <div class="text-white mx-auto my-auto w-50 text-center" style="height: 90px">
-    @if (@Model.Produto.Plataforma == Plataforma.NSW)
-    {
-    <img src="~/images/assets/plataformas/nintendo.svg" style="height: 70px; width: 70px; filter: invert(1) brightness(100)">
-    }
-    @if (@Model.Produto.Plataforma == Plataforma.PC)
-    {
-    <img src="~/images/assets/plataformas/PC.svg" style="height: 80px; width: 80px; filter: invert(1) brightness(100)">
-    }
-    @if (@Model.Produto.Plataforma == Plataforma.PS4 || @Model.Produto.Plataforma == Plataforma.PS5)
-    {
-    <img src="~/images/assets/plataformas/playstation.svg" style="height:80px; font-color:white; filter: invert(1) brightness(100)">
-    }
-    @if (@Model.Produto.Plataforma == Plataforma.XONE || @Model.Produto.Plataforma == Plataforma.XSXS)
-    {
-    <img src="~/images/assets/plataformas/xbox.svg" style="height: 70px; width: 70px; filter: invert(1) brightness(100)">
-    }
-    </div>
-    <div class="text-white my-auto mx-auto w-50 text-center px-2 px-md-0">
-    @if (@Model.Produto.Classificacao == Classificacao.ESRB_E)
-    {
-    <img src="~/images/assets/classificacao/E.svg" />
-    }
-    @if (@Model.Produto.Classificacao == Classificacao.ESRB_E10)
-    {
-    <img src="~/images/assets/classificacao/E10.svg" />
-    }
-    @if (@Model.Produto.Classificacao == Classificacao.ESRB_T)
-    {
-    <img src="~/images/assets/classificacao/T.svg" />
-    }
-    @if (@Model.Produto.Classificacao == Classificacao.ESRB_M)
-    {
-    <img src="~/images/assets/classificacao/M.svg" />
-    }
-    @if (@Model.Produto.Classificacao == Classificacao.ESRB_A)
-    {
-    <img src="~/images/assets/classificacao/A.svg" />
-    }
-    @if (@Model.Produto.Classificacao == Classificacao.ESRB_RP)
-    {
-    <img src="~/images/assets/classificacao/RP.svg" />
-    }
-    </div>
-    </div>
-    <div class="d-flex my-auto mx-auto justify-content-around col-md-4 col-lg-6" style="background-color: white; height:80px; border-radius: 10px; padding:10px">
-    <img class="my-auto d-none d-md-block d-lg-none" src="~/images/assets/misc/metacritic.svg" style="width: 60px; height: 60px; padding:6px" />
-    <img class="my-auto d-block d-md-none d-lg-block p-1" src="~/images/assets/misc/Metacritic_logo.svg" style="max-height: 45px; margin-right: 15px" />
-    @if (@Model.Produto.Metascore > 74)
-    {
-    <div class="my-auto" style="color:white; background-color:#6c3; border-radius:6px; vertical-align:middle; text-align:center; width:60px; height: 60px; line-height:60px">
-    <p style="font-family:Arial; font-weight:bold; font-size:27px">@Model.Produto.Metascore</p>
-    </div>
-    }
-    else if (@Model.Produto.Metascore > 49)
-    {
-    <div class="my-auto" style="color:white; background-color:#fc3; border-radius:6px; vertical-align:middle; text-align:center; width:60px; height: 60px; line-height:60px">
-    <p style="font-family:Arial; font-weight:bold; font-size:27px">@Model.Produto.Metascore</p>
-    </div>
-    }
-    else if (@Model.Produto.Metascore > 0)
-    {
-    <div class="my-auto" style="color:white; background-color:#f00; border-radius:6px; vertical-align:middle; text-align:center; width:60px; height: 60px; line-height:60px">
-    <p style="font-family:Arial; font-weight:bold; font-size:27px">@Model.Produto.Metascore</p>
-    </div>
-    }
-    else
-    {
-    <div class="my-auto" style="color:white; background-color:#ccc; border-radius:6px; vertical-align:middle; text-align:center; width:60px; height: 60px; line-height:60px">
-    <p style="font-family:Arial; font-weight:bold; font-size:27px">tbd</p>
-    </div>
-    }
-    </div>
-    </div>
-
-    </section>*@
-
-@section Scripts{
-<script>
-    //$(document).ready(function(){
-    //    var sourceImage = document.getElementById("myimg");
-    //    var colorThief = new ColorThief();
-    //    var color = colorThief.getColor(sourceImage);
-    //    document.body.style.background = "linear-gradient(to bottom, rgb(" + color + " ), black )";
-    //   });
-    $('.carousel').carousel();
-</script>
-}

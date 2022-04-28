@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RubyGameStore.Data.Repository.IRepository;
+using RubyGameStore.Helper.StaticNames;
 using RubyGameStore.Models.Models;
 
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = $"{Autorizacao.Admin},{Autorizacao.Funcionario}")]
     public class EmpresaController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

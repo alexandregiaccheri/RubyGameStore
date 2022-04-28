@@ -9,7 +9,7 @@ using Stripe;
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = $"{Autorizacao.Admin},{Autorizacao.Funcionario}")]    
     public class PedidosController : Controller
     {
         [BindProperty]

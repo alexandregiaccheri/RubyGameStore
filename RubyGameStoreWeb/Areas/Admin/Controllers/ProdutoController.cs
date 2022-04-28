@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Helper.StaticNames;
@@ -8,6 +9,7 @@ using System.Drawing;
 namespace RubyGameStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = $"{Autorizacao.Admin},{Autorizacao.Funcionario}")]
     public class ProdutoController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -22,29 +22,29 @@ namespace RubyGameStore.Models.Models
         public bool Status { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Display(Name = "Tipo do Desconto")]
+        [Display(Name = "Tipo do Desconto (R$/%)")]
         public string TipoDesconto { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Display(Name = "Número de Usos (-1 = Ilimitado)")]
+        [Display(Name = "Usos do Cupom (para usos ilimitados, coloque -1)")]
         public int QuantidadeUsos { get; set; }
 
         [Required]
         [Display(Name = "Data de validade do cupom")]
         public DateTime ValidadeCupom { get; set; }
 
-        [Display(Name = "Valor do desconto em reais")]
+        [Display(Name = "Valor do desconto (R$)")]
         public double? ValorDescontoReais { get; set; }
 
-        [Display(Name = "Valor do desconto em porcentagem")]
+        [Display(Name = "Valor do desconto (%)")]
         public int? ValorDescontoPorcento { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Display(Name = "Valor máximo do desconto")]
+        [Display(Name = "Valor máximo descontado (R$)")]
         public double ValorMaximoDesconto { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Display(Name = "Valor mínimo requerido")]
+        [Display(Name = "Valor mínimo para conceder desconto (R$)")]
         public double ValorRequerido { get; set; }
 
     }
