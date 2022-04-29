@@ -341,7 +341,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
             //Stripe
             else
             {
-                var domain = "https://localhost:7213/";
+                var domain = "https://www.rgs.xande.dev/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>(),

@@ -25,6 +25,7 @@ function carregarDataTable(status) {
         "language": {
             "info": "Exibindo _START_ a _END_ de _TOTAL_ entradas",
             "lengthMenu": "Exibir _MENU_ entradas",
+            "search": "Buscar",
             "paginate": {
                 "first": "Início",
                 "last": "Fim",
@@ -34,7 +35,7 @@ function carregarDataTable(status) {
         },
         "responsive": "true",
         "order": [[0, "desc"]],
-        "searching": false,
+        "searching": true,
         "columns": [
             { "data": "id" },
             { "data": "usuario.email" },

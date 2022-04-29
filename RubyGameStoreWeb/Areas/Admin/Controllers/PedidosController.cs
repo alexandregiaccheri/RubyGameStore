@@ -30,7 +30,7 @@ namespace RubyGameStoreWeb.Areas.Admin.Controllers
         {
             PedidoVM = new PedidoVM()
             {
-                PedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id),
+                PedidoCabecalho = unitOfWork.PedidoCabecalhoRepo.GetFirstOrDefault(p => p.Id == id, incluirPropriedades: "Usuario"),
                 PedidoDetalhes = unitOfWork.PedidoDetalhesRepo.GetAll(p => p.PedidoId == id, incluirPropriedades: "Produto")
             };
             return View(PedidoVM);

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using RubyGameStore.Data.Data;
+using RubyGameStore.Data.DbInitializer;
 using RubyGameStore.Data.Repository;
 using RubyGameStore.Data.Repository.IRepository;
 using RubyGameStore.Helper;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<RubyGameStoreDbContext>(o => o.UseSqlServer(builde
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders().AddEntityFrameworkStores<RubyGameStoreDbContext>();
 builder.Services.Configure<StripeKeys>(builder.Configuration.GetSection("StripeKeys"));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddAuthentication()
     .AddFacebook(options =>
@@ -72,9 +74,11 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseRouting();
+
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("StripeKeys:SecretKey").Get<string>();
 
-app.UseRouting();
+SeedDb();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -87,3 +91,13 @@ app.MapControllerRoute(
     pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+void SeedDb()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}

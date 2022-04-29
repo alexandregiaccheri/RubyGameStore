@@ -105,15 +105,7 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
 
 
         public async Task OnGetAsync(string returnUrl = null)
-        {
-            // Criar Roles caso ainda não tenham sido criadas
-            if (!await _roleManager.RoleExistsAsync(Autorizacao.Admin))
-            {
-                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Admin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Cliente)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Empresa)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(Autorizacao.Funcionario)).GetAwaiter().GetResult();
-            }
+        {            
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -183,7 +175,14 @@ namespace RubyGameStoreWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(Autorizacao.Admin))
+                        {
+                            TempData["sucesso"] = "Usuário criado com sucesso!";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

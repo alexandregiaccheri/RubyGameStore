@@ -8,6 +8,17 @@ function carregarDataTable() {
             "url": "/Admin/Empresa/GetAll"
         },
         "responsive": "true",
+        "language": {
+            "info": "Exibindo _START_ a _END_ de _TOTAL_ entradas",
+            "lengthMenu": "Exibir _MENU_ entradas",
+            "search": "Buscar",
+            "paginate": {
+                "first": "Início",
+                "last": "Fim",
+                "next": "Próximo",
+                "previous": "Anterior"
+            }
+        },
         "columns": [
             { "data": "nomeEmpresa" },
             { "data": "cnpjEmpresa" },

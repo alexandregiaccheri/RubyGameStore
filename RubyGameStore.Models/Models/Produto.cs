@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RubyGameStore.Models.Models
 {
@@ -13,6 +14,7 @@ namespace RubyGameStore.Models.Models
         public string Titulo { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
+        [Column(TypeName = "Date")]
         [Display(Name = "Data de Lançamento")]
         public DateTime DataLancamento { get; set; }
 
@@ -30,8 +32,10 @@ namespace RubyGameStore.Models.Models
         public string Plataforma { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
+        [Display(Name = "Gênero")]
         public string Genero { get; set; }
 
+        [Display(Name = "Classificação")]
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Classificacao { get; set; }
 
@@ -40,7 +44,7 @@ namespace RubyGameStore.Models.Models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [Range(0, 100)]
-        [Display(Name = "MetaScore (Deixe zero caso ainda não possua metascore)")]
+        [Display(Name = "Metascore (0 = TBD)")]
         public int Metascore { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
@@ -48,17 +52,17 @@ namespace RubyGameStore.Models.Models
         public double PrecoNormal { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Display(Name = "Preço Promocional - Deixe ZERO para não aplicar promoção!")]
+        [Display(Name = "Preço Promocional (0 = Preço Normal/Sem Promoção)")]
         public double PrecoPromo { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Imagem - Banner principal")]
+        [Display(Name = "Cover Art (16:9)")]
         public string BoxArt { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
         [ValidateNever]
-        [Display(Name = "Link do trailer no YouTube")]
+        [Display(Name = "Link YouTube (embed)")]
         public string LinkTrailer { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]

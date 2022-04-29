@@ -1,6 +1,6 @@
 html {
     font-size: 14px;
-    min-height: calc(100vh - 140px);
+    min-height: 100%;
     position: relative;
 }
 
@@ -16,7 +16,6 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     color: white;
-    min-height: calc(100vh - 140px);
     margin-bottom: 60px;
 }
 
@@ -287,4 +286,8 @@ div.form-floating {
     font-family: Play;
     font-size: 1.6rem;
     line-height: 1.6;
+}
+
+.tox-tinymce{
+    padding: 0px;
 }

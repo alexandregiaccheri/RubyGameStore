@@ -7,6 +7,17 @@ function carregarDataTable() {
         "ajax": {
             "url": "/Admin/Produto/GetAll"
         },
+        "language": {
+            "info": "Exibindo _START_ a _END_ de _TOTAL_ entradas",
+            "lengthMenu": "Exibir _MENU_ entradas",
+            "search": "Buscar",
+            "paginate": {
+                "first": "Início",
+                "last": "Fim",
+                "next": "Próximo",
+                "previous": "Anterior"
+            }
+        },
         "responsive": "true",
         "columns": [
             { "data": "titulo" },

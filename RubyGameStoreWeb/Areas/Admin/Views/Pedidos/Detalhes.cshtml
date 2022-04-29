@@ -32,7 +32,8 @@
     }
     <div class="text-center">
         <p>
-            Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido            
+            Pedido Nª @Model.PedidoCabecalho.Id | Realizado em @Model.PedidoCabecalho.DataHoraPedido<br />
+            Email: @Model.PedidoCabecalho.Usuario.Email
         </p>
     </div>
 </div>
@@ -46,7 +47,7 @@
                 <p>
                     <b>@Model.PedidoCabecalho.StatusPedido</b> <br />
                     Data: @Model.PedidoCabecalho.DataHoraPedido.ToShortDateString() <br />
-                    Hora: @Model.PedidoCabecalho.DataHoraPedido.ToShortTimeString() <br />
+                    Hora: @Model.PedidoCabecalho.DataHoraPedido.ToShortTimeString() <br />                    
                 </p>
             </div>
         </div>
@@ -59,7 +60,7 @@
                 <p>
                     <b>Total: R$ @Model.PedidoCabecalho.TotalPedido.ToString("N2")</b> <br />
                     Status: @Model.PedidoCabecalho.StatusPagamento <br />
-                    @pagamento <br />                    
+                    @pagamento <br />
                 </p>
             </div>
         </div>
@@ -74,7 +75,7 @@
                 <p>
                     Destinatário: @Model.PedidoCabecalho.NomeDestinatario <br />
                     Contato: @Model.PedidoCabecalho.TelefoneContato <br />
-                    @Model.PedidoCabecalho.LogradouroEntrega <br /> @Model.PedidoCabecalho.CidadeEntrega - @Model.PedidoCabecalho.EstadoEntrega (CEP @Model.PedidoCabecalho.CEPEntrega).
+                    @Model.PedidoCabecalho.LogradouroEntrega <br /> @Model.PedidoCabecalho.CidadeEntrega - @Model.PedidoCabecalho.EstadoEntrega (CEP @Model.PedidoCabecalho.CEPEntrega)
                 </p>
             </div>
         </div>
@@ -94,7 +95,7 @@
             else
             {
                 <p>
-                    Aguardando o envio.
+                    Aguardando o envio...
                 </p>
             }
         </div>
@@ -105,28 +106,20 @@
     <div class="col-12 col-md-9 my-2 mx-auto text-start p-4">
         <h4>Itens do Pedido:</h4>
         <hr />
-        <div>
-            @foreach (var item in Model.PedidoDetalhes)
-            {
-                <div class="row my-2" style="background-color: rgba(34, 34, 34, 70%)">
-                    <div class="col-12 col-md-2" style="height: 120px">
-                        <img src="@item.Produto.BoxArt" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
-                    </div>
-                    <div class="col-12 col-md-5 my-md-auto container">
-                        <p class="my-md-auto text-center text-md-start"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p>
-                        <p class="text-center text-md-start">R$ @item.Preco.ToString("N2") x @item.Quantidade Unidade(s)</p>
-                    </div>
-                    <div class="col-5 my-md-auto">
-                        <a href="#" style="text-decoration: none">Precisa de ajuda?</a>
-                        <br />
-                        <a href="#" style="text-decoration: none">Deixe um comentario</a>
-                        <br />
-                        <a href="#" class="btn btn-outline-light rounded mt-2">Devolver</a>
-                    </div>
+
+        @foreach (var item in Model.PedidoDetalhes)
+        {
+            <div class="row mx-auto my-2 col-12 my-md-auto transparent-box">
+                <div class="col-md-6" style="height: 120px">
+                    <img src="@item.Produto.BoxArt" style="max-height: 100px; width:100%; object-fit:contain; margin-top: 10px" />
                 </div>
-                <hr />
-            }
-        </div>
+                <div class="col-md-6 my-md-auto container">
+                    <p class="my-md-auto text-center text-md-start"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p>
+                    <p class="text-center text-md-start">R$ @item.Preco.ToString("N2") x @item.Quantidade Unidade(s)</p>
+                </div>
+            </div>
+        }
+
     </div>
 </div>
 <div class="text-end my-auto">

@@ -15,12 +15,19 @@ namespace RubyGameStoreWeb.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var claimsidentity = (ClaimsIdentity)User.Identity;
-            var claims = claimsidentity.FindFirst(ClaimTypes.NameIdentifier);
-            var usuario = _unitOfWork.UsuarioRepo.GetFirstOrDefault(u => u.Id == claims.Value);
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                var claimsidentity = (ClaimsIdentity)User.Identity;
+                var claims = claimsidentity.FindFirst(ClaimTypes.NameIdentifier);
+                var usuario = _unitOfWork.UsuarioRepo.GetFirstOrDefault(u => u.Id == claims.Value);
 
-            HttpContext.Session.SetString(Sessao.NomeUsuario, usuario.NomeUsuario);
-            return View("Default", HttpContext.Session.GetString(Sessao.NomeUsuario));
+                HttpContext.Session.SetString(Sessao.NomeUsuario, usuario.NomeUsuario);
+                return View("Default", HttpContext.Session.GetString(Sessao.NomeUsuario));
+            }
+            else
+            {
+                return View("Default");
+            }
         }
     }
 }

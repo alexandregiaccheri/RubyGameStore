@@ -26,11 +26,11 @@ namespace RubyGameStore.Models.Models
         public string TipoDesconto { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório")]
-        [Display(Name = "Usos do Cupom (para usos ilimitados, coloque -1)")]
+        [Display(Name = "Usos do Cupom (usos ilimitados = -1)")]
         public int QuantidadeUsos { get; set; }
 
         [Required]
-        [Display(Name = "Data de validade do cupom")]
+        [Display(Name = "Validade do cupom")]
         public DateTime ValidadeCupom { get; set; }
 
         [Display(Name = "Valor do desconto (R$)")]

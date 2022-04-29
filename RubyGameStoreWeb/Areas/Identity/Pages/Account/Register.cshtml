@@ -1,4 +1,5 @@
 ﻿@page
+@using RubyGameStore.Helper.StaticNames
 @model RegisterModel
 @{
     ViewData["Title"] = "Criar Conta";
@@ -13,7 +14,14 @@
     }
 </style>
 
-<h1 class="pt-2">Criar conta</h1>
+@if (User.IsInRole(Autorizacao.Admin))
+{
+    <h1 class="pt-2">Portal Admin</h1>
+}
+else
+{
+    <h1 class="pt-2">Criar conta</h1>
+}
 
 <div class="row px-1 pb-4">
     <div class="col-md-6">
@@ -23,49 +31,52 @@
                 <hr />
                 <div class="row">
                     <div class="form-floating mb-2">
-                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" required aria-required="true" />
                         <label asp-for="Input.Email" style="margin-left: 12px"></label>
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-2 col-md-6">
-                        <input asp-for="Input.NomeUsuario" class="form-control" aria-required="true" />
+                        <input asp-for="Input.NomeUsuario" class="form-control" required aria-required="true" />
                         <label asp-for="Input.NomeUsuario" style="margin-left: 12px"></label>
                         <span asp-validation-for="Input.NomeUsuario" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-2 col-md-6">
-                        <input asp-for="Input.SobrenomeUsuario" class="form-control" aria-required="true" />
+                        <input asp-for="Input.SobrenomeUsuario" class="form-control" required aria-required="true" />
                         <label asp-for="Input.SobrenomeUsuario" style="margin-left: 12px"></label>
                         <span asp-validation-for="Input.SobrenomeUsuario" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-2 col-md-6">
-                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" required aria-required="true" />
                         <label asp-for="Input.Password" style="margin-left: 12px"></label>
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                     <div class="form-floating mb-2 col-md-6">
-                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" required aria-required="true" />
                         <label asp-for="Input.ConfirmPassword" style="margin-left: 12px"></label>
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row">
+                @if (!User.IsInRole(Autorizacao.Admin))
+                {
+                    <div class="row">
+                        <hr class="mt-2" />
+                        <p class="text-center">Você deseja cadastrar seu endereço agora?</p>
+                        <div class="form-check col-6 text-end">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
+                                Sim
+                            </label>
+                        </div>
+                        <div class="form-check col-6 text-left">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
+                                Não
+                            </label>
+                        </div>
+                    </div>
                     <hr class="mt-2" />
-                    <p class="text-center">Você deseja cadastrar seu endereço agora?</p>
-                    <div class="form-check col-6 text-end">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
-                            Sim
-                        </label>
-                    </div>
-                    <div class="form-check col-6 text-left">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" checked="">
-                            Não
-                        </label>
-                    </div>
-                </div>
-                <hr class="mt-2" />
+                }
                 <div class="row" id="endereco-box" style="display:none">
                     <div class="form-floating mb-2 col-md-6">
                         <input asp-for="Input.LogradouroUsuario" class="form-control" aria-required="true" />
@@ -88,66 +99,72 @@
                         <span asp-validation-for="Input.CEPUsuario" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="mb-2">
-                    <select asp-for="Input.Autorizacao" asp-items="@Model.Input.ListaAutorizacao" class="form-select" id="selecao_autorizacao">
-                        <option selected disabled>--Selecione Autorização--</option>
-                    </select>
-                </div>
-                <div class="mb-2">                    
-                    <select asp-for="Input.EmpresaId" asp-items="@Model.Input.ListaEmpresas" class="form-select" style="display: none" id="selecao_empresa">
-                        <option selected disabled>--Selecione Empresa--</option>
-                    </select>
-                </div>
+                @if (User.IsInRole(Autorizacao.Admin))
+                {
+                    <div class="mb-2">
+                        <select asp-for="Input.Autorizacao" asp-items="@Model.Input.ListaAutorizacao" class="form-select" id="selecao_autorizacao">
+                            <option selected disabled>--Selecione Autorização--</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <select asp-for="Input.EmpresaId" asp-items="@Model.Input.ListaEmpresas" class="form-select" style="display: none" id="selecao_empresa">
+                            <option selected disabled>--Selecione Empresa--</option>
+                        </select>
+                    </div>
+                }
                 <button id="registerSubmit" type="submit" class="w-100 mt-1 btn btn-lg btn-primary">Registrar</button>
             </div>
         </form>
-    </div>    
-    <div class="col-md-6 mt-4 mt-md-0 col-md-offset-2">
-        <section>
-            <h3>Cadastre-se com redes sociais</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                article
-                                about setting up this ASP.NET application to support logging in via external services
-                            </a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div class="row">
-                            @foreach (var provider in Model.ExternalLogins)
-                            {
-                                <div class="col-12 mb-2">
-                                <button type="submit" class="btn btn-primary text-start" style="width: 130px" name="provider" value="@provider.Name" title="Entre usando sua conta do @provider.DisplayName">
-                                    @if (@provider.DisplayName == "Google")
-                                    {
-                                        <i class="bi bi-google"></i>
-                                    }
-                                    @if (@provider.DisplayName == "Facebook")
-                                    {
-                                        <i class="bi bi-facebook"></i>
-                                    }
-                                    @if (@provider.DisplayName == "Twitter")
-                                    {
-                                        <i class="bi bi-twitter"></i>
-                                    }
-                                    &ensp; @provider.DisplayName
-                                </button>
-                                </div>
-                            }
-                        </div>
-                    </form>
-                }
-            }
-        </section>
     </div>
+    @if (!User.IsInRole(Autorizacao.Admin))
+    {
+        <div class="col-md-6 mt-4 mt-md-0 col-md-offset-2">
+            <section>
+                <h3>Cadastre-se com redes sociais</h3>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                    article
+                                    about setting up this ASP.NET application to support logging in via external services
+                                </a>.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div class="row">
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <div class="col-12 mb-2">
+                                        <button type="submit" class="btn btn-primary text-start" style="width: 130px" name="provider" value="@provider.Name" title="Entre usando sua conta do @provider.DisplayName">
+                                            @if (@provider.DisplayName == "Google")
+                                            {
+                                                <i class="bi bi-google"></i>
+                                            }
+                                            @if (@provider.DisplayName == "Facebook")
+                                            {
+                                                <i class="bi bi-facebook"></i>
+                                            }
+                                            @if (@provider.DisplayName == "Twitter")
+                                            {
+                                                <i class="bi bi-twitter"></i>
+                                            }
+                                            &ensp; @provider.DisplayName
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    }
 </div>
 
 @section Scripts {
