@@ -66,7 +66,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 // Seleciona os elementos do banco de dados e os exibe de 10 em 10
                 var lista10 = novaBusca.ListaProdutos.ToList();
                 ViewBag.ProdutosCount = novaBusca.ListaProdutos.Count();
-                if (idx < lista10.Count())                
+                if (idx <= lista10.Count())                
                     novaBusca.ListaProdutos = lista10.GetRange(idx - 10, idx);                
                 else                
                     novaBusca.ListaProdutos = lista10.GetRange(idx - 10, lista10.Count() % 10);                
@@ -226,7 +226,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 var lista10 = novaBusca.ListaProdutos.ToList();
 
                 ViewBag.ProdutosCount = novaBusca.ListaProdutos.Count();
-                if (idx < lista10.Count())                
+                if (idx <= lista10.Count())                
                     novaBusca.ListaProdutos = lista10.GetRange(idx - 10, idx);                
                 else                
                     novaBusca.ListaProdutos = lista10.GetRange(idx - 10, lista10.Count() % 10);                

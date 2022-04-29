@@ -237,12 +237,12 @@
                                     </a>
                                 </div>
                                 <div class="col-12 col-md-9 my-auto p-2 d-flex flex-column flex-md-row">
-                                    <div class="col-12 col-md-7 my-auto p-1 py-0 d-flex flex-column text-center">
+                                    <div class="col-12 col-md-8 my-auto p-1 py-0 d-flex flex-column text-center">
                                         <h4 style="font-family:Play">@obj.Titulo</h4>
                                         <p style="line-height:normal;margin:0">@obj.Desenvolvedor, @obj.Distribuidor</p>
                                         <p style="line-height:normal;margin:0">Lançamento: @obj.DataLancamento.ToShortDateString()</p>
                                     </div>
-                                    <div class="col-12 col-md-5 p-1 py-0 text-center">
+                                    <div class="col-12 col-md-4 p-1 py-0 text-center">
                                         <p style="line-height:normal;margin:0">@obj.Plataforma</p>
                                         <h5 class="fw-bold" style="font-family:Play; color: lightgreen">R$ @obj.PrecoNormal.ToString("N2")</h5>
                                         <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id" class="btn btn-primary" style="min-width:120px">Ver Mais</a>
@@ -257,7 +257,7 @@
                     <h5 class="p-5 transparent-box">Nenhum resultado encontrado :(</h5>
                 }
             }
-            <div class="d-flex w-auto justify-content-center align-items-center my-3 py-1 mx-auto transparent-box">
+            <div class="d-flex w-auto justify-content-center align-items-center my-3 py-1 mx-auto mx-lg-0 ms-lg-auto transparent-box">
                 @if (ViewBag.IDX == 1)
                 {
                     <a class="btn btn-primary disabled" style="height:40px; width:60px"><i class="bi bi-arrow-left"></i></a>
@@ -270,8 +270,7 @@
                 <a class="btn btn-outline-light disabled mx-3" style="height:40px; width:60px">@(ViewBag.IDX)</a>
 
                 @{
-                    var verificaFim = (ViewBag.IDX * 10);
-                    verificaFim--;
+                    var verificaFim = (ViewBag.IDX * 10);                    
                 }
 
                 @if (verificaFim < ViewBag.ProdutosCount)

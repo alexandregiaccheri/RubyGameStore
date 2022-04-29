@@ -45,7 +45,7 @@
                     <section class="my-auto col-12 col-lg-5 px-1">
                         <img src="@item.Produto.BoxArt" class="rounded-3 mt-1 px-auto" style="width:100%; height:100%; background-size:contain">
                     </section>
-                    <div class="my-md-auto container text-center text-lg-start py-0 px-1">
+                    <div class="my-md-auto container text-center text-lg-start py-2 py-lg-0 px-1">
                         <p class="my-md-auto"><b>@item.Produto.Titulo</b><br />@item.Produto.Desenvolvedor<br />@item.Produto.Plataforma</p><hr class="d-md-none">
                         <p>R$ @(item.Produto.PrecoPromo != 0 ? item.Produto.PrecoPromo.ToString("N2") : @item.Produto.PrecoNormal.ToString("N2")) x @item.Quantidade Unidade(s)</p>
                         <div class="row mx-0 mb-2 justify-content-lg-start justify-content-center">
