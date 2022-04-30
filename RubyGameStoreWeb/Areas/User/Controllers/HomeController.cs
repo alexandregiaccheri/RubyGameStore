@@ -67,7 +67,7 @@ namespace RubyGameStoreWeb.Areas.User.Controllers
                 var lista10 = novaBusca.ListaProdutos.ToList();
                 ViewBag.ProdutosCount = novaBusca.ListaProdutos.Count();
                 if (idx <= lista10.Count())                
-                    novaBusca.ListaProdutos = lista10.GetRange(idx - 10, idx);                
+                    novaBusca.ListaProdutos = lista10.GetRange(idx - 10, 10);                
                 else                
                     novaBusca.ListaProdutos = lista10.GetRange(idx - 10, lista10.Count() % 10);                
 
