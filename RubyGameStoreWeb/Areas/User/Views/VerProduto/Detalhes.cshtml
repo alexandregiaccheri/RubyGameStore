@@ -85,16 +85,16 @@
                         <a class="btn btn-primary text-center mx-auto w-100"><i class="bi bi-share-fill"></i>&nbsp; Enviar</a>
                     </div>
                 </div>
-                <p class="mx-auto font-play preco-produto text-white">Versão: <b>@Model.Produto.Plataforma</b></p>
+                <p class="mx-auto my-auto font-play preco-produto text-white">Versão: <b>@Model.Produto.Plataforma</b></p>
             </form>
         </div>        
     </div>
 </section>
 
 <section class="d-flex flex-column-reverse flex-lg-row mt-3">
-    <div class="container descricao-box pt-3 pb-2 col-12 col-lg-8 mb-3 transparent-box">
+    <div class="container descricao-box p-3 pb-2 col-12 col-lg-8 mb-3 transparent-box">
         <h3 class="text-white font-play"><b>Descrição do Jogo:</b></h3>
-        <hr class="w-75 mx-auto" />
+        <hr />
         <p>@Html.Raw(@Model.Produto.Descricao)</p>
     </div>
     <div class="row col-12 col-lg-4 mx-auto mx-lg-2 mb-3 p-1 d-flex flex-column flex-md-row flex-lg-column justify-content-between transparent-box">
