@@ -280,7 +280,6 @@ div.form-floating {
     width: contain;
 }
 
-/*VerProduto*/
 .preco-produto {
     color: lightgreen;
     font-family: Play;
@@ -288,6 +287,10 @@ div.form-floating {
     line-height: 1.6;
 }
 
-.tox-tinymce{
+.tox-tinymce {
     padding: 0px;
+}
+
+.descricao-box img {
+    width: -webkit-fill-available;
 }

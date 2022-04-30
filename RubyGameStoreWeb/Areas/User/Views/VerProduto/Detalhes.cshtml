@@ -55,9 +55,9 @@
     </div>
     <div class="container d-flex flex-column flex-md-row flex-lg-column mx-auto mx-lg-2 py-3 col-12 col-lg-4 justify-content-between justify-content-md-around justify-content-lg-between transparent-box" style="height:auto">
         <div class="col-12 col-md-6 col-lg-12 my-lg-auto">
-            <img src="@Model.Produto.BoxArt" class="rounded-2" style="width:100%; background-size:contain" />
+            <img src="@Model.Produto.BoxArt" class="rounded-2" style="width:100%; background-size:contain; aspect-ratio: 16/9" />
         </div>
-        <div class="row my-auto p-2 d-flex flex-column">
+        <div class="my-auto p-2 d-flex flex-column">
             <div class="col-12 text-center">
                 @if (Model.Produto.PrecoPromo != 0)
                 {
@@ -85,21 +85,16 @@
                         <a class="btn btn-primary text-center mx-auto w-100"><i class="bi bi-share-fill"></i>&nbsp; Enviar</a>
                     </div>
                 </div>
+                <p class="mx-auto font-play preco-produto text-white">Versão: <b>@Model.Produto.Plataforma</b></p>
             </form>
-        </div>
-        @*<div class="d-none d-xxl-block p-2" style="border: 2px solid #333; border-radius:10px; background-color: #222; height: auto">
-            <h3 class="text-white text-center" style="font-family:Play">Parabéns</h3>
-            <p class="text-white text-center" style="font-family:Play">
-            Você encontrou o <b>cupom secreto</b> elitista! <br />
-            Insira o cupom <b>"TelaGrande"</b> na próxima compra e ganhe R$ 10,00 de desconto!
-            </p>
-            </div>*@
+        </div>        
     </div>
 </section>
 
 <section class="d-flex flex-column-reverse flex-lg-row mt-3">
-    <div class="container pt-3 pb-2 col-12 col-lg-8 mb-3 transparent-box">
+    <div class="container descricao-box pt-3 pb-2 col-12 col-lg-8 mb-3 transparent-box">
         <h3 class="text-white font-play"><b>Descrição do Jogo:</b></h3>
+        <hr class="w-75 mx-auto" />
         <p>@Html.Raw(@Model.Produto.Descricao)</p>
     </div>
     <div class="row col-12 col-lg-4 mx-auto mx-lg-2 mb-3 p-1 d-flex flex-column flex-md-row flex-lg-column justify-content-between transparent-box">

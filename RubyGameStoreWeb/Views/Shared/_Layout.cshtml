@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="~/RubyGameStoreWeb.styles.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Play&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italianno&family=Play&display=swap">
     @RenderSection("Styles", false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom:20px">
             <div class="container-fluid font-play">
                 <a class="navbar-brand p-3" asp-area="User" asp-controller="Home" asp-action="Index"><i class="bi bi-gem"></i>&nbsp; Ruby Game Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,8 +42,8 @@
                                 <a class="dropdown-item" href="#">Casual</a>
                                 <a class="dropdown-item" href="#">Esporte</a>
                                 <a class="dropdown-item" href="#">Estratégia</a>
-                                <a class="dropdown-item" href="#">Outros</a>
                                 <a class="dropdown-item" href="#">RPG</a>
+                                <a class="dropdown-item" href="#">Outros</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -86,9 +86,10 @@
     </div>
 
     <footer class="footer bg-primary">
-        <div class="container text-white d-flex">
-            <p class="mx-2 py-0 my-0" style="line-height:60px">&copy; 2022 - Alexandre Giaccheri -</p>
-            <a class="mx-2 py-0 my-0 text-white text-decoration-none" style="line-height:60px" href="https://github.com/alexandregiaccheri/RubyGameStore" target="_blank"><i class="bi bi-github"></i>&nbsp;</a>
+        <div class="container text-white d-flex justify-content-center">
+            <p class="py-0 my-0" style="line-height:60px">&copy; 2022</p>
+            <h4 class="mx-2 py-0 my-0" style="line-height:60px; font-family: Italianno; transform:translateY(2px)"> - Alexandre Giaccheri - </h4>
+            <a class="py-0 my-0 text-white text-decoration-none" style="line-height:60px" href="https://github.com/alexandregiaccheri/RubyGameStore" target="_blank"><i class="bi bi-github"></i>&nbsp;</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
