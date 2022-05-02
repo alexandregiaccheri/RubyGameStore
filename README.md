@@ -1,7 +1,8 @@
-- ![Logo](logo.png)
+- ![Logodark](logo_dark.png#gh-dark-mode-only)
+- ![Logolight](logo_light.png#gh-light-mode-only)
 
 
-  # https://www.rgs.xande.dev
+  # [Visitar Site](https://www.rgs.xande.dev)
 
   Um site de comércio eletrônico construído com ASP.NET Core para a venda de games (inicialmente mídias físicas) inspirado em lojas como Steam, Nuuvem e Kabum!
 
