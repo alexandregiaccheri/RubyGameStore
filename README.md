@@ -120,9 +120,12 @@
    - [Toastr](https://github.com/CodeSeven/toastr)
   ## Agradecimentos
 
-  * [Lucas Santos (@makenchi)](https://github.com/makenchi) e [Edwilson Cruz (@EdwilsonCruz)](https://github.com/EdwilsonCruz) por ajudarem a solucionar dúvidas/problemas de código
+  * [Edwilson Cruz (@EdwilsonCruz)](https://github.com/EdwilsonCruz) por ajudar com dúvidas/problemas de código
+  * [Jean Muniz (@Shifungo)](https://github.com/Shifungo) por ajudar a testar a aplicação
   * [João Arthur (@bolotaime)](https://github.com/bolotaime) por ajudar com dicas e sugestões de UI/UX
-  * [Jean Muniz (@Shifungo)](https://github.com/Shifungo) e [Marco Giaccheri (@MarcoGiaccheri)](https://github.com/MarcoGiaccheri) por ajudarem a testar a aplicação
+  * [Lucas Santos (@makenchi)](https://github.com/makenchi) por ajudar com dúvidas/problemas de código
+  * [Marco Giaccheri (@MarcoGiaccheri)](https://github.com/MarcoGiaccheri) por ajudar a testar testar a aplicação
+   
   ## Feedback
 
   Qualquer dúvida, problema, sugestão ou qualquer outro assunto entre em contato através do email: "[contato@xande.dev](contato@xande.dev)"
