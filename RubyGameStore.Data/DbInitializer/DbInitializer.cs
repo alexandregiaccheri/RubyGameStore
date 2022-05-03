@@ -3,11 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using RubyGameStore.Data.Data;
 using RubyGameStore.Helper.StaticNames;
 using RubyGameStore.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RubyGameStore.Data.DbInitializer
 {
@@ -50,13 +45,13 @@ namespace RubyGameStore.Data.DbInitializer
 
                 _userManager.CreateAsync(new Usuario
                 {
-                    UserName = "alexandre@xande.dev",
-                    Email = "alexandre@xande.dev",
-                    NomeUsuario = "Alexandre",
-                    SobrenomeUsuario = "Giaccheri"
+                    UserName = "admin@ruby.com",
+                    Email = "admin@ruby.com",
+                    NomeUsuario = "Ruby",
+                    SobrenomeUsuario = "Admin"
                 }, "Admin1234*").GetAwaiter().GetResult();
 
-                Usuario usuario = _dbContext.Usuarios.FirstOrDefault(u => u.Email == "alexandre@xande.dev");
+                Usuario usuario = _dbContext.Usuarios.FirstOrDefault(u => u.Email == "admin@ruby.com");
 
                 _userManager.AddToRoleAsync(usuario, Autorizacao.Admin).GetAwaiter().GetResult();
             }

@@ -284,14 +284,14 @@ else
     <div class="row px-1" style="margin-bottom: 80px">
         @foreach (var obj in Model.OrderByDescending(p => p.Metascore).ToList().GetRange(0, 24))
         {
-            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 p-2 d-flex flex-column home-card position-relative" style="aspect-ratio:10/14">
+            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 p-2 d-flex flex-column home-card position-relative"@* style="aspect-ratio:10/14"*@>
                 <a asp-area="User" asp-controller="VerProduto" asp-action="Detalhes" asp-route-ProdutoId="@obj.Id" class="mb-2" style="width:100%; aspect-ratio:16/9">
                     <div class="mb-2 rounded-2" style="background: url('@obj.BoxArt.Replace("\\", "/")');
                                             height: 100%; width: 100%; background-size: cover;
                                             background-position: center;"></div>
                 </a>
-                <div class="px-1">
-                    <div style="height:auto">
+                <div class="px-1" style="margin-bottom:10%">
+                    <div style="height:14rem">
                         <div class="d-flex justify-content-between" style="width:inherit">
                             <div class="my-auto">
                                 <h4 class="text-white font-play"><strong>@obj.Titulo</strong></h4>
