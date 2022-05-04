@@ -56,26 +56,24 @@
   * SGBD Relacional
     * É possível utilizar qualquer banco de dados relacional suportado pelo EF Core 6, porém 
   * Windows 10 com .NET 6
-    * Ajustes adicionais são necessários para rodar em sistemas não Windows
+    * Ajustes adicionais são necessários para sistemas não baseados em Windows
 
   **Instruções e informações**
 
   Devido as integrações e complexidade do projeto, para que o mesmo funcione corretamente algumas configurações serão necessárias:  
 
-**I - Configuração com Banco de Dados**:  
+  **I - Configuração com Banco de Dados**:  
 
   * Criar um arquivo de configurações (appsettings.json) para o projeto "RubyGameStoreWeb"  
     (Você pode utilizar o modelo abaixo)  
   * Neste arquivo, defina uma conexão com um banco de dados (connection string)
     
 
-**II - Configure ou Desabilite**:  
+  **II - Configure ou Desabilite**:  
 
     1 - Autenticação com redes sociais  
     2 - Emails automáticos  
     3 - Integração com Stripe  
-
-  <br>
 
   ### 1 - Redes Sociais:
   * **Configurar**: substitua os campos "sua-implementação" no arquivo de configuração (appsettings.json) com suas chaves pessoais (dos portais de desenvolvedor de cada rede social que deseja implementar), então configure as URLs nos serviços configurados de acordo com o seu ambiente local.
@@ -254,7 +252,7 @@ public void Initialize()
 
 <br>
 
-  Para começar a cadastrar produtos e gerenciar a loja, faça login com a conta de administrador criada acima. Você pode alterar as informações da conta ou até criar outras contas de administrador a partir do menu exclusivo "Admin" na barra de navegação do site (quando logado como admin).
+  Para começar a cadastrar produtos e gerenciar a loja, faça login com a conta de administrador criada acima. Você pode alterar as informações dessa conta ou criar outras contas de administrador a partir do menu exclusivo "Admin" na barra de navegação do site (quando logado como admin).
 
   ## Outros recursos utilizados
 
@@ -271,11 +269,12 @@ public void Initialize()
 
   ## Agradecimentos
 
+  * [Bhrugen Patel (@bhrugen)](https://github.com/bhrugen) @ [DotNetMastery](https://www.dotnetmastery.com/) pelo incrível [curso de ASP.NET Core MVC](https://www.dotnetmastery.com/Home/Details?courseId=9) e demais recursos
   * [Edwilson Cruz (@EdwilsonCruz)](https://github.com/EdwilsonCruz) por ajudar com dúvidas/problemas de código
   * [Jean Muniz (@Shifungo)](https://github.com/Shifungo) por ajudar a testar a aplicação
   * [João Arthur (@bolotaime)](https://github.com/bolotaime) por ajudar com dicas e sugestões de UI/UX
   * [Lucas Santos (@makenchi)](https://github.com/makenchi) por ajudar com dúvidas/problemas de código
-  * [Marco Giaccheri (@MarcoGiaccheri)](https://github.com/MarcoGiaccheri) por ajudar a testar testar a aplicação
+  * [Marco Giaccheri (@MarcoGiaccheri)](https://github.com/MarcoGiaccheri) por ajudar a testar a aplicação
 
   <hr>
 
